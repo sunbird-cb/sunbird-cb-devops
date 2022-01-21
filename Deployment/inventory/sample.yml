@@ -374,3 +374,6 @@ var_kafka_service_kafka_offset_reset_config: latest
 var_external_api_service_content_url_part: "" # Unused, will be removed
 
 ########test commit for  #######
+
+
+DEmo testing we are adding a commit
