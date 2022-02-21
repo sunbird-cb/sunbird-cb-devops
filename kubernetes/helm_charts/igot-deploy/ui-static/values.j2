@@ -1436,6 +1436,11 @@ envjs: |-
     window["env"]["azureOldHost"] = '{{ igot_azureoldhost }}'
     window["env"]["azureOldBuket"] = '{{ igot_azureoldbuket }}'
     window["env"]["portalRoles"] = '{{ igot_karmayoggirules }}';
+    window["env"]["mdoPath"] = 'https://{{ mdo_portal_url }}'
+    window["env"]["cbpPath"] = 'https://{{ cbp_domain_name }}'
+    window["env"]["fracPath"] = '{{ frac_dict_url }}'
+    window["env"]["cbcPath"] = 'https://{{ cbp_portal_url }}'
+    window["env"]["spvPath"] = 'https://{{ spv_portal_url }}'
 
  })(this);
 
