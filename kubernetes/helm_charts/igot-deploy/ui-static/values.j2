@@ -1443,6 +1443,12 @@ envjs: |-
     window["env"]["fracPath"] = '{{ frac_dict_url }}'
     window["env"]["cbcPath"] = 'https://{{ cbc_portal_url }}'
     window["env"]["spvPath"] = 'https://{{ spv_portal_url }}'
+    window["env"]["otherPortalRoles"] =  {
+        cbp: ['CBP_ADMIN','CONTENT_CREATOR','CONTENT_REVIEWER','CONTENT_PUBLISHER', 'cbp_admin', 'content_creator', 'content_reviewer', 'content_publisher'],
+        mdo: ['MDO_ADMIN','WAT_MEMBER', 'mdo_admin', 'wat_member'],
+        cbc: ['CBC_ADMIN','CBC_MEMBER', 'cbc_admin', 'cbc_member'], 
+        frac: []
+    }
 
  })(this);
 
