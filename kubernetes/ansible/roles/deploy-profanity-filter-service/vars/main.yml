@@ -4,7 +4,7 @@
 release_name: "{{ network_alias_profanity_filter_service }}"
 user_friendly_name: Profanity Filter service
 template_compose_file_name: profanity-filter.j2
-template_env_file_name: "../../shared_files/templates/profanity-filter-env.j2"
+template_env_file_name: "profanity-filter-env.j2"
 compose_file_name: "{{ service_profanity_filter_service }}.yml"
 env_file_name: "{{ service_profanity_filter_service }}.env"
 env_file_deployment_location: "{{ env_files_dir }}/{{ env_file_name }}"
