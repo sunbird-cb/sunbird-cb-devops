@@ -13,7 +13,6 @@ spring.elastic.user={{ elasticsearch_username }}
 spring.elastic.pass={{ elasticsearch_password }}
 spring.elastic.transport=http
 
-
 spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
 spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer
 spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
@@ -23,3 +22,10 @@ spring.kafka.groupId=1
 spring.kafka.topicname.flagged=flagged
 spring.kafka.topicname.moderated=moderated
 spring.kafka.topicname.groupid=moderator
+
+profanity.moderation.index=moderation_text_dev
+profanity.classification.ai.offensive=Offensive
+profanity.classification.offensive=NSFW
+profanity.classification.not.offensive=SFW
+profanity.classification.probabilityCutoff=0.85
+
