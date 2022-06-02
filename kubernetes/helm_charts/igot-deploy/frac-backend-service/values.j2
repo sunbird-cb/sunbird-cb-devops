@@ -6,7 +6,7 @@ dockerhub: {{ docker_hub_url }}
 
 
 env:
-  javaoptions: {{lms_java_mem_limit|default('-Xmx600m')}}
+  javaoptions: {{lms_java_mem_limit|default('-Xmx900m')}}
 
 replicaCount: {{lms_replicacount|default(1)}}
 repository: {{ image_frac_backend_service }}
