@@ -52,4 +52,4 @@ workflow_handler_service_api_base: "http://{{ network_alias_workflow_handler_ser
 x_channel_id: "{{ X_CHANNEL_ID }}"
 content_service_api_base: "http://content-service:9000"
 
-keycloak_session_ttl: 630720000
+keycloak_session_ttl: 86400000
