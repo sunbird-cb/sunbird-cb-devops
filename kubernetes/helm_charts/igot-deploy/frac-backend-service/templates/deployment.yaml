@@ -50,7 +50,7 @@ spec:
         readinessProbe:
 {{ toYaml .Values.readinessProbe | indent 10 }}
         {{- end }}
- #       volumeMounts:
+        volumeMounts:
  #       - name: {{ .Chart.Name }}-xml-config
  #         mountPath: /home/sunbird/lms/lms-service-1.0-SNAPSHOT/config/logback.xml
  #         subPath: lms-service_logback.xml
