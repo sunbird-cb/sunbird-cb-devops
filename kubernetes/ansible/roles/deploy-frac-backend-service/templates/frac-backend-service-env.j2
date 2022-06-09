@@ -43,7 +43,6 @@ role-verification-url={{ frac_role_verification }}
 elk.data.up=true
 image.source.aws=true
 image.source.attachment.aws=true
-auth-verification-url=https://{{ domain_name }}/auth/realms/{{ keycloak_realm_name }}/protocol/openid-connect/userinfo
 application.environment=stage
 
 -------------------------------------
@@ -67,3 +66,9 @@ audit.type=events
 audit.pdata.id=dev.FRac.portal
 audit.pdata.pid=FRac
 audit.pdata.ver=1.0
+
+
+### Token Validation ###
+accesstoken.publickey.basepath={{ adminutil_refresh_token_public_key_kid }}
+sunbird_sso_url=https://{{ domain_name }}/auth/
+sunbird_sso_realm={{ keycloak_sso_realm }}
