@@ -22,6 +22,11 @@
    path: "{{ helm_env_file_name }}"
    state: absent
 
+- name: Load role to decrypt private keys, copy to helm chart and encrypt private keys
+  include_role:
+    name: mount-keys
+    tasks_from: copy-to-helm.yml
+
 - name: Create the token pubic key file
   copy:
     dest: "{{ chart_path }}/keys/{{ adminutil_refresh_token_public_key_kid }}"
