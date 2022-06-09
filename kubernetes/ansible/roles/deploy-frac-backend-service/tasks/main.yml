@@ -22,8 +22,21 @@
    path: "{{ helm_env_file_name }}"
    state: absent
 
+- name: Create the token pubic key file
+  copy:
+    dest: "{{ chart_path }}/keys/{{ adminutil_refresh_token_public_key_kid }}"
+    content: "{{ core_vault_sunbird_sso_publickey }}"
+
 - name: helm upgrade
   shell: helm upgrade --install --atomic --timeout 10m {{ release_name }} {{ chart_path }} -n {{namespace}}
+
+- name: Clean up keys
+  include_role:
+    name: mount-keys
+    tasks_from: "{{item}}"
+  with_items:
+    - remove-from-helm.yml
+    - remove-keys-from-inventory.yml
 
 - name: Get the deployment rollout status
   shell: "kubectl get deployments -A | grep -i {{ release_name }} | awk -F' ' '{print $3}' | awk -F/ '{if ($1 ~ $2){exit 0} else {exit 1}}'"

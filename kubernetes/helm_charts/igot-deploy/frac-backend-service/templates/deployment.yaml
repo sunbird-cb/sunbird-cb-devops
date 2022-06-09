@@ -56,7 +56,7 @@ spec:
  #         subPath: lms-service_logback.xml
 {{- $keys := .Files.Glob "keys/*" }}
 {{- if $keys }}
-        - mountPath: {{ .Values.lms_device_basepath }}
+        - mountPath: {{ .Values.frac_backend_basepath }}
           name: access-keys
 {{- end }}
       volumes:
@@ -67,7 +67,7 @@ spec:
 {{- if $keys }}
       - name: access-keys
         secret:
-          secretName: lms-access-keys
+          secretName: frac-access-keys
 {{- end }}
 
 ---
