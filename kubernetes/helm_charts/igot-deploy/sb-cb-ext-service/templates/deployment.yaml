@@ -67,7 +67,7 @@ spec:
 {{- if $keys }}
       - name: access-keys
         secret:
-          secretName: frac-access-keys
+          secretName: cb-ext-access-keys
 {{- end }}
 
 ---
