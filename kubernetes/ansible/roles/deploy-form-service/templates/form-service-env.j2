@@ -1,0 +1,65 @@
+server.port=service_form_port
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://{{ mysql_host }}:3306/retail_user
+spring.datasource.username={{ mysql_username }}
+spring.datasource.password={{ mysql_username }}
+
+#----------------------------- ELASTIC SEARCH CONFIGURATIONS ------------------------------#
+services.esindexer.host=http://{{ elasticsearch_host }}:{{ elasticsearch_http_port }}/
+services.esindexer.host.name={{ elasticsearch_host }}
+services.esindexer.host.port={{ elasticsearch_host }}
+services.esindexer.username={{ elasticsearch_username }}
+services.esindexer.password={{ elasticsearch_password }}
+# INDEX AND DOCUMENT TYPES
+es.fs.forms.index.name=fs-forms
+es.fs.formsdata.index.name=fs-forms-data
+es.fs.state.index.name=fs-forms-state
+es.fs.statematrix.index.name=fs-forms-state-matrix
+es.fs.workflowlog.index.name=fs-forms-workflow-log
+es.fs.activitylog.index.name=fs-forms-activity-log
+
+es.forms.fail.records.index.name=form-failure-records
+es.forms.fail.records.index.type=formfailurerecords
+
+file.config.path=/
+file.config.name=FormConfig.yml
+
+#----------------------------- KAFKA SERVER CONFIGURATIONS ------------------------------#
+spring.kafka.bootstrap.servers={{ kafka_servers_list }}
+
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
+
+# KAFKA PRODUCER CONFIGURATIONS
+kafka.producer.config.retries_config=0
+kafka.producer.config.batch_size_config=100000
+kafka.producer.config.linger_ms_config=100
+kafka.producer.config.buffer_memory_config=66554432
+
+spring.http.multipart.max-file-size=100MB
+spring.http.multipart.max-request-size=100MB
+
+#----------------------------- CLOUD STORAGE CONFIGURATIONSS ------------------------------#
+cloud_storage_type=azure
+azure_storage_key=storagekey
+azure_storage_secret=secretkey
+azure_storage_container=container
+
+#---------------------------------- SMTP CONFIGURATIONS ------------------------------------#
+mail.smtp.host={{sunbird_mail_server_host}}
+mail.smtp.auth=true
+mail.smtp.port={{sunbird_mail_server_port}}
+mail.smtp.user={{sunbird_mail_server_username}}
+mail.smtp.password={{sunbird_mail_server_password}}
+mail.smtp.email=UP-SMF@tarento.com
+
+#------- FCM ------#
+fcm.service.account.filename=up-smf
+
+#-------------------------------- USER SERVICE CONFIGURATIONS -------------------------------#
+user.routes.host.url=http://localhost:8081
+user.routes.getalluser.url=/user/v1/getAllUser
+user.routes.getuserbyid.url=/user/getUserById
+user.routes.getuserdevicetoken=/user/getDeviceTokenForUserIds
+
