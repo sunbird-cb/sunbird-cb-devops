@@ -4,31 +4,31 @@
 # For script
 release_name: "{{ network_alias_pm_analytics_service }}"
 template_compose_file_name: pm_analytics-service.j2
-template_env_file_name: pm-analytics-service-env.j2
-compose_file_name: "{{ service_pm_analytics_service }}.yml"
-env_file_name: "{{ service_pm_analytics_service }}.env"
+template_env_file_name: form-service-env.j2
+compose_file_name: "{{ service_form_service }}.yml"
+env_file_name: "{{ service_form_service }}.env"
 helm_env_file_location: "../helm_charts/igot-deploy/templates/"
 helm_env_file_name: "{{ helm_env_file_location }}/{{ service_pm_analytics_service }}.env"
-#chart_path: "../kubernetes-deploy/pm-analytics-service" 
+#chart_path: "../kubernetes-deploy/form-service" 
 env_file_deployment_location: "{{ env_files_dir }}/{{ env_file_name }}"
 compose_file_deployment_location: "{{ compose_files_dir }}/{{ compose_file_name }}"
 user_friendly_name: pm_analytics-service
 
 # For service
-application_port: "{{ service_pm_analytics_port }}"
-image_name: "{{ image_pm_analytics_service }}"
-tag: "{{ tags_pm_analytics_service }}"
+application_port: "{{ service_form_port }}"
+image_name: "{{ image_form_service }}"
+tag: "{{ tags_form_service }}"
 host_port: "{{ application_port }}"
 docker_port: "{{ application_port }}"
-replicas: "{{ service_replicas_pm_analytics_service }}"
-reserved_memory: "{{ service_mem_reserved_pm_analytics_service }}"
-limited_memory: "{{ service_mem_limit_pm_analytics_service }}"
+replicas: "{{ service_replicas_form_service }}"
+reserved_memory: "{{ service_mem_reserved_form_service }}"
+limited_memory: "{{ service_mem_limit_form_service }}"
 #limited_memory: 2048M
 health_check_endpoint: http://127.0.0.1:{{ docker_port }}/actuator/health
-network_alias_name: "{{ network_alias_pm_analytics_service }}"
+network_alias_name: "{{ network_alias_form_service }}"
 docker_service_stack_name: lms
-docker_service_name: "{{ service_pm_analytics_service }}"
-force_reload: "{{ force_reload_pm_analytics_service }}"
+docker_service_name: "{{ service_form_service }}"
+force_reload: "{{ force_reload_form_service }}"
 
 # For application
 server_connection_timeout: 5000
