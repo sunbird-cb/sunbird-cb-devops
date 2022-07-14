@@ -8,7 +8,7 @@ spring.datasource.password={{ mysql_password }}
 #----------------------------- ELASTIC SEARCH CONFIGURATIONS ------------------------------#
 services.esindexer.host=http://{{ elasticsearch_host }}:{{ elasticsearch_http_port }}/
 services.esindexer.host.name={{ elasticsearch_host }}
-services.esindexer.host.port={{ elasticsearch_host }}
+services.esindexer.host.port={{ elasticsearch_http_port }}
 services.esindexer.username={{ elasticsearch_username }}
 services.esindexer.password={{ elasticsearch_password }}
 # INDEX AND DOCUMENT TYPES
