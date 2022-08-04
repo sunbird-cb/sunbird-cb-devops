@@ -197,3 +197,35 @@ DASHBOARD_API_BASE={{ igot_dashboard_api_url }}
 PM_DASHBOARD_API_BASE={{ igot_pm_dashboard_api_url }}
 
 KARMAYOGI_PORTAL_HOST={{ domain_name }}
+
+KEYCLOAK_GOOGLE_CLIENT_ID={{ google_client_id }}
+KEYCLOAK_GOOGLE_CLIENT_SECRET={{ google_client_secret }}
+
+#Parichay domain client secret given by NIC team
+PARICHAY_CLIENT_SECRET={{ parichay_client_secret }}
+ 
+#Keycloak’s “auth” URL should be used here. Example - #{{domainHost}}/auth
+PORTAL_AUTH_SERVER_URL={{ portal_auth_server_url }}
+ 
+#Code challenge value given by iGot developers
+PARICHAY_CODE_CHALLENGE={{ parichay_code_challenge }}
+ 
+#Code value given by iGot developers
+PARICHAY_CODE_VERIFIER={{ parichay_code_verifier }}
+ 
+#Parichay domain Auth url given by NIC team.
+#Example - https://parichay.staging.nic.in/pnv1/oauth2/authorize
+PARICHAY_AUTH_URL={{ parichay_auth_url }}
+ 
+#Parichay Domain token url given by NIC team
+PARICHAY_TOKEN_URL={{ parichay_token_url }}
+ 
+#Parichay Domain revoke url given by NIC team
+PARICHAY_REVOKE_URL={{ parichay_revoke_url }}
+ 
+#Parichay domain user details url given by NIC team
+PARICHAY_USER_DETAILS_URL={{ parichay_user_details_url }}
+ 
+#IGOT Domain Callback URL
+PARICHAY_AUTH_CALLBACK_URL={{ parichay_auth_callback_url }}
+
