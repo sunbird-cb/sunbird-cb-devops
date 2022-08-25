@@ -26172,6 +26172,7 @@ envjs: |-
     window["env"]["contentHost"] = 'https://{{ domain_name }}'
     window["env"]["contentBucket"] = '{{ igot_content_bucket }}'
     window["env"]["certificateassets"] = '{{ igot_certimage_bucket }}'
+    window["env"]["missionKarmayogiPath"] = '{{ missionKarmayogipath }}'
     window["env"]["portalRoles"] = '{{ igot_karmayoggirules }}';
     window["env"]["portals"] = [
         { sr: 1, id: 'cbc', name: 'CBC Portal', desc: 'Capacity Building Commission', icon: 'add_moderator', uriPath: 'https://{{ cbc_portal_url }}', roles: ['CBC_ADMIN', 'CBC_MEMBER', 'cbc_admin', 'cbc_member'], isPublic: false },
