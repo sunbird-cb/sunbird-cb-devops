@@ -175,3 +175,11 @@ user.registration.custodian.orgId={{reg_orgid}}
 
 sunbird_cassandra_consistency_level=one
 
+sb.es.host: {{ sb_es_host }}
+sb.es.port: {{ sb_es_port }}
+sb.es.username: {{ sb_es_username }}
+sb.es.password: {{ sb_es_password }}}
+sb.es.user.profile.index: user_alias
+es.user.auto.complete.search.fields: profileDetails.personalDetails.primaryEmail,profileDetails.personalDetails.firstname,profileDetails.personalDetails.surname
+es.user.auto.complete.include.fields: lastName,maskedPhone,rootOrgName,roles,channel,prevUsedPhone,updatedDate,stateValidated,isDeleted,organisations,managedBy,countryCode,flagsValue,id,recoveryEmail,identifier,updatedBy,phoneVerified,locationIds,recoveryPhone,rootOrgId,userId,userSubType,prevUsedEmail,emailVerified,firstName,profileLocation,createdDate,framework,tncAcceptedOn,allTncAccepted,profileDetails,createdBy,phone,profileUserType,dob,userType,tncAcceptedVersion,status
+
