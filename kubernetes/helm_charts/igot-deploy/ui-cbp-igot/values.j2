@@ -464,6 +464,19 @@ siteconfig: |
           }
         },
         {
+          "type": "featureButton",
+          "config": {
+            "actionBtnId": "feature_rainDashboard",
+            "toolTip": "Rain Dashboard",
+            "className": "fixtopMargin",
+            "config": {
+              "actionBtnId": "feature_rainDashboard",
+              "type": "card-mini",
+              "hideTitle": true
+            }
+          }
+        },
+        {
           "type": "widgetButton",
           "config": {
             "widgetType": "actionButton",
@@ -782,6 +795,25 @@ appsjson: |-
       "toolTip": "Dashboard",
       "url": "/author/cbp/me",
       "shortName": "Home"
+    },
+    "feature_rainDashboard": {
+      "accessKey": "",
+      "icon": "bar_chart",
+      "iconType": "mat-icon",
+      "id": "feature_rainDashboard",
+      "keywords": [
+        "rain",
+        "dashboard"
+      ],
+      "name": "Rain Dashboard",
+      "permission": [
+        "ABOUT_US"
+      ],
+      "show": true,
+      "status": "live",
+      "toolTip": "Rain Dashboard",
+      "url": "/app/rainDashboard",
+      "shortName": "RD"
     },
     "feature_badges": {
       "accessKey": "",
