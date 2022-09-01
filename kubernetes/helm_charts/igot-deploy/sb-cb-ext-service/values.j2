@@ -14,10 +14,10 @@ image_tag: {{ image_tag }}
 resources:
   requests:
     cpu: {{lms_cpu_req|default('100m')}}
-    memory: {{lms_mem_req|default('100Mi')}}
+    memory: {{lms_mem_req|default('200Mi')}}
   limits:
     cpu: {{lms_cpu_limit|default('2')}}
-    memory: {{lms_mem_limit|default('2048Mi')}}
+    memory: {{lms_mem_limit|default('6144Mi')}}
 network:
   port: {{ service_sb_cb_ext_port }}
   targetport: {{ service_sb_cb_ext_port }}
