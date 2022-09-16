@@ -62,7 +62,7 @@ spec:
           mountPath: /app/dist/www/en/assets/configurations/feature/apps.json
           subPath: apps.json
         ports:
-        - containerPort: 3002
+        - containerPort: 3064
         {{- if .Values.healthcheck }}
         livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 10 }}
