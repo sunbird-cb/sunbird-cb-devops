@@ -185,7 +185,7 @@ service_developer_console_web_portal_port: 5000
 service_developer_console_service_port: 8080
 service_profanity_moderator_admin_port: 4000
 service_form_port: 8099
-service_portal_port: 3009
+service_portal_port: 3030
 
 # Network alias names, so that one service can talk to another
 network_alias_content_service: private-content-service
