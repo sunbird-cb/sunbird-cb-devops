@@ -85,5 +85,6 @@
     - role: deploy-form-service
       tags: [deploy-form-service]
 
-
+    - role: deploy-portal
+      tags: [deploy-portal]
 

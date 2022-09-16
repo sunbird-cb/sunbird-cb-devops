@@ -92,7 +92,7 @@ service_developer_console_web_portal: developer-console-web-portal
 service_developer_console_service: developer-console-service
 service_profanity_moderator_admin_service: profanity-moderator-admin-service
 service_form_service: form-service
-
+service_portal_service: portal-service
 # Ports
 service_antivirus_port: 3310
 service_authtool_ui_port: 3006
@@ -185,6 +185,7 @@ service_developer_console_web_portal_port: 5000
 service_developer_console_service_port: 8080
 service_profanity_moderator_admin_port: 4000
 service_form_port: 8099
+service_portal_port: 3002
 
 # Network alias names, so that one service can talk to another
 network_alias_content_service: private-content-service
@@ -281,8 +282,11 @@ network_alias_developer_console_web_portal: developer-console-web-portal
 network_alias_developer_console_service: developer-console-service
 network_alias_profanity_moderator_admin_service: profanity-moderator-admin-service
 network_form_service: form-service
+network_portal_service: portal-service
+
 
 # Image names, this is used by the service alone, but since we want to have all the images in one place, we are oncfiguring the images here
+image_portal: ui-static
 image_ui_static: ui-static
 image_ui_proxies: ui-proxies
 image_ui_static_fusion: ui-static
