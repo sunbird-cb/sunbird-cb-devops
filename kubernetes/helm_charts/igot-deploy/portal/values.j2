@@ -19,8 +19,8 @@ resources:
     cpu: {{lms_cpu_limit|default('1')}}
     memory: {{lms_mem_limit|default('1024Mi')}}
 network:
-  port: {{ service_ui_static_port }}
-  targetport: {{ service_ui_static_port }}
+  port: {{ service_portal_port }}
+  targetport: {{ service_portal_port }}
 strategy:
   type: RollingUpdate
   maxsurge: {{ lms_maxsurge|default('25%') }}
