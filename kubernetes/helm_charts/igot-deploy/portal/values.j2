@@ -12987,7 +12987,7 @@ siteconfig: |
     "en": "https://igot.blob.core.windows.net/public/video-guide.mp4"
     },
   "portalUrls":{
-    "igot": "https://portal.{{ domain_name }}/",
+    "igot": "https://{{ domain_name }}/",
     "spv": "https://spv.{{ domain_name }}/",
     "mdo": "https://mdo.{{ domain_name }}/",
     "cbc": "https://cbc.{{ domain_name }}/",
@@ -26160,7 +26160,7 @@ envjs: |-
     // Environment variables
     window["env"]["name"] = '{{ igot_portal_env }}';
     window["env"]["production"] = '';
-    window["env"]["sitePath"] = '{{ karmayogi_portal_url }}';
+    window["env"]["sitePath"] = '{{ domain_name }}';
     window["env"]["organisation"] = '{{ igot_organisation }}';
     window["env"]["framework"] = '{{ igot_framework }}'
     window["env"]["channelId"] = '{{ igot_channelid }}'
