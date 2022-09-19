@@ -62,7 +62,7 @@ spec:
           mountPath: /app/dist/www/en/assets/configurations/feature/apps.json
           subPath: apps.json
         ports:
-        - containerPort: 3064
+        - containerPort: 3006
         {{- if .Values.healthcheck }}
         livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 10 }}
@@ -93,7 +93,7 @@ spec:
   ports:
   - name: http-{{ .Chart.Name }}
     protocol: TCP
-    port: 3064
+    port: 3006
   selector:
     app: {{ .Chart.Name }}
 
