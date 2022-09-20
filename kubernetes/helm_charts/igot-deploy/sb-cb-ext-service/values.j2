@@ -8,7 +8,7 @@ dockerhub: {{ docker_hub_url }}
 env:
   javaoptions: {{lms_java_mem_limit|default('-Xmx4096m')}}
 
-replicaCount: {{lms_replicacount|default(3)}}
+replicaCount: {{lms_replicacount|default(1)}}
 repository: {{ image_sb_cb_ext_service }}
 image_tag: {{ image_tag }}
 resources:
