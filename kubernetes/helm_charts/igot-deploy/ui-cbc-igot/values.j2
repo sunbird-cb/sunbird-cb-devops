@@ -94,7 +94,7 @@ hostconfig: |-
         "clientId": "portal",
         "key": "ws-kc-token-storage",
         "realm": "sunbird",
-        "url": "https://{{ domain_name }}/auth"
+        "url": "https://{{ portal_domain_name }}/auth"
     },
     "locals": [
         {
@@ -273,7 +273,7 @@ siteconfig: |
     "clientId": "portal",
     "key": "ws-kc-token-storage",
     "realm": "sunbird",
-    "url": "https://{{ domain_name }}/auth"
+    "url": "https://{{ portal_domain_name }}/auth"
   },
   "locals": [
     {
@@ -1434,7 +1434,7 @@ envjs: |-
     // Environment Variables
     window["env"]["sitePath"] = 'cbc.{{ domain_name }}';
     window["env"]["debug"] = '';
-    window["env"]["karmYogiPath"] = 'https://{{ domain_name }}'
+    window["env"]["karmYogiPath"] = 'https://{{ portal_domain_name }}'
     window["env"]["cbpPath"] = 'https://cbp.{{ domain_name }}'
     window["env"]["portalRoles"] = '{{ igot_cbcrules }}';
  })(this);
