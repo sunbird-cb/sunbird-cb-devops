@@ -17,10 +17,10 @@
   shell: find "{{ helm_env_file_location }}" -iname "*.env" -exec /bin/bash -c "ls {}; kubectl create configmap {{ release_name }}-config --from-env-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
 
 
-#- name: remove env configmap file
- # file:
-  # path: "{{ helm_env_file_name }}"
-   #state: absent
+- name: remove env configmap file
+  file:
+   path: "{{ helm_env_file_name }}"
+   state: absent
    
 - name: Load role to decrypt private keys, copy to helm chart and encrypt private keys
   include_role:
