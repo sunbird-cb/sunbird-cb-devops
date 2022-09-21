@@ -146,17 +146,17 @@ WORKFLOW_HANDLER_SERVICE_API_BASE={{ workflow_handler_service_api_base }}
 KEYCLOAK_SESSION_TTL={{ keycloak_session_ttl }}
 KNOWLEDGE_MW_API_BASE=http://knowledge-mw-service:5000
 KONG_API_BASE=http://kong:8000
-SUNBIRD_PROXY_API_BASE=https://{{ domain_name }}/api
+SUNBIRD_PROXY_API_BASE=https://{{ portal_domain_name }}/api
 DISCUSSION_HUB_MIDDLEWARE=http://discussionsmw-service:3002
 
 SB_API_KEY={{ bearer_token }}
 
 #Frac Variables
-REACT_APP_KEYCLOAK_URL=https://{{ domain_name }}/auth
-REACT_APP_PROXY_URL={{ domain_name }}
+REACT_APP_KEYCLOAK_URL=https://{{ portal_domain_name }}/auth
+REACT_APP_PROXY_URL={{ portal_domain_name }}
 REACT_APP_API_URL={{ react_app_api_url }}
 
-SUNBIRD_PROXY_URL=https://{{ domain_name }}/apis/proxies/v8/action
+SUNBIRD_PROXY_URL=https://{{ portal_domain_name }}/apis/proxies/v8/action
 
 X_CHANNEL_ID={{ x_channel_id }}
 
@@ -196,7 +196,7 @@ REACT_APP_PMDASH_PROTOTYPE_URL=https://{{react_app_pmdash_prototype_url}}
 DASHBOARD_API_BASE={{ igot_dashboard_api_url }}
 PM_DASHBOARD_API_BASE={{ igot_pm_dashboard_api_url }}
 
-KARMAYOGI_PORTAL_HOST={{ domain_name }}
+KARMAYOGI_PORTAL_HOST={{ portal_domain_name }}
 
 KEYCLOAK_GOOGLE_CLIENT_ID={{ google_client_id }}
 KEYCLOAK_GOOGLE_CLIENT_SECRET={{ google_client_secret }}
@@ -206,7 +206,7 @@ PARICHAY_CLIENT_ID={{ parichay_client_id }}
 PARICHAY_CLIENT_SECRET={{ parichay_client_secret }}
  
 #Keycloak’s “auth” URL should be used here. Example - #domain/auth
-PORTAL_AUTH_SERVER_URL=https://{{ domain_name }}/auth
+PORTAL_AUTH_SERVER_URL=https://{{ portal_domain_name }}/auth
  
 #Code challenge value given by iGot developers
 PARICHAY_CODE_CHALLENGE={{ parichay_code_challenge }}
