@@ -25,7 +25,6 @@ user.enable.multidept.mapping=false
 #learner.service.url=learner-service:9000
 sb.service.url=http://learner-service:9000/
 sb.org.search.path=v1/org/search
-
 sb.hub.graph.service.url=http://hub-graph-service:4013
 
 spring.data.cassandra.sb.startupTimeoutInSeconds=100000
@@ -184,7 +183,7 @@ es.user.auto.complete.search.fields=profileDetails.personalDetails.primaryEmail,
 es.user.auto.complete.include.fields=lastName,maskedPhone,rootOrgName,roles,channel,prevUsedPhone,updatedDate,stateValidated,isDeleted,organisations,managedBy,countryCode,flagsValue,id,recoveryEmail,identifier,updatedBy,phoneVerified,locationIds,recoveryPhone,rootOrgId,userId,userSubType,prevUsedEmail,emailVerified,firstName,profileLocation,createdDate,framework,tncAcceptedOn,allTncAccepted,profileDetails,createdBy,phone,profileUserType,dob,userType,tncAcceptedVersion,status
 
 kafka.topics.user.assessment.submit=dev.assessment.submit
-content.search=/content/v1/search
+content.search=v1/content/search
 incomplete-courses-scheduler-time-gap=168
 incomplete-courses-scheduler-run-day=4
 incomplete-courses-scheduler-run-time=3
@@ -194,4 +193,3 @@ new-courses-scheduler-run-time=3
 new-courses-email-limit=40
 recipient.new.course.email=juhi.agarwal@tarento.com,reshma.prasad@tarento.com,rangabashyam.krishnamachari@tarento.com,vikram.subramanyam@tarento.com
 search.fields=name,appIcon,instructions,description,purpose,mimeType,gradeLevel,identifier,medium,pkgVersion,board,subject,resourceType,primaryCategory,contentType,channel,organisation,trackable,license,posterImage,idealScreenSize,learningMode,creatorLogo,duration,version
-course.url=https://portal.igot-dev.in/app/toc/
