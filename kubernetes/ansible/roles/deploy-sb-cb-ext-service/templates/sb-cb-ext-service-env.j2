@@ -90,11 +90,26 @@ sunbird.cb.ext.version=4.0.1
 
 org.create.endpoint=v1/org/create
 
-#storage upload
-azure.storage.key={{ core_vault_sunbird_azure_storage_key }}
-azure.container.name={{ sb_cb_ext_container }}
-azure.identity.name={{ sb_cb_ext_storage_account_name }}
-azure.type.name={{ sb_cb_ext_cloud_storage_type }}
+
+
+#Cloud Storage Service properties
+
+#Value for the type name should be “azure” in Tarento environments. In case of NIC environment it has to “cephs3”
+cloud.storage.type.name={{ sb_cb_ext_cloud_storage_type }}
+
+#Storage secret for for Azure or Cephs3
+cloud.storage.secret={{ cloud_storage_secret }}
+
+#Cloud storage folder – This needs to be the newly created cloud storage folder name
+cloud.container.name={{ cloud_sb_cb_ext_container }}
+
+#Endpoint for the Cephs3 environment. This can be empty in case Azure
+cloud.storage.cephs3.endpoint=""
+
+#Storage key for the Azure or Cephs3 
+cloud.storage.key= {{cloud_storage_key}}
+
+
 
 kafka.topics.parent.rating.event={{ rating_event_topic }}
 redis.host.name={{ kp_redis_ip }}
