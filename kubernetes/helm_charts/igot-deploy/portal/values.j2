@@ -19,8 +19,8 @@ resources:
     cpu: {{lms_cpu_limit|default('1')}}
     memory: {{lms_mem_limit|default('1024Mi')}}
 network:
-  port: {{ service_portal_port }}
-  targetport: {{ service_portal_port }}
+  port: {{ service_ui_static_port }}
+  targetport: {{ service_ui_static_port }}
 strategy:
   type: RollingUpdate
   maxsurge: {{ lms_maxsurge|default('25%') }}
@@ -12561,7 +12561,42 @@ hostconfig: |-
       "id": "PID2473",
       "name": "SORTING ASSISTANT",
       "description": "SORTING ASSISTANT"
-    }        
+    },
+    {
+      "id": "PID2474",
+      "name": "DEPUTY SUPERINTENDENT OF EXCISE",
+      "description": "DEPUTY SUPERINTENDENT OF EXCISE"
+    },
+    {
+      "id": "PID2475",
+      "name": "EXCISE INSPECTOR",
+      "description": "EXCISE INSPECTOR"
+    },
+    {
+      "id": "PID2476",
+      "name": "EXCISE SUB INSPECTOR",
+      "description": "EXCISE SUB INSPECTOR"
+    },
+    {
+      "id": "PID2477",
+      "name": "FIRST DIVISION ASSISTANT",
+      "description": "FIRST DIVISION ASSISTANT"
+    },
+    {
+      "id": "PID2478",
+      "name": "SECOND DIVISION ASSISTANT",
+      "description": "SECOND DIVISION ASSISTANT"
+    },
+    {
+      "id": "PID2479",
+      "name": "EXCISE HEAD CONSTABLE",
+      "description": "EXCISE HEAD CONSTABLE"
+    },
+    {
+      "id": "PID2480",
+      "name": "EXCISE CONSTABLE",
+      "description": "EXCISE CONSTABLE"
+    }    
       ]
 
   }
@@ -12987,12 +13022,13 @@ siteconfig: |
     "en": "https://igot.blob.core.windows.net/public/video-guide.mp4"
     },
   "portalUrls":{
-    "igot": "https://{{ portal_domain_name }}/",
-    "spv": "https://spv.{{ domain_name }}/",
-    "mdo": "https://mdo.{{ domain_name }}/",
-    "cbc": "https://cbc.{{ domain_name }}/",
-    "cbp": "https://cbp.{{ domain_name }}/",
-    "frac": "https://frac-dictionary.{{ domain_name }}/"
+    "igot": "https://{{ domain_name }}/",
+    "spv": "https://spv.{{ static_domain_name }}/",
+    "mdo": "https://mdo.{{ static_domain_name }}/",
+    "cbc": "https://cbc.{{ static_domain_name }}/",
+    "cbp": "https://cbp.{{ static_domain_name }}/",
+    "frac": "https://frac-dictionary.{{ static_domain_name }}/"
+
   },
     
   "positions": [
@@ -25360,7 +25396,42 @@ siteconfig: |
       "id": "PID2473",
       "name": "SORTING ASSISTANT",
       "description": "SORTING ASSISTANT"
-    }
+    },
+    {
+      "id": "PID2474",
+      "name": "DEPUTY SUPERINTENDENT OF EXCISE",
+      "description": "DEPUTY SUPERINTENDENT OF EXCISE"
+    },
+    {
+      "id": "PID2475",
+      "name": "EXCISE INSPECTOR",
+      "description": "EXCISE INSPECTOR"
+    },
+    {
+      "id": "PID2476",
+      "name": "EXCISE SUB INSPECTOR",
+      "description": "EXCISE SUB INSPECTOR"
+    },
+    {
+      "id": "PID2477",
+      "name": "FIRST DIVISION ASSISTANT",
+      "description": "FIRST DIVISION ASSISTANT"
+    },
+    {
+      "id": "PID2478",
+      "name": "SECOND DIVISION ASSISTANT",
+      "description": "SECOND DIVISION ASSISTANT"
+    },
+    {
+      "id": "PID2479",
+      "name": "EXCISE HEAD CONSTABLE",
+      "description": "EXCISE HEAD CONSTABLE"
+    },
+    {
+      "id": "PID2480",
+      "name": "EXCISE CONSTABLE",
+      "description": "EXCISE CONSTABLE"
+    }    
   ]
  }
 
@@ -25528,7 +25599,7 @@ appsjson: |-
       "show": true,
       "status": "live",
       "toolTip": "Dashboard",
-      "url": "https://pm.{{ domain_name }}/home",
+      "url": "https://pm.{{ static_domain_name }}/home",
       "shortName": "Home"
     },
     "feature_goals": {
@@ -25662,7 +25733,7 @@ appsjson: |-
       "status": "live",
       "toolTip": "Frac",
       "shortName": "Frac",
-      "url": "https://frac-dictionary.{{ domain_name }}/"
+      "url": "https://frac-dictionary.{{ static_domain_name }}/"
     },
     "feature_cbp": {
       "accessKey": "",
@@ -25687,7 +25758,7 @@ appsjson: |-
       "status": "live",
       "toolTip": "Author",
       "shortName": "Author",
-      "url": "https://cbp.{{ domain_name }}/author/cbp"
+      "url": "https://cbp.{{ static_domain_name }}/author/cbp"
     },
     "feature_cbc": {
       "accessKey": "",
@@ -25709,7 +25780,7 @@ appsjson: |-
       "status": "live",
       "toolTip": "Author",
       "shortName": "Author",
-      "url": "https://cbc.{{ domain_name }}/app/home"
+      "url": "https://cbc.{{ static_domain_name }}/app/home"
     },
     "feature_mdo": {
       "accessKey": "",
@@ -25731,7 +25802,7 @@ appsjson: |-
       "status": "live",
       "toolTip": "MDO",
       "shortName": "MDP",
-      "url": "https://mdo.{{ domain_name }}/app/home"
+      "url": "https://mdo.{{ static_domain_name }}/app/home"
     },
     "feature_spv": {
       "accessKey": "",
@@ -25752,7 +25823,7 @@ appsjson: |-
       "status": "live",
       "toolTip": "SPV",
       "shortName": "SPV",
-      "url": "https://spv.{{ domain_name }}/app/home"
+      "url": "https://spv.{{ static_domain_name }}/app/home"
     },
     "feature_create": {
       "accessKey": "",
@@ -26164,12 +26235,12 @@ envjs: |-
     window["env"]["organisation"] = '{{ igot_organisation }}';
     window["env"]["framework"] = '{{ igot_framework }}'
     window["env"]["channelId"] = '{{ igot_channelid }}'
-    window["env"]["azureHost"] = 'https://{{ domain_name }}'
-    //window["env"]["contentHost"] = 'https://content.{{ domain_name }}'
+    window["env"]["azureHost"] = 'https://{{ static_domain_name }}'
+    //window["env"]["contentHost"] = 'https://content.{{ static_domain_name }}'
     window["env"]["azureBucket"] = '{{ igot_karmayoggiazurebucket }}'
     window["env"]["azureOldHost"] = '{{ igot_azureoldhost }}'
     window["env"]["azureOldBuket"] = '{{ igot_azureoldbuket }}'
-    window["env"]["contentHost"] = 'https://{{ domain_name }}'
+    window["env"]["contentHost"] = 'https://{{ static_domain_name }}'
     window["env"]["contentBucket"] = '{{ igot_content_bucket }}'
     window["env"]["certificateassets"] = '{{ igot_certimage_bucket }}'
     window["env"]["missionKarmayogiPath"] = '{{ missionKarmayogipath }}'
@@ -26184,4 +26255,10 @@ envjs: |-
     ];
     window["env"]["recaptchaKey"] = '{{ igot_recaptchakey }}';
  })(this);
+
+
+
+
+
+
 
