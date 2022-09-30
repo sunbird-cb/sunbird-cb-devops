@@ -1,6 +1,6 @@
 ---
 # App confiurations
-https_host: https://{{ domain_name }}
+https_host: https://{{ portal_domain_name }}
 #https_host: https://eagle-keycloak.idc.tarento.com
 app_logs_directory: /logs
 app_config_directory: /app-config

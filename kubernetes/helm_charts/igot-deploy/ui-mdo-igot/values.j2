@@ -93,7 +93,7 @@ hostconfig: |-
     "clientId": "portal",
     "key": "ws-kc-token-storage",
     "realm": "sunbird",
-    "url": "https://{{ domain_name }}/auth"
+    "url": "https://{{ portal_domain_name }}/auth"
   },
   "locals": [
     {
@@ -991,7 +991,7 @@ appsjson: |-
       "status": "live",
       "toolTip": "Author",
       "shortName": "Author",
-      "url": "https://{{ domain_name }}/"
+      "url": "https://{{ portal_domain_name }}/"
     },
     "feature_create": {
       "accessKey": "",
@@ -1400,6 +1400,7 @@ envjs: |-
     window["env"]["karmYogiPath"] = 'https://{{ domain_name }}'
     window["env"]["cbpPath"] = 'https://cbp.{{ static_domain_name }}'
     window["env"]["contentHost"] = 'https://{{ static_domain_name }}' 
+
     window["env"]["azureBucket"] = '{{ igot_content_bucket }}'
     window["env"]["contentBucket"] = '{{ igot_content_bucket }}'
     window["env"]["portalRoles"] = '{{ igot_mdorules }}';
