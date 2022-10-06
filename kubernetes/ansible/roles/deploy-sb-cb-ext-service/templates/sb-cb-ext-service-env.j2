@@ -168,11 +168,6 @@ assessment.question.list.path=question/v4/list
 #assessment.question.list.path=question/v1/list
 
 accesstoken.publickey.basepath=/keys/
-
-send-notification={{send_notification}}
-scheduler-time-gap={{scheduler_time_gap}}
-scheduler-run-day={{scheduler_run_day}}
-scheduler-run-time={{scheduler_run_time}}
 course.url=https://{{ domain_name }}/app/toc/
 overview.batch=/overview?batchId=0134907394218721281
 sender.mail={{ igot_cb_ext_mailsender }}
@@ -199,17 +194,19 @@ es.user.auto.complete.include.fields=lastName,maskedPhone,rootOrgName,roles,chan
 
 kafka.topics.user.assessment.submit=dev.assessment.submit
 content.search=v1/content/search
-incomplete-courses-scheduler-time-gap=168
-incomplete-courses-scheduler-run-day=4
-incomplete-courses-scheduler-run-time=3
-new-courses-scheduler-time-gap=168
-new-courses-scheduler-run-day=4
-new-courses-scheduler-run-time=3
-new-courses-email-limit=40
+new.courses.scheduler.time.gap=168
+new.courses.email.limit=10000
 recipient.new.course.email=juhi.agarwal@tarento.com,reshma.prasad@tarento.com,rangabashyam.krishnamachari@tarento.com,vikram.subramanyam@tarento.com
 search.fields=name,appIcon,instructions,description,purpose,mimeType,gradeLevel,identifier,medium,pkgVersion,board,subject,resourceType,primaryCategory,contentType,channel,organisation,trackable,license,posterImage,idealScreenSize,learningMode,creatorLogo,duration,version
 sso.url=https://portal.igot-dev.in/auth/
 sso.realm=sunbird
+sendIncompleteCoursesAlert=true
+sendLatestCoursesAlert=true
+getUserEmailListFromDataBase=false
+incompleteCourseAlertEmailKey=courseReminder
+latestCourseAlertEmailKey=latestCourse
+
+
 user.bulk.upload.email.template=bulkUploadNotification
 
 # Need to specify the list of user emails which require to be notified for bulk upload.
