@@ -218,3 +218,33 @@ user.bulk.upload.email.notification.list={{ bulk_upload_email_notification_list 
 
 user.bulk.upload.email.notification.subject=Request for bulk upload User!
 
+
+#Course Alert Notifications
+incomplete.course.alert.message.key=courseReminder
+latest.course.alert.message.key=latestCourse
+
+#Incomplete Course Alert Email
+#Set the following property to true to enable incomplete course alert email
+incomplete.courses.alert.enabled=false
+incomplete.courses.alert.last.access.time.mills=259200000
+
+#Latest Courses Alert Email Config
+latest.courses.alert.enabled=true
+
+#Provide a list of user emails which require to be sent the latest course email.
+latest.courses.alert.user.email.list=
+
+#Enable the following if you want to send the latest course email to all users.
+latest.courses.alert.send.to.all.user=false
+
+latest.courses.alert.content.limit=8
+latest.courses.alert.search.user.fields=userId,profileDetails.personalDetails.primaryEmail
+latest.courses.alert.search.content.fields=identifier,name,posterImage,duration,description
+
+latest.courses.alert.email.subject=Check out exciting new courses that launched this week!
+
+latest.courses.alert.scheduler.time.gap=100
+
+latest.courses.alert.content.min.limit=1
+
+
