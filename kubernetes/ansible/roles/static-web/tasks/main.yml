@@ -1,6 +1,6 @@
 ---
 
-- name: template values.yaml file
+- name: template configurations.j2 file
   template:
     src: "configurations.j2"
     dest: "{{ static_web_path }}/configurations.json"

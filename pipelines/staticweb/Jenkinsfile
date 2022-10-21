@@ -22,7 +22,7 @@ node() {
            dir("${env.WORKSPACE}/staticweb") {
                 checkout scm: [$class: 'GitSCM', branches: [[name: staticweb_repo_branch]], extensions: [[$class: 'CloneOption', depth: 1, noTags: true, reference: '', shallow: true]], userRemoteConfigs: [[credentialsId: private_repo_credentials, url: staticweb_repo_url]]]
                 commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                build_tag = sh(script: "echo " + params.github_release_tag.split('/')[-1] + "_" + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
+                build_tag = sh(script: "echo " + params.branch_or_tag.split('/')[-1] + "_" + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
                 echo "build_tag: " + build_tag
 
                 }
@@ -35,7 +35,7 @@ node() {
             jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
             currentWs = sh(returnStdout: true, script: 'pwd').trim()
             ansiblePlaybook = "$currentWs/kubernetes/ansible/main.yaml"
-            ansibleExtraArgs = "--extra-vars \"static_web_path=${currentWs}/staticweb role_name=${params.role_name}\" --vault-password-file /var/lib/jenkins/secrets/vault-pass -v"
+            ansibleExtraArgs = "--tag $role_name --extra-vars \"static_web_path=${currentWs}/staticweb role_name=${params.role_name}\" --vault-password-file /var/lib/jenkins/secrets/vault-pass -v"
             values.put('currentWs', currentWs)
             values.put('env', envDir)
             values.put('module', module)
