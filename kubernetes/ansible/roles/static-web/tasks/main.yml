@@ -1,0 +1,16 @@
+---
+
+- name: template values.yaml file
+  template:
+    src: "configurations.j2"
+    dest: "{{ static_web_path }}/configurations.json"
+
+# Upload the assets created by the job to azure
+- name: Upload to azure blob storage
+  command: az storage blob upload-batch -d {{static_cdn_container}} -s {{static_web_path}}
+  environment:
+    AZURE_STORAGE_ACCOUNT: "{{sunbird_public_storage_account_name}}"
+    AZURE_STORAGE_SAS_TOKEN: "{{sunbird_public_storage_account_sas}}"
+  async: 3600
+  poll: 10
+
