@@ -35,7 +35,7 @@ node() {
             jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
             currentWs = sh(returnStdout: true, script: 'pwd').trim()
             ansiblePlaybook = "$currentWs/kubernetes/ansible/main.yaml"
-            ansibleExtraArgs = "--tag $role_name --extra-vars \"static_web_path=${currentWs}/staticweb/* role_name=${params.role_name}\" --vault-password-file /var/lib/jenkins/secrets/vault-pass -v"
+            ansibleExtraArgs = "--tag $role_name --extra-vars \"static_web_path=${currentWs}/staticweb role_name=${params.role_name}\" --vault-password-file /var/lib/jenkins/secrets/vault-pass -v"
             values.put('currentWs', currentWs)
             values.put('env', envDir)
             values.put('module', module)
