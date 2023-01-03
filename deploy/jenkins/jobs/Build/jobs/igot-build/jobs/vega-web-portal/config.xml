@@ -25,12 +25,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>docker_server</name>
-          <description/>
-          <defaultValue>igotregistry.azurecr.io</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>dockerfile</name>
           <description/>
           <defaultValue>Dockerfile</defaultValue>

@@ -25,15 +25,9 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>docker_server</name>
-          <description/>
-          <defaultValue>igotregistry.azurecr.io</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>docker_file_path</name>
           <description/>
-          <defaultValue>ConversationManagementTool/be/V2/Deployment/vega-action-server</defaultValue>
+          <defaultValue>ConversationManagementTool/be/V2/Deployment/vega-rasa-action</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
