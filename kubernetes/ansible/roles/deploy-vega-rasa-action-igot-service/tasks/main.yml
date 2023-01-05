@@ -1,6 +1,6 @@
 ---
-#- include_vars:
- #   file: ../../../shared_files/vars/ui-shared.yml
+- include_vars:
+    file: ../../../shared_files/vars/ui-shared.yml
 
 - name: template values.yaml file
   template:
