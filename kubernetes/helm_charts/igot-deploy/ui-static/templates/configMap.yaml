@@ -41,3 +41,15 @@ data:
 
 ---
 
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apple-app-site-association
+  namespace: {{ .Values.namespace }}
+data:
+  apps.json: |
+{{ .Values.appleappsiteassociation | indent 4 }}
+
+---
+

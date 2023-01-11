@@ -37,6 +37,10 @@ spec:
         - name: apps-json
           configMap:
             name: karmayogi-apps-json
+        - name: apple-app-site
+          configMap:
+            name: apple-app-site-association
+
       containers:
       - name: {{ .Chart.Name }}
         image: {{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}
@@ -61,6 +65,9 @@ spec:
         - name: apps-json
           mountPath: /app/dist/www/en/assets/configurations/feature/apps.json
           subPath: apps.json
+        - name: apple-app-site
+          mountPath: /app/dist/.well-known/apple-app-site-association
+          subPath: apple-app-site-association
         ports:
         - containerPort: {{ .Values.network.port }}
         {{- if .Values.healthcheck }}
