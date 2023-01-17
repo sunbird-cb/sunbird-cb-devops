@@ -84,6 +84,8 @@
       tags: [deploy-profanity-moderator-admin-service]
     - role: deploy-form-service
       tags: [deploy-form-service]
+    - role: static-web
+      tags: [static-web]
 
     - role: deploy-portal
       tags: [deploy-portal]
