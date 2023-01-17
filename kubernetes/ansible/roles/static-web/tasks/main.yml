@@ -1,0 +1,14 @@
+---
+
+- name: template configurations.j2 file
+  template:
+    src: "configurations.j2"
+    dest: "{{ static_web_path }}/configurations.json"
+
+# Upload the assets created by the job to azure
+- name: Upload to azure blob storage
+  command: sudo azcopy copy "{{static_web_path}}/*" "https://{{sunbird_azure_public_storage_account_name}}.blob.core.windows.net/$web{{web_azure_account_sas}}" --recursive 
+  async: 3600
+  poll: 10
+  ignore_errors: yes
+
