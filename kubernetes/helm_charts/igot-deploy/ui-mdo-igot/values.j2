@@ -1404,4 +1404,6 @@ envjs: |-
     window["env"]["azureBucket"] = '{{ igot_content_bucket }}'
     window["env"]["contentBucket"] = '{{ igot_content_bucket }}'
     window["env"]["portalRoles"] = '{{ igot_mdorules }}';
+    window["env"]["domainName"] = 'https://{{ domain_name }}/';
+    window["env"]["userBucket"] = 'content-store/user-report/';
  })(this);
