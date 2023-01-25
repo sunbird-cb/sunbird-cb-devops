@@ -29,3 +29,13 @@ strategy:
 ui_proxies_bulk_upload: {{ host_bulk_upload }}
 
 
+envjs: |-
+ global.env = {
+    VEGA_ACTION_SERVICE: vega-rasa-action-igot-service,
+    REDIS_HOST: {{ app_vega_router_redis_host }},
+    REDIS_PORT: {{ app_vega_router_redis_port }},
+    REDIS_EXTERNAL_SERVICE_HOST: {{ app_vega_router_redis_host }},
+    REDIS_EXTERNAL_SERVICE_PORT: {{ app_vega_router_redis_port }}
+ }
+
+
