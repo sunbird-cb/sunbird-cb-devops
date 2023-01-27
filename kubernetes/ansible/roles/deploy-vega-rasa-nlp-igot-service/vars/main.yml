@@ -4,7 +4,7 @@
 release_name: "{{ network_alias_vega_rasa_nlp_igot_service }}"
 user_friendly_name: vega service
 #template_compose_file_name: ui-spv-igot.j2
-template_env_file_name: "../../shared_files/templates/ui-shared-env.j2"
+template_env_file_name: vega-rasa-nlp.j2
 compose_file_name: "{{ service_vega_rasa_nlp_igot_service }}.yml"
 env_file_name: "{{ service_vega_rasa_nlp_igot_service }}.env"
 helm_env_file_location: "../helm_charts/igot-deploy/templates/"
