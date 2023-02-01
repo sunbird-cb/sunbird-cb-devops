@@ -7,19 +7,19 @@
     src: "{{ chart_path }}/values.j2"
     dest: "{{ chart_path }}/values.yaml"
 
-- name: template configmap file
-  template:
-    src: "{{ template_env_file_name }}"
-    dest: "{{ helm_env_file_name }}"
+#- name: template configmap file
+ # template:
+  #  src: "{{ template_env_file_name }}"
+   # dest: "{{ helm_env_file_name }}"
 
-- name: create env configmap
-  shell: find "{{ helm_env_file_location }}" -iname "*.env" -exec /bin/bash -c "ls {}; kubectl create configmap {{ release_name }}-config --from-env-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
+#- name: create env configmap
+ # shell: find "{{ helm_env_file_location }}" -iname "*.env" -exec /bin/bash -c "ls {}; kubectl create configmap {{ release_name }}-config --from-env-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
 
 
-- name: remove env configmap file
-  file:
-   path: "{{ helm_env_file_name }}"
-   state: absent
+#- name: remove env configmap file
+ # file:
+  # path: "{{ helm_env_file_name }}"
+   #state: absent
 
 - name: helm upgrade
   shell: helm upgrade --install --atomic --timeout 10m {{ release_name }} {{ chart_path }} -n {{namespace}}
