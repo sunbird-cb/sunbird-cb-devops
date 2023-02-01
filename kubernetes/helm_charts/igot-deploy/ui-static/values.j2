@@ -12839,11 +12839,6 @@ hostconfig: |-
       "description": "JUNIOR PRINTER"
     },
     {
-      "id": "PID2528",
-      "name": "SENIOR PRINTER",
-      "description": "SENIOR PRINTER"
-    },
-    {
       "id": "PID2529",
       "name": "JUNIOR WEAVER",
       "description": "JUNIOR WEAVER"
@@ -12892,6 +12887,46 @@ hostconfig: |-
       "id": "PID2538",
       "name": "ASSISTANT PLANT PROTECTION OFFICER",
       "description": "ASSISTANT PLANT PROTECTION OFFICER"
+    },
+    {
+      "id": "PID2539",
+      "name": "SENIOR PRINTER",
+      "description": "SENIOR PRINTER"
+    },
+    {
+      "id": "PID2540",
+      "name": "SECOND SECRETARY",
+      "description": "SECOND SECRETARY"
+    },
+    {
+      "id": "PID2541",
+      "name": "POSTMAN",
+      "description": "POSTMAN"
+    },
+    {
+      "id": "PID2542",
+      "name": "CHIEF LAW ASSISTANT",
+      "description": "CHIEF LAW ASSISTANT"
+    },
+    {
+      "id": "PID2543",
+      "name": "ADHIKARI",
+      "description": "ADHIKARI"
+    },
+    {
+      "id": "PID2544",
+      "name": "PLACEMENT CONSULTANT",
+      "description": "PLACEMENT CONSULTANT"
+    },
+    {
+      "id": "PID2545",
+      "name": "ASSISTANT LOCO PILOT",
+      "description": "ASSISTANT LOCO PILOT"
+    },
+    {
+      "id": "PID2546",
+      "name": "INFORMATION COMMUNICATION TECHNOLOGY -ICT OFFICER",
+      "description": "INFORMATION COMMUNICATION TECHNOLOGY -ICT OFFICER"
     }
     
     
@@ -25971,11 +26006,6 @@ siteconfig: |
       "description": "JUNIOR PRINTER"
     },
     {
-      "id": "PID2528",
-      "name": "SENIOR PRINTER",
-      "description": "SENIOR PRINTER"
-    },
-    {
       "id": "PID2529",
       "name": "JUNIOR WEAVER",
       "description": "JUNIOR WEAVER"
@@ -26024,8 +26054,47 @@ siteconfig: |
       "id": "PID2538",
       "name": "ASSISTANT PLANT PROTECTION OFFICER",
       "description": "ASSISTANT PLANT PROTECTION OFFICER"
+    },
+    {
+      "id": "PID2539",
+      "name": "SENIOR PRINTER",
+      "description": "SENIOR PRINTER"
+    },
+    {
+      "id": "PID2540",
+      "name": "SECOND SECRETARY",
+      "description": "SECOND SECRETARY"
+    },
+    {
+      "id": "PID2541",
+      "name": "POSTMAN",
+      "description": "POSTMAN"
+    },
+    {
+      "id": "PID2542",
+      "name": "CHIEF LAW ASSISTANT",
+      "description": "CHIEF LAW ASSISTANT"
+    },
+    {
+      "id": "PID2543",
+      "name": "ADHIKARI",
+      "description": "ADHIKARI"
+    },    
+    {
+      "id": "PID2544",
+      "name": "PLACEMENT CONSULTANT",
+      "description": "PLACEMENT CONSULTANT"
+    },
+    {
+      "id": "PID2545",
+      "name": "ASSISTANT LOCO PILOT",
+      "description": "ASSISTANT LOCO PILOT"
+    },
+    {
+      "id": "PID2546",
+      "name": "INFORMATION COMMUNICATION TECHNOLOGY -ICT OFFICER",
+      "description": "INFORMATION COMMUNICATION TECHNOLOGY -ICT OFFICER"
     }
-    
          ]
 
   }
@@ -26839,7 +26908,9 @@ envjs: |-
     window["env"]["certificateassets"] = '{{ igot_certimage_bucket }}'
     window["env"]["missionKarmayogiPath"] = '{{ missionKarmayogipath }}'
     window["env"]["staticHomePageUrl"] = 'https://{{ static_domain_name }}/'
-    window["env"]["assessmentBuffer"] = 120;
+    window["env"]['cscmsUrl'] = 'https://{{ portal_training_url }}/training/'
+    window["env"]['dakshtaName'] = '{{ dakshtaname }}'
+    window["env"]["assessmentBuffer"] = 0;
     window["env"]["portalRoles"] = '{{ igot_karmayoggirules }}';
     window["env"]["portals"] = [
         { sr: 1, id: 'cbc', name: 'CBC Portal', desc: 'Capacity Building Commission', icon: 'add_moderator', uriPath: 'https://{{ cbc_portal_url }}', roles: ['CBC_ADMIN', 'CBC_MEMBER', 'cbc_admin', 'cbc_member'], isPublic: false },
