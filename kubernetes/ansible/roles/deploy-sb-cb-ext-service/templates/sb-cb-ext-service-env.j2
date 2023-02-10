@@ -251,3 +251,14 @@ sb.env.chiper.password={{cipher_password}}
 
 sb.es.user.notification.preference.index=notify_preference
 
+assessment.read.assessmentLevel.params=name,identifier,primaryCategory,versionKey,mimeType,code,version,objectType,status,expectedDuration,totalQuestions,maxQuestions,description,maxAssessmentRetakeAttempts,competencies_v3
+
+assessment.read.sectionLevel.params=parent,name,identifier,description,trackable,primaryCategory,versionKey,mimeType,code,version,objectType,status,index,maxQuestions,scoreCutoffType,minimumPassPercentage,additionalInstructions
+
+assessment.read.questionLevel.params=parent,name,identifier,primaryCategory,body,versionKey,mimeType,code,objectType,status,qType,index,showSolutions,allowAnonymousAccess,visibility,version,showFeedback,license
+
+assessment.read.min.question.params=parent,name,identifier,primaryCategory,versionKey,mimeType,objectType,qType
+
+user.assessment.submission.duration=120
+kafka.topics.user.assessment.submit={{env}}.assessment.submit
+
