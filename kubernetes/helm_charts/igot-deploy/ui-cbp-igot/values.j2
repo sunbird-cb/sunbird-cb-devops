@@ -143,20 +143,20 @@ hostconfig: |-
         "support": "eagle-support@eagle.com"
     },
     "telemetryConfig": {
-        "pdata": {
-            "id": "web-ui",
-            "ver": "1.0.0",
-            "pid": ""
-        },
-        "env": "prod",
-        "channel": "",
-        "batchsize": 1,
-        "host": "",
-        "endpoint": "/apis/protected/v8/user/telemetry",
-        "apislug": "",
-        "object": {
-            "ver": "1.0.0"
-        }
+      "pdata": {
+      "id": "sunbird-cb-portal",
+      "ver": "3.0.1",
+      "pid": "sunbird-cb-portal"
+      },
+      "env": "prod",
+      "channel": "igot",
+      "batchsize": 10,
+      "host": "",
+      "endpoint": "/apis/protected/v8/user/telemetry",
+      "apislug": "",
+      "object": {},
+      "publicEndpoint": "/api/data/v1/public/telemetry",
+      "protectedEndpoint": "/apis/protected/v8/user/telemetry"
     },
     "themes": [
         {
@@ -1403,6 +1403,7 @@ envjs: |-
  (function (window) {
     window["env"] = window["env"] || {};
     // Environment variables
+    window["env"]["name"] = 'dev'
     window["env"]["debug"] = '';
     window["env"]["sitePath"] = '{{ cbp_domain_name }}';
     window["env"]["organisation"] = '{{ igot_organisation }}';
