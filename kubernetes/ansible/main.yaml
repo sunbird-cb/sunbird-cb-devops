@@ -90,3 +90,10 @@
     - role: deploy-portal
       tags: [deploy-portal]
 
+    - role: deploy-vega-faq-rasa-action-igot-service
+      tags: [deploy-vega-faq-rasa-action-igot-service]
+    - role: deploy-vega-faq-rasa-nlp-igot-service
+      tags: [deploy-vega-faq-rasa-nlp-igot-service]
+
+
+

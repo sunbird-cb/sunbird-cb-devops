@@ -93,6 +93,10 @@ service_developer_console_service: developer-console-service
 service_profanity_moderator_admin_service: profanity-moderator-admin-service
 service_form_service: form-service
 service_portal_service: portal-service
+service_vega_faq_rasa_action_igot_service: vega-faq-rasa-action-igot-service
+service_vega_faq_rasa_nlp_igot_service: vega-faq-rasa-nlp-igot-service
+
+
 # Ports
 service_antivirus_port: 3310
 service_authtool_ui_port: 3006
@@ -186,6 +190,9 @@ service_developer_console_service_port: 8080
 service_profanity_moderator_admin_port: 4000
 service_form_port: 8099
 service_portal_port: 3006
+service_vega_faq_rasa_action_igot_port: 5055
+service_vega_faq_rasa_nlp_igot_port: 5005
+
 
 # Network alias names, so that one service can talk to another
 network_alias_content_service: private-content-service
@@ -283,6 +290,9 @@ network_alias_developer_console_service: developer-console-service
 network_alias_profanity_moderator_admin_service: profanity-moderator-admin-service
 network_form_service: form-service
 network_portal_service: portal-service
+network_alias_vega_faq_rasa_action_igot_service: vega-faq-rasa-action-igot-service
+network_alias_vega_faq_rasa_nlp_igot_service: vega-faq-rasa-nlp-igot-service
+
 
 
 # Image names, this is used by the service alone, but since we want to have all the images in one place, we are oncfiguring the images here
@@ -372,6 +382,9 @@ image_developer_console_web_portal: developer-console-web-portal
 image_developer_console_service: developer-console-service
 image_profanity_moderator_admin_service: profanity-moderator-admin-service
 image_form_service: form-service
+image_vega_faq_rasa_action_igot_service: vega-faq-rasa-action-igot-service
+image_vega_faq_rasa_nlp_igot_service: vega-faq-rasa-nlp-igot-service
+
 
 health_end_point_sb_ext_service: "http://localhost:{{ service_sb_ext_port }}/v1/latest/terms/user"
 elasticsearch_hosts_list: "{{ elasticsearch_http_hosts_list | map('regex_replace','^(?P<host>.+):(?P<port>\\d+)$', '\\g<host>') | list | join (',') }}"
