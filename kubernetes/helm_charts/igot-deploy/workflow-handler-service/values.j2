@@ -26,5 +26,5 @@ strategy:
   maxsurge: {{ lms_maxsurge|default('25%') }}
   maxunavailable: {{ lms_maxunavailable|default('25%') }}
 
-
+workflow_backend_basepath: {{ workflow_backend_basepath | default('/keys/') }}
 
