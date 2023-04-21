@@ -37,7 +37,7 @@ node() {
         throw err
     }
     finally {
-        slack_notify(currentBuild.result)
-        email_notify()
+    //    slack_notify(currentBuild.result)
+    //    email_notify()
     }
 }
