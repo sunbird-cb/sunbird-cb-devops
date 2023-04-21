@@ -6,9 +6,9 @@ server.tomcat.accept-count=500
 server.port={{ application_port }}
 
 #spring data jpa for postgres
-spring.datasource.jdbc-url={{ spring_datasource_jdbc_url }}
-spring.datasource.username={{ postgresql_username_wingspan }}
-spring.datasource.password={{ postgresql_password_wingspan }}
+#spring.datasource.jdbc-url={{ spring_datasource_jdbc_url }}  #### Not using WingspanDB
+#spring.datasource.username={{ postgresql_username_wingspan }} #### Not using WingspanDB
+#spring.datasource.password={{ postgresql_password_wingspan }} #### Not using WingspanDB
 
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
@@ -274,6 +274,6 @@ metaData.contextTypes=graduations,postGraduations,designations,gradePay,cadre,mi
 spring.datasource.jdbc-url=jdbc:postgresql://{{ postgresql_host }}:{{ postgresql_port }}/sunbird
 spring.datasource.username={{postgresql_username_sunbird }}
 spring.datasource.password={{ postgresql_password_sunbird }}
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.show-sql=false
