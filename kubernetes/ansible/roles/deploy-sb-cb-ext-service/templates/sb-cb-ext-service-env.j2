@@ -269,3 +269,11 @@ kafka.topics.user.bulk.upload.group=userBulkUploadGroup
 user.bulk.upload.status.fields=rootOrgId,identifier,fileName,filePath,dateCreatedOn,status,comment,dateUpdatedOn,totalRecords,successfulRecordsCount,failedRecordsCount
 
 metaData.contextTypes=graduations,postGraduations,designations,gradePay,cadre,ministries,service,industries
+
+
+spring.datasource.jdbc-url=jdbc:postgresql://{{ postgresql_host }}:{{ postgresql_port }}/sunbird
+spring.datasource.username={{postgresql_username_sunbird }}
+spring.datasource.password={{ postgresql_password_sunbird }}
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=false
