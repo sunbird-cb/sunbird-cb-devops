@@ -55,4 +55,8 @@ sso.realm={{ keycloak_sso_realm }}
 accesstoken.publickey.basepath=/keys/
 
 lms.system.host=http://{{ learningservice_ip }}:8080/learning-service/
+lms.system.settings.wfOrgService.path=v1/system/settings/get/wfOrgServiceConfig 
+lms.system.settings.wfDomainService.path=v1/system/settings/get/wfDomainServiceConfig 
+lms.system.settings.wfPositionService.path=v1/system/settings/get/wfPositionServiceConfig 
+notification.sender.mail={{ igot_cb_ext_mailsender }}
 
