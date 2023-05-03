@@ -14,10 +14,10 @@ image_tag: {{ image_tag }}
 resources:
   requests:
     cpu: {{lms_cpu_req|default('100m')}}
-    memory: {{lms_mem_req|default('100Mi')}}
+    memory: {{lms_mem_req|default('2Gi')}}
   limits:
     cpu: {{lms_cpu_limit|default('1')}}
-    memory: {{lms_mem_limit|default('1024Mi')}}
+    memory: {{lms_mem_limit|default('2Gi')}}
 network:
   port: {{ service_vega_web_port }}
   targetport: {{ service_vega_web_port }}
