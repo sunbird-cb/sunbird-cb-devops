@@ -33,7 +33,7 @@ es.username={{ elasticsearch_username }}
 es.password={{ elasticsearch_password }}
 es.profile.index=userprofile
 es.profile.index.type=_doc
-es.profile.source.fields=photo,id,employmentDetails,personalDetails
+es.profile.source.fields=photo,id,employmentDetails,personalDetails,profileDetails
 
 
 user.registry.ip=http://{{ network_alias_opensaber }}:{{ service_opensaber_port }}
@@ -60,8 +60,6 @@ taskExecutor.connection.threadPoolName=
 taskExecutor.connection.corePoolSize=2
 taskExecutor.connection.maxPoolSize=2
 taskExecutor.connection.queueCapacity=3
-
-es.profile.source.fields=photo,id,employmentDetails,personalDetails,profileDetails
 
 max.node.size=50
 
