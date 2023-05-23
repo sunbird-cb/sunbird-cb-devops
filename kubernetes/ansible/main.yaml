@@ -94,6 +94,9 @@
       tags: [deploy-vega-faq-rasa-action-igot-service]
     - role: deploy-vega-faq-rasa-nlp-igot-service
       tags: [deploy-vega-faq-rasa-nlp-igot-service]
+    - role: deploy-vega-llm-pipeline-service
+      tags: [deploy-vega-llm-pipeline-service]
+
 
 
 
