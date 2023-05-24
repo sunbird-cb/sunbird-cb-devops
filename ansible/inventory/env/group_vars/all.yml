@@ -96,6 +96,7 @@ service_portal_service: portal-service
 service_vega_faq_rasa_action_igot_service: vega-faq-rasa-action-igot-service
 service_vega_faq_rasa_nlp_igot_service: vega-faq-rasa-nlp-igot-service
 service_vega_llm_pipeline_service: vega-llm-pipeline-service
+service_vega_translation_service: vega-translation-service
 
 # Ports
 service_antivirus_port: 3310
@@ -193,6 +194,7 @@ service_portal_port: 3006
 service_vega_faq_rasa_action_igot_port: 5055
 service_vega_faq_rasa_nlp_igot_port: 5005
 service_vega_llm_pipeline_port: 4000
+service_vega_translation_port: 4003
 
 
 # Network alias names, so that one service can talk to another
@@ -294,6 +296,7 @@ network_portal_service: portal-service
 network_alias_vega_faq_rasa_action_igot_service: vega-faq-rasa-action-igot-service
 network_alias_vega_faq_rasa_nlp_igot_service: vega-faq-rasa-nlp-igot-service
 network_alias_vega_llm_pipeline_service: vega-llm-pipeline-service
+network_alias_vega_translation_service: vega-translation-service
 
 
 # Image names, this is used by the service alone, but since we want to have all the images in one place, we are oncfiguring the images here
@@ -386,6 +389,7 @@ image_form_service: form-service
 image_vega_faq_rasa_action_igot_service: vega-faq-rasa-action-igot-service
 image_vega_faq_rasa_nlp_igot_service: vega-faq-rasa-nlp-igot-service
 image_vega_llm_pipeline_service: llm-pipeline
+image_vega_translation_service: translation-service
 
 
 health_end_point_sb_ext_service: "http://localhost:{{ service_sb_ext_port }}/v1/latest/terms/user"
