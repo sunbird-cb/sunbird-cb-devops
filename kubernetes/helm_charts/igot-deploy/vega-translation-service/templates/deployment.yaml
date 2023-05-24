@@ -70,7 +70,7 @@ spec:
   - name: http-{{ .Chart.Name }}
     protocol: TCP
     port: {{ .Values.network.targetport }}
-    targetPort: 3000
+    targetPort: {{ .Values.network.port }}
   selector:
     app: {{ .Chart.Name }}
 
