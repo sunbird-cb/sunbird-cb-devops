@@ -53,7 +53,7 @@ es.profile.index=userprofile
 es.profile.index.type=_doc
 workallocation.index.name=workallocation
 workallocation.index.type=_doc
-es.profile.source.fields=photo,id,employmentDetails,personalDetails,professionalDetails
+es.profile.source.fields=photo,id,employmentDetails,personalDetails
 
 #Use alias names as Index names instead of actual index names
 workallocationv2.index.name=work_allocation
@@ -189,8 +189,8 @@ sb.es.port={{ sb_es_port }}
 sb.es.username={{ sb_es_username }}
 sb.es.password={{ sb_es_password }}
 sb.es.user.profile.index=user_alias
-es.user.auto.complete.search.fields=profileDetails.personalDetails.primaryEmail,profileDetails.personalDetails.firstname,profileDetails.personalDetails.surname
-es.user.auto.complete.include.fields=lastName,maskedPhone,rootOrgName,roles,channel,prevUsedPhone,updatedDate,stateValidated,isDeleted,organisations,managedBy,countryCode,flagsValue,id,recoveryEmail,identifier,updatedBy,phoneVerified,locationIds,recoveryPhone,rootOrgId,userId,userSubType,prevUsedEmail,emailVerified,firstName,profileLocation,createdDate,framework,tncAcceptedOn,allTncAccepted,profileDetails,createdBy,phone,profileUserType,dob,userType,tncAcceptedVersion,status
+es.user.auto.complete.search.fields=profileDetails.personalDetails.primaryEmail,profileDetails.personalDetails.firstname
+es.user.auto.complete.include.fields=maskedPhone,rootOrgName,roles,channel,prevUsedPhone,updatedDate,stateValidated,isDeleted,organisations,managedBy,countryCode,flagsValue,id,recoveryEmail,identifier,updatedBy,phoneVerified,locationIds,recoveryPhone,rootOrgId,userId,userSubType,prevUsedEmail,emailVerified,firstName,profileLocation,createdDate,framework,tncAcceptedOn,allTncAccepted,profileDetails,createdBy,phone,profileUserType,dob,userType,tncAcceptedVersion,status
 
 content.search=v1/content/search
 new.courses.scheduler.time.gap=168
@@ -280,3 +280,6 @@ spring.jpa.show-sql=false
 
 ###Verified Karmayogi Badge
 lms.system.settings.verified.profile.fields.path=v1/system/settings/get/verifiedProfileFields
+
+es.user.report.include.fields=userId,firstName,email,phone,rootOrgId,channel,roles
+user.bulk.upload.group.value=GROUP A,GROUP B,GROUP C,GROUP D,Contractual Staff
