@@ -73,5 +73,8 @@ spring.data.cassandra.password={{ cassandra_password }}
 
 ###mdo notification
 mdo.search.fields=userId,profileDetails.personalDetails.primaryEmail
-domain.host=https://mdo.{{ domain_name }}
+domain.host=https://{{ mdo_portal_url }}
 mdo.email.template=mdoMailTemplate
+mdo.approval.base.url=/app/approvals/{id}/to-approve
+
+
