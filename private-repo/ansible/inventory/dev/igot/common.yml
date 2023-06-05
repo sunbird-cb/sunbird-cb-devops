@@ -117,8 +117,9 @@ neo4j_url:   ##neo4jip##
 kafka_ip:  ###kafka ip###
 
 ##############
-send_notification_token: 
-frac_url:
-cloud_provider: 
+send_notification_token: false
 
-react_app_pmdash_prototype_url:  
+frac_url: http://frac-backend-service:{{service_frac_backend_port}}/
+cloud_provider:   ######cloud provider name eg azure##
+
+react_app_pmdash_prototype_url:  pm.{{static_domain_name}}/prototype/
