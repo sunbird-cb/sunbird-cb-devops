@@ -2,9 +2,9 @@
 # vars file for deploy-ui-static
 # For script
 release_name: "{{ network_alias_vega_translation_service }}"
-user_friendly_name: vega service
-#template_compose_file_name: ui-spv-igot.j2
-template_env_file_name: "../../shared_files/templates/ui-shared-env.j2"
+user_friendly_name: vega Translate service
+  #template_compose_file_name: translation-service.j2
+template_env_file_name: "translation-service.j2"
 compose_file_name: "{{ service_vega_translation_service }}.yml"
 env_file_name: "{{ service_vega_translation_service }}.env"
 helm_env_file_location: "../helm_charts/igot-deploy/templates/"
