@@ -98,6 +98,7 @@
       tags: [deploy-vega-llm-pipeline-service]
     - role: deploy-vega-translation-service
       tags: [deploy-vega-translation-service]
-
+    - role: deploy-vega-translation-with-kafka-service
+      tags: [deploy-vega-translation-with-kafka-service]
 
 
