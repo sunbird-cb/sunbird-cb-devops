@@ -65,11 +65,14 @@ lms.system.settings.verified.profile.fields.path=v1/system/settings/get/verified
 notification.sender.mail={{ igot_cb_ext_mailsender }}
 
 ####Sunbird Cassandra details
-spring.data.cassandra.contact-points={{ sunbird_cassandra_db_host }}
-spring.data.cassandra.port={{ cassandra_port }}
-spring.data.cassandra.keyspace-name={{ keyspace_sunbird }}
-spring.data.cassandra.username={{ cassandra_username }}
-spring.data.cassandra.password={{ cassandra_password }}
+spring.data.cassandra.sb.port=9042
+spring.data.cassandra.sb.keyspace-name={{ keyspace_sunbird }}
+spring.data.cassandra.sb.username=
+spring.data.cassandra.sb.password=
+spring.data.cassandra.sb.startupTimeoutInSeconds=100000
+spring.data.cassandra.sb.contact-points={{ sunbird_cassandra_db_host }}
+cassandra.config.host={{ sunbird_cassandra_db_host }}
+sunbird_cassandra_consistency_level=ONE
 
 ###mdo notification
 mdo.search.fields=userId,profileDetails.personalDetails.primaryEmail
