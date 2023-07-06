@@ -9,7 +9,7 @@ env:
   javaoptions: {{lms_java_mem_limit|default('-Xmx600m')}}
 
 replicaCount: {{lms_replicacount|default(1)}}
-repository: {{ image_vega_translation_with_kafka_service }}
+repository: {{ image_vega_feedback_service }}
 image_tag: {{ image_tag }}
 resources:
   requests:
