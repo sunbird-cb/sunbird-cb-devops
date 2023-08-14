@@ -28364,8 +28364,8 @@ envjs: |-
     window["env"]["programStripKey"] = 'programs'
     window["env"]["quizResultTimeout"] = '10000'
     window["env"]["assessmentBuffer"] = 0;
-    cdnContentHost = '{{ cdn_content_host }}'
-    cdnContentBucket = '{{ cdn_content_bucket }}'
+    window["env"][cdnContentHost] = '{{ cdn_content_host }}'
+    window["env"][cdnContentBucket] = '{{ cdn_content_bucket }}'
     window["env"]["portalRoles"] = '{{ igot_karmayoggirules }}';
     window["env"]["portals"] = [
         { sr: 1, id: 'cbc', name: 'CBC Portal', desc: 'Capacity Building Commission', icon: 'add_moderator', uriPath: 'https://{{ cbc_portal_url }}', roles: ['CBC_ADMIN', 'CBC_MEMBER', 'cbc_admin', 'cbc_member'], isPublic: false },
