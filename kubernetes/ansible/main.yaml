@@ -103,4 +103,7 @@
       
     - role: deploy-vega-feedback-service
       tags: [deploy-vega-feedback-service]
+    - role: deploy-static-domian
+      tags: [deploy-static-domian]
+
 
