@@ -99,5 +99,5 @@
         src: configurations.json.j2
         dest: "{{ helm_env_file_name }}/configurations.json"
 
-- name: create config configmap
-  shell: find "{{ helm_env_file_location }}" -iname "*.json" -exec /bin/bash -c "ls {}; kubectl create configmap static-domian-configurations-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
+    - name: create config configmap
+      shell: find "{{ helm_env_file_location }}" -iname "*.json" -exec /bin/bash -c "ls {}; kubectl create configmap static-domian-configurations-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
