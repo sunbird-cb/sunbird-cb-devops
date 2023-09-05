@@ -1399,7 +1399,8 @@ envjs: |-
     window["env"]["debug"] = '';
     window["env"]["karmYogiPath"] = 'https://{{ domain_name }}'
     window["env"]["cbpPath"] = 'https://cbp.{{ static_domain_name }}'
-    window["env"]["contentHost"] = 'https://{{ static_domain_name }}' 
+    window["env"]["contentHost"] = 'https://{{ static_domain_name }}'
+    window["env"]["mdoPath"] = 'https://{{ mdo_portal_url }}'
 
     window["env"]["azureBucket"] = '{{ igot_content_bucket }}'
     window["env"]["contentBucket"] = '{{ igot_content_bucket }}'
