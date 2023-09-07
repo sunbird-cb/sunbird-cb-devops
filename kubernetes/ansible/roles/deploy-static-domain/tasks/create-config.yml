@@ -1,7 +1,7 @@
 ---
     - name: User Count API call
       uri:
-        url: "{{ domaines }}/user_v2/_search"
+        url: "{{ domaines }}/{{ user_index }}/_search"
         method: POST
         headers:
           Content-Type: "application/json"
@@ -24,7 +24,7 @@
 
     - name: Total no. of Organizations API call
       uri:
-        url: "{{ domaines }}/org_v2/_search"
+        url: "{{ domaines }}/{{ org_index }}/_search"
         method: POST
         headers:
           Content-Type: "application/json"
@@ -47,7 +47,7 @@
 
     - name: Live Course Query Elasticsearch and Process Response
       uri:
-        url: "{{ domaines }}/compositesearch/_search"
+        url: "{{ domaines }}/{{ compositesearch }}/_search"
         method: POST
         headers:
           Content-Type: "application/json"
