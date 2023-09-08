@@ -104,6 +104,13 @@
         path: /var/lib/jenkins/dashbord_history
         state: directory
 
+    - name: Gather date and time only
+      setup:
+        gather_subset:
+          - "date_time"
+          - "!min"
+      when: ansible_date_time is not defined
+
     - name: create a backup of configfile
       copy:
         src: "{{ helm_env_file_name }}"
