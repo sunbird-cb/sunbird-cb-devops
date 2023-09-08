@@ -99,5 +99,16 @@
         src: configurations.json.j2
         dest: "{{ helm_env_file_name }}"
 
+    - name: create backup dir if not exist
+      file:
+        path: /var/lib/jenkins/dashbord_history
+        state: directory
+
+    - name: create a backup of configfile
+      copy:
+        src: "{{ helm_env_file_name }}"
+        dest: "/var/lib/jenkins/dashbord_history/configurations.json_{{ ansible_date_time.date }}"
+        backup: yes
+
     - name: create config configmap
       shell: find "{{ helm_env_file_location }}" -iname "*.json" -exec /bin/bash -c "ls {}; kubectl create configmap static-domain-configurations-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
