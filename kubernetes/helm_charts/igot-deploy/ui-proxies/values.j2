@@ -1,4 +1,4 @@
-### Default variable file for lms-service ###
+### Default variable file for ui_proxies-service ###
 
 namespace: {{ namespace }}
 imagepullsecrets: {{ imagepullsecrets }}
@@ -6,25 +6,25 @@ dockerhub: {{ docker_hub_url }}
 
 
 env:
-  javaoptions: {{lms_java_mem_limit|default('-Xmx600m')}}
+  javaoptions: {{ui_proxies_java_mem_limit|default('-Xmx600m')}}
 
 replicaCount: {{ui_proxies_replicacount|default(1)}}
 repository: {{ image_ui_proxies }}
 image_tag: {{image_tag}}
 resources:
   requests:
-    cpu: {{lms_cpu_req|default('100m')}}
-    memory: {{lms_mem_req|default('100Mi')}}
+    cpu: {{ui_proxies_cpu_req|default('100m')}}
+    memory: {{ui_proxies_mem_req|default('100Mi')}}
   limits:
-    cpu: {{lms_cpu_limit|default('1')}}
-    memory: {{lms_mem_limit|default('1024Mi')}}
+    cpu: {{ui_proxies_cpu_limit|default('1')}}
+    memory: {{ui_proxies_mem_limit|default('1024Mi')}}
 network:
   port: 3003
   targetport: 3003
 strategy:
   type: RollingUpdate
-  maxsurge: {{ lms_maxsurge|default('25%') }}
-  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+  maxsurge: {{ ui_proxies_maxsurge|default('25%') }}
+  maxunavailable: {{ ui_proxies_maxunavailable|default('25%') }}
 
 ui_proxies_bulk_upload: {{ host_bulk_upload }}
 
