@@ -13,7 +13,7 @@
     dest: "{{ helm_env_file_name }}"
 
 - name: create env configmap
-  shell: find "{{ helm_env_file_location }}" -iname "*.env" -exec /bin/bash -c "ls {}; kubectl create configmap {{ release_name }}-config --from-env-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
+  shell: find "{{ helm_env_file_location }}" -iname "*.env" -exec /bin/bash -c "ls {}; kubectl create configmap {{ release_name }}-config --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
 
 
 - name: remove env configmap file
