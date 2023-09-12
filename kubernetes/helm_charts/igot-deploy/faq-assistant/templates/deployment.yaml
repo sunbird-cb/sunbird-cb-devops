@@ -25,7 +25,7 @@ spec:
       - name: {{ .Values.imagepullsecrets }}
 {{- end }}
       volumes:
-        - name: faq-assistant
+        - name: faq-assistant-config
           configMap:
             name: faq-assistant-config
       containers:
@@ -40,7 +40,7 @@ spec:
             name: {{ .Chart.Name }}-config
         resources:
         volumeMounts:
-        - name: faq-assistant
+        - name: faq-assistant-config
           mountPath: /app/config/config.json
           subPath: config.json
         ports:
