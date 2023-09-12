@@ -106,4 +106,6 @@
     - role: deploy-static-domain
       tags: [deploy-static-domain]
 
+    - role: deploy-faq-assistant
+      tags: [deploy-faq-assistant]
 

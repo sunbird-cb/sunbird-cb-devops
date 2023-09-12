@@ -1,0 +1,29 @@
+### Default variable file for faq_assistant-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{faq_assistant_java_mem_limit|default('-Xmx600m')}}
+
+replicaCount: {{faq_assistant_replicacount|default(1)}}
+repository: {{ image_faq_assistant_service }}
+image_tag: {{ image_tag }}
+resources:
+  requests:
+    cpu: {{faq_assistant_cpu_req|default('100m')}}
+    memory: {{faq_assistant_mem_req|default('100Mi')}}
+  limits:
+    cpu: {{faq_assistant_cpu_limit|default('1')}}
+    memory: {{faq_assistant_mem_limit|default('1024Mi')}}
+network:
+  port: {{ service_faq_assistant_port }}
+  targetport: {{ service_faq_assistant_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ faq_assistant_maxsurge|default('25%') }}
+  maxunavailable: {{ faq_assistant_maxunavailable|default('25%') }}
+
+

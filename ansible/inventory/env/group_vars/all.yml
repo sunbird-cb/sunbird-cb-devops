@@ -100,6 +100,7 @@ service_vega_translation_service: vega-translation-service
 service_vega_translation_with_kafka_service: vega-translation-with-kafka-service
 service_vega_feedback_service: vega-feedback-service
 service_static_domian_service: static-domian-service
+service_faq_assistant_service: faq-assistant
 
 # Ports
 service_antivirus_port: 3310
@@ -201,6 +202,7 @@ service_vega_translation_port: 4003
 service_vega_translation_with_kafka_port: 4004
 service_vega_feedback_port: 4008
 service_static_domian_port: 80
+service_faq_assistant_port: 4003
 
 # Network alias names, so that one service can talk to another
 network_alias_content_service: private-content-service
@@ -305,6 +307,7 @@ network_alias_vega_translation_service: vega-translation-service
 network_alias_vega_translation_with_kafka_service: vega-translation-with-kafka-service
 network_alias_vega_feedback_service: vega-feedback-service
 network_alias_static_domian_service: static-domian-service
+network_alias_faq_assistant_service: faq-assistant
 
 # Image names, this is used by the service alone, but since we want to have all the images in one place, we are oncfiguring the images here
 image_portal: ui-static
@@ -400,6 +403,7 @@ image_vega_translation_service: translation-service
 image_vega_translation_with_kafka_service: translation-with-kafka-service
 image_vega_feedback_service: feedback-service
 image_static_domian: static_domain
+image_faq_assistant_service: faq-assistant
 
 health_end_point_sb_ext_service: "http://localhost:{{ service_sb_ext_port }}/v1/latest/terms/user"
 elasticsearch_hosts_list: "{{ elasticsearch_http_hosts_list | map('regex_replace','^(?P<host>.+):(?P<port>\\d+)$', '\\g<host>') | list | join (',') }}"
