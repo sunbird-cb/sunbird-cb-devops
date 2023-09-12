@@ -26,4 +26,21 @@ strategy:
   maxsurge: {{ faq_assistant_maxsurge|default('25%') }}
   maxunavailable: {{ faq_assistant_maxunavailable|default('25%') }}
 
+faqassistantjson: |-
+ {
+    "PORT" : "{{ service_faq_assistant_port }},
+    "SWAGGER_URL" : "/swagger",
+    "API_URL" : "/swagger.json",
+    "SWAGGER_CONFIG" : {
+        "openapi": "3.0.2",
+        "version": "1.0",
+        "title": "FAQ Assistant",
+        "description": "FAQ Assistant backend service",
+        "uiversion": 3,
+        "specs_route": "/swagger.json"
+    },
+    "cassandra_host" : "{{ sunbird_cassandra_db_host }}",
+    "faq_clicks_keyspace" : "faq_clicks",
+    "druid_host" : "{{ druid_host }}"
+ }
 
