@@ -25,9 +25,9 @@ spec:
       - name: {{ .Values.imagepullsecrets }}
 {{- end }}
       volumes:
-        - name: faq-assistant-config
+        - name: faq-assistant-json
           configMap:
-            name: faq-assistant-config
+            name: faq-assistant-json
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}"
@@ -37,7 +37,7 @@ spec:
           value: {{ .Values.env.javaoptions | quote }}
         resources:
         volumeMounts:
-        - name: faq-assistant-config
+        - name: faq-assistant-json
           mountPath: /app/config/config.json
           subPath: config.json
         ports:
