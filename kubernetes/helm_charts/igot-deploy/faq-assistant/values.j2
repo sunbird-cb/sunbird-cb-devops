@@ -28,7 +28,7 @@ strategy:
 
 faqassistantjson: |-
  {
-    "PORT" : "{{ service_faq_assistant_port }},
+    "PORT" : "{{ service_faq_assistant_port }}",
     "SWAGGER_URL" : "/swagger",
     "API_URL" : "/swagger.json",
     "SWAGGER_CONFIG" : {
@@ -42,6 +42,7 @@ faqassistantjson: |-
     "cassandra_host" : "{{ sunbird_cassandra_db_host }}",
     "cassandra_port" : "{{ sunbird_cassandra_port }}",
     "faq_clicks_keyspace" : "faq_clicks",
-    "druid_host" : "{{ druid_host }}"
+    "druid_host" : "{{ druid_host }}",
+    "druid_port" : "{{ druid_port }}"
  }
 
