@@ -24,7 +24,7 @@ node() {
                 module = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-2].trim()
                 jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
                 currentWs = sh(returnStdout: true, script: 'pwd').trim()
-                ansiblePlaybook = "${currentWs}/ansible/ntp.yml"
+                ansiblePlaybook = "${currentWs}/ansible/ntp.yaml"
                 ansibleExtraArgs = "--tags ${params.tag} --extra-vars \"hosts=${params.hosts}\" --vault-password-file /var/lib/jenkins/secrets/vault-pass"
                 values.put('currentWs', currentWs)
                 values.put('env', envDir)
