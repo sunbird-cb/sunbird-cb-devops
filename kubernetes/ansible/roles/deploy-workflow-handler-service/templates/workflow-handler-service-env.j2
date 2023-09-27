@@ -89,3 +89,7 @@ content.read.search=/content/v4/read/
 content.service.host=http://content-service:9000
 ms.system.settings.multilevelBPEnroll.path=v1/system/settings/get/
 
+bp.batch.full.validation.exclude.states=REJECT,WITHDRAW,REJECTED,WITHDRAWN,REMOVED
+enrol.status.count.local.cache.size={{  enrol_status_count_local_cache_size | default('1000') }}
+enrol.status.count.local.cache.timetolive={{  enrol_status_count_local_cache_timetolive | default('30') }}
+
