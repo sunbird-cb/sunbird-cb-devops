@@ -36,7 +36,7 @@ spec:
         resources:
         volumeMounts:
         - name: {{ .Chart.Name }}-configurations-json
-          mountPath: /var/www/html/configurations.json
+          mountPath: /var/www/html/assets/jsonfiles/configurations.json
           subPath: configurations.json
         ports:
         - containerPort: {{ .Values.network.port }}
