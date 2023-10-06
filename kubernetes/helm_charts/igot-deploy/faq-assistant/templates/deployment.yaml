@@ -27,7 +27,7 @@ spec:
       volumes:
         - name: faq-assistant-json
           configMap:
-            name: faq-assistant-json
+            name: faq-assistant-config
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}"
