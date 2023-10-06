@@ -10,8 +10,9 @@
         "uiversion": 3,
         "specs_route": "/swagger.json"
     },
-    "cassandra_host" : "{{ sunbird_cassandra_db_host }}",
+    "cassandra_host" : ["{{groups['cassandra']|join('\"'', ''\"') + '\"'}}],
     "faq_clicks_keyspace" : "faq_clicks",
     "druid_host" : "{{ druid_host }}"
+    "job_time_interval_seconds" : {{ faq_time_interval }}
 }
 
