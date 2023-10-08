@@ -297,3 +297,6 @@ bulk.upload.tag.verification.regex=^[a-zA-Z\\\s,]+$
 
 report.download.container.name={{ sb_cb_ext_container }}
 report.download.folder.name=standalone-reports
+
+redis.questions.read.timeout={{ redis_questions_read_timeout | default('3600') }} 
+read.assess.questions.from.redis={{ read_assess_questions_from_redistrue | default('true') }}
