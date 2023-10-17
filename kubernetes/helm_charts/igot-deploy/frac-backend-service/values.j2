@@ -13,11 +13,11 @@ repository: {{ image_frac_backend_service }}
 image_tag: {{ image_tag }}
 resources:
   requests:
-    cpu: {{lms_cpu_req|default('100m')}}
-    memory: {{lms_mem_req|default('100Mi')}}
+    cpu: {{lms_cpu_req|default('2')}}
+    memory: {{lms_mem_req|default('4Gi')}}
   limits:
     cpu: {{lms_cpu_limit|default('2')}}
-    memory: {{lms_mem_limit|default('2048Mi')}}
+    memory: {{lms_mem_limit|default('4Gi')}}
 network:
   port: {{ service_frac_backend_port }}
   targetport: {{ service_frac_backend_port }}
