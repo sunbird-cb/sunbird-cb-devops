@@ -6,18 +6,18 @@ dockerhub: {{ docker_hub_url }}
 
 
 env:
-  javaoptions: {{lms_java_mem_limit|default('-Xmx1500m')}}
+  javaoptions: {{frac_backend_java_mem_limit|default('-Xmx1500m')}}
 
-replicaCount: {{lms_replicacount|default(1)}}
+replicaCount: {{frac_backend_replicacount|default(1)}}
 repository: {{ image_frac_backend_service }}
 image_tag: {{ image_tag }}
 resources:
   requests:
-    cpu: {{lms_cpu_req|default('100m')}}
-    memory: {{lms_mem_req|default('100Mi')}}
+    cpu: {{frac_backend_cpu_req|default('100m')}}
+    memory: {{frac_backend_mem_req|default('100Mi')}}
   limits:
-    cpu: {{lms_cpu_limit|default('2')}}
-    memory: {{lms_mem_limit|default('2048Mi')}}
+    cpu: {{frac_backend_cpu_limit|default('2')}}
+    memory: {{frac_backend_mem_limit|default('2048Mi')}}
 network:
   port: {{ service_frac_backend_port }}
   targetport: {{ service_frac_backend_port }}
