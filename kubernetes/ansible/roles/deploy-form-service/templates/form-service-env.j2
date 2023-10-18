@@ -26,7 +26,7 @@ file.config.path=/
 file.config.name=FormConfig.yml
 
 #----------------------------- KAFKA SERVER CONFIGURATIONS ------------------------------#
-spring.kafka.bootstrap.servers={{ kafka_servers_list }}
+spring.kafka.bootstrap.servers={{ dp_kafka_servers_list }}
 
 spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
 spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
