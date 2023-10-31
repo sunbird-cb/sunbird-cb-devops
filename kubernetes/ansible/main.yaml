@@ -108,4 +108,5 @@
 
     - role: deploy-faq-assistant
       tags: [deploy-faq-assistant]
-
+    - role: deploy-pdf-generator-service
+      tags: [deploy-pdf-generator-service]

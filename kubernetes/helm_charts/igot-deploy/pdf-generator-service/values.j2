@@ -1,0 +1,28 @@
+### Default variable file for lms-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{pdf_generator_java_mem_limit|default('-Xmx4096m')}}
+
+replicaCount: {{pdf_generator_replicacount|default(1)}}
+repository: {{ image_pdf_generator_service }}
+image_tag: {{ image_tag }}
+resources:
+  requests:
+    cpu: {{pdf_generator_cpu_req|default('100m')}}
+    memory: {{pdf_generator_mem_req|default('200Mi')}}
+  limits:
+    cpu: {{ pdf_generator_cpu_limit|default('2')}}
+    memory: {{pdf_generator_mem_limit|default('6144Mi')}}
+network:
+  port: {{ service_pdf_generator_port }}
+  targetport: {{ service_pdf_generator_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ lms_maxsurge|default('25%') }}
+  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+
