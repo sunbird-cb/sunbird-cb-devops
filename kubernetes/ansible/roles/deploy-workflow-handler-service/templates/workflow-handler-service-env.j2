@@ -91,6 +91,16 @@ ms.system.settings.multilevelBPEnroll.path=v1/system/settings/get/
 
 bp.batch.full.validation.exclude.states=REJECT,WITHDRAW,REJECTED,WITHDRAWN,REMOVED
 enrol.status.count.local.cache.size={{  enrol_status_count_local_cache_size | default('1000') }}
+
+#blended_mail_subject_body
+bp.mail.body.forwarded.to=Your enrollment request for #batch_name of the #course_name Program, starting on #batch_start_date has been forwarded to the #role for approval.
+bp.mail.body.rejected.or.remove=We regret to inform you that your enrollment request for #batch_name of the #course_name Program, starting on #batch_start_date has been #action.
+bp.mail.body.approve=We are pleased to inform you that your enrollment request for #batch_name of the #course_name Program, starting on #batch_start_date has been approved.
+ 
+notify.email.template=notificationEmailTemplate
+bp.approval.request.mail.body=You have received a request for enrollment for #username in #batch_name of the #blended_programme_name starting on #batch_start_date, which requires your approval.
+bp.request.forwarded.mail.body=The enrollment request for #username in #batch_name of the #blended_programme_name Program, starting on #batch_start_date , has been forwarded to the #role for approval.
+bp.nomination.request.mail.body=The enrollment request for #username in #batch_name of the #blended_programme_name Program, starting on #batch_start_date , has been #state.
 enrol.status.count.local.cache.timetolive={{  enrol_status_count_local_cache_timetolive | default('30') }}
 
 blended.program.enrol.conflict.reject.reason="Conflict, User already enrolled to different Blended Program of conflict time span"
