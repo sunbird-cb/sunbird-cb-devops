@@ -1,0 +1,26 @@
+###kubectl apply -f  lms-crontab.yaml####
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: lms-cron
+  namespace: prod
+spec:
+  schedule: "30 19 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl-container
+            image: curlimages/curl
+            command:
+              - "curl"
+              - "--location"
+              - "--request"
+              - "POST"
+              - "http://lms-service:9000/v1/activate-started/course/batches/status"
+              - "--header"
+              - "Accept: application/json, text/plain, */*"
+              - "--header"
+              - "Content-Type: application/json"
+          restartPolicy: OnFailure
