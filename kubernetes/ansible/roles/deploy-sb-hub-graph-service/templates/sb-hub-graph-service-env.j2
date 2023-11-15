@@ -63,3 +63,13 @@ taskExecutor.connection.queueCapacity=3
 
 max.node.size=50
 
+redis.host.name={{ kp_redis_ip }}
+redis.port=6379
+#redis timeout value is in seconds
+redis.timeout={{ redis_hub_timeout | default('84600') }}
+redis.userList.read.timeout={{ redis_hub_userlist_read_timeout | default('84600') }}
+read.assess.questions.from.redis={{ hub_read_assess_questions_from_redis | default('true') }}
+network.request.default.limit={{ hub_network_request_default_limit | default('50') }}
+network.request.max.limit={{ hub_network_request_max_limit | default('100') }}
+
+
