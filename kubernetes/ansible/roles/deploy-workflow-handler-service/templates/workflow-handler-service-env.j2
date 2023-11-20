@@ -72,7 +72,7 @@ spring.data.cassandra.password={{ cassandra_password }}
 spring.data.cassandra.sb.startupTimeoutInSeconds=100000
 spring.data.cassandra.contact-points={{ sunbird_cassandra_db_host }}
 cassandra.config.host={{ sunbird_cassandra_db_host }}
-sunbird_cassandra_consistency_level=ONE
+sunbird_cassandra_consistency_level=quorum
 
 ###mdo notification
 mdo.search.fields=userId,profileDetails.personalDetails.primaryEmail
