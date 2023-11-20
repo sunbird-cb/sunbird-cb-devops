@@ -13983,7 +13983,41 @@ siteconfig: |
             }
           }
         }
-      ]
+      ],
+      "all": [
+        {
+          "type": "iconButton",
+          "config": {
+            "icon": "home",
+            "path": "/page/home",
+            "label": "home"
+          }
+        },
+        {
+          "type": "explorerButton",
+          "config": {
+            "icon": "explorer",
+            "path": "/page/explore",
+            "label": "explorer"
+          }
+        },
+        {
+          "type": "iconButton",
+          "config": {
+            "icon": "search",
+            "path": "/app/globalsearch",
+            "label": "search"
+          }
+        },
+        {
+          "type": "iconButton",
+          "config": {
+            "icon": "learn",
+            "path": "/app/my-learning",
+            "label": "my learnings"
+          }
+        }
+       ]      
     },
     "secondary": {
       "left": [
@@ -14025,7 +14059,11 @@ siteconfig: |
       "hubname": "Learn",
       "desc": "Sharpen your skills with hundreds-of online courses.",
       "icon": "school",
-      "accessKey": "L"
+      "accessKey": "L",
+      "permission": [
+        "Admin"
+      ],
+      "order": 1
     },
     {
       "path": "/app/discuss/home",
@@ -14033,7 +14071,9 @@ siteconfig: |
       "hubname": "Discuss",
       "desc": "Have a question? Have an Idea? discuss with your peers.",
       "icon": "forum",
-      "accessKey": "D"
+      "accessKey": "D",
+      "permission": [],
+      "order": 2
     },
     {
       "path": "/app/network-v2",
@@ -14041,7 +14081,10 @@ siteconfig: |
       "hubname": "Network",
       "desc": "Connect with interesting people, see what they are upto.",
       "icon": "group",
-      "accessKey": "N"
+      "accessKey": "N",
+      "permission": [],
+      "order": 3
+ 
     },
     {
       "path": "/app/careers/home",
@@ -14049,7 +14092,9 @@ siteconfig: |
       "hubname": "Career",
       "desc": "Explore career options, grow in the path of your choice.",
       "icon": "work",
-      "accessKey": "C"
+      "accessKey": "C",
+      "permission": [],
+      "order": 4
     },
     {
       "path": "/app/competencies",
@@ -14057,15 +14102,19 @@ siteconfig: |
       "hubname": "Competencies",
       "desc": "Add your competencies, see what others are adding.",
       "icon": "extension",
-      "accessKey": "O"
+      "accessKey": "O",
+      "permission": [],
+      "order": 5
     },
     {
       "path": "/app/event-hub",
       "active": true,
       "hubname": "Events",
-      "desc": "Add your events",
+      "desc": "Add your events.",
       "icon": "event",
-      "accessKey": "E"
+      "accessKey": "E",
+      "permission": [],
+      "order": 6
     }
   ],
   "featuredApps": [],
