@@ -13912,7 +13912,7 @@ siteconfig: |
       "left": [],
       "right": [
         {
-          "type": "featureButton",
+          "type": "downloadButton",
           "config": {
             "actionBtnId": "feature_home",
             "toolTip": "Home",
@@ -13925,7 +13925,20 @@ siteconfig: |
           }
         },
         {
-          "type": "featureButton",
+          "type": "fontButton",
+          "config": {
+            "actionBtnId": "feature_mydashboard",
+            "toolTip": "My Dashboard",
+            "className": "fixtopMargin",
+            "config": {
+              "actionBtnId": "feature_mydashboard",
+              "type": "card-mini",
+              "hideTitle": true
+            }
+          }
+        },
+        {
+          "type": "helpButton",
           "config": {
             "actionBtnId": "feature_mydashboard",
             "toolTip": "My Dashboard",
@@ -13945,12 +13958,13 @@ siteconfig: |
             "widgetData": {
               "disableViewProfile": true,
               "disableAllFeatures": true,
-              "disableSettings": true
+              "disableSettings": true,
+              "removeClass": true
             },
             "hideTitle": true
           }
         }
-      ]
+      ]      
     },
     "smallScreen": {
       "left": [
