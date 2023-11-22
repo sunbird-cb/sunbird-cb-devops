@@ -109,7 +109,8 @@ cloud.storage.cephs3.endpoint={{ cloud_sb_cb_ext_endpoint }}
 #Storage key for the Azure or Cephs3 
 cloud.storage.key={{ cloud_storage_key }}
 
-
+learning_service_base_url=http://{{ learningservice_ip }}:8080/learning-service
+system.content.update.url=/system/v3/content/update/
 
 kafka.topics.parent.rating.event={{ rating_event_topic }}
 redis.host.name={{ kp_redis_ip }}
