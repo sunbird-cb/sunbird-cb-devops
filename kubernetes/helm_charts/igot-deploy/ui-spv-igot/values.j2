@@ -1380,5 +1380,7 @@ envjs: |-
     window["env"]["userBucket"] = '{{ user_report_bucket }}';
     window["env"]["departments"] = ['ministry', 'state'];
     window["env"]["cbpProvidersRoles"] = ['cbp-providers'];
+    window["env"]["contentHost"] = 'https://{{ portal_domain_name }}'
+    window["env"]["azureBucket"] = 'assets/public'
  })(this);
 
