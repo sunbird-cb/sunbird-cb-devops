@@ -38,7 +38,7 @@ spring.data.cassandra.sb.password=
 sunbird.course.service.host={{ lms_service_host }}
 lms.system.settings.path=v1/system/settings/get/PatchConfig
 lms.user.read.path=private/user/v1/read/
-lms.user.update.path=private/user/v1/update
+lms.user.update.path=/user/v1/update
 progress.api.endpoint=v1/content/state/read
 participants.api.endpoint=v1/batch/participants/list
 
@@ -323,3 +323,5 @@ notify.email.template=notificationEmailTemplate
 notification.support.mail=support@igot-dev.in
  
 notification.mail.body.for.attendance=Your attendance for the #session_name in the #blended_program_name Program, held on #session_date, from #session_start_time to #session_end_time has been marked #attendance by the Program Coordinator.
+
+lms.user.update.private.path=/private/user/v1/update
