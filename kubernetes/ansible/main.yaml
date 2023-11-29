@@ -110,3 +110,5 @@
       tags: [deploy-faq-assistant]
     - role: deploy-pdf-generator-service
       tags: [deploy-pdf-generator-service]
+    - role: deploy-fracentity-service
+      tags: [deploy-fracentity-service]
