@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: rating-cron
+  namespace: dev
+spec:
+  schedule: "30 18 * * *"  # Runs every 5 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rating-cron
+            image: curlimages/curl
+            imagePullPolicy: Always
+            command:
+            - /bin/sh
+            - -c
+            - |
+              curl -s -o /dev/null --location --request POST 'http://sb-cb-ext-service:7001/ratings/meta/update'
+              curl -s -o /dev/null --location --request POST 'http://sb-cb-ext-service:7001/update/v1/content/additionaltag?tag=mostTrending'
+              curl -s -o /dev/null --location --request POST 'http://sb-cb-ext-service:7001/update/v1/content/additionaltag?tag=mostEnrolled'
+              # Add more curl commands as needed
+          restartPolicy: OnFailure
