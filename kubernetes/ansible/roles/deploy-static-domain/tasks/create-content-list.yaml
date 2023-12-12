@@ -47,4 +47,4 @@
         dest: "{{ helm_env_file_name1 }}"
 
     - name: create config configmap
-      shell: find "{{ helm_env_file_location }}" -iname "content-list-data.json" -exec /bin/bash -c "ls {}; kubectl create configmap static-domain-content-list-data-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
+      shell: find "{{ helm_env_file_location }}" -iname "content-list-data.json" -exec /bin/bash -c "ls {}; kubectl replace configmap static-domain-content-list-data-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
