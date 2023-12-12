@@ -1,5 +1,6 @@
 ---
 - import_tasks: create-config.yml
+- import_tasks: create-content-list.yaml
 
 - name: template values.yaml file
   template:
