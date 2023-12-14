@@ -18,8 +18,8 @@ spring.jpa.show-sql=false
 
 
 #offset and limit configuration
-workflow.pagination.max.limit=50
-workflow.pagination.default.limit=50
+workflow.pagination.max.limit={{ workflow_pagination_max_limit | default('50') }}
+workflow.pagination.default.limit={{ workflow_pagination_default_limit | default('50') }}
 workflow.pagination.default.offset=0
 
 #profile service url
