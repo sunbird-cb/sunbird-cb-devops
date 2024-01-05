@@ -345,5 +345,5 @@ hierarchy.store.keyspace.name={{ env }}_hierarchy_store
 default.content.properties=name,identifier,competencies_v5,avgRating,primaryCategory,contentType,channel,organisation,createdFor,duration,creatorLogo,appIcon,posterImage,additionalTags,description
 cb-plan.update.publish.authorized.roles=MDO_LEADER
 
-karma.points.limit={{ karma_points_limit | 10 }}
+karma.points.limit={{ karma_points_limit | '10' }}
 kafka.topics.claim.acbp.karma.points={{ env }}.user.claim.acbp.karma.points
