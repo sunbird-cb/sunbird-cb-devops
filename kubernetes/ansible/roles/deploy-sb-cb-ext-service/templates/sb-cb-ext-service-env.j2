@@ -342,8 +342,14 @@ redis.data.port={{ redis_port }}
 
 hierarchy.store.keyspace.name={{ env }}_hierarchy_store
 
-default.content.properties=name,identifier,competencies_v5,avgRating,primaryCategory,contentType,channel,organisation,createdFor,duration,creatorLogo,appIcon,posterImage,additionalTags,description
+default.content.properties=name,identifier,competencies_v5,avgRating,primaryCategory,contentType,channel,organisation,createdFor,duration,creatorLogo,appIcon,posterImage,additionalTags,description,status
 cb-plan.update.publish.authorized.roles=MDO_LEADER
+
+spv_admin_channel_name=Karmayogi Bharat
+spv_sub_folder_name=comms-console
+spv.report.property.map={"mdo_content_completion":"topMdoCompletionRatio.csv","user_recent_completions":"topNRecentCompletions.csv","":"usersWithoutEnrollments.csv","user_without_enrollment":"recentUsersWithoutEnrollments.csv","all_prarambh_completed_users":"prarambhUsersAllCompletions.csv","prarambh_completed_users":"prarambhUsers6Completions.csv"}
+
+report.property.map={"user-report":"UserReport.csv","user-enrollment-report":"ConsumptionReport.csv","course-report":"CBPReport.csv","cba-report":"UserAssessmentReport.csv","user-assessment-report-cbp":"StandaloneAssessmentReport.csv","blended-program-report-mdo":"BlendedProgramReport.csv","blended-program-report-cbp":"BlendedProgramReport.csv"}
 
 karma.points.limit={{ karma_points_limit | default('10') }}
 kafka.topics.claim.acbp.karma.points={{ env }}.user.claim.acbp.karma.points
