@@ -352,3 +352,8 @@ spv.report.property.subFolder.map={"topMdoCompletionRatio.csv":"comms-console","
 
 karma.points.limit={{ karma_points_limit | default('10') }}
 kafka.topics.claim.acbp.karma.points={{ env }}.user.claim.acbp.karma.points
+
+notify.service.path.async=/v2/notification/send
+kafka.topic.cbplan.content.request={{ env }}.cbplan.content.request
+kafka.topic.cbplan.content.request.group=cbplanContentRequestAsyncHandlerGroup
+cbplan.content.request.notification.template=cbplanContentRequestTemplate
