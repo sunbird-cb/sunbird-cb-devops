@@ -60,6 +60,14 @@ workallocationv2.index.name=work_allocation
 workorder.index.name=work_order
 workorder.index.type=_doc
 
+## ehrms service variables
+
+ehrms.detail.url=https://e-hrms.gov.in/api/employee/detail
+ehrms.auth.url=https://e-hrms.gov.in/api/Auth/login
+ehrms.auth.username={{ ehrms_username }}
+ehrms.auth.password={{ ehrms_password }}
+redis.ehrms.token.timeout=1500
+
 #Kafka Server
 spring.kafka.bootstrap.servers={{ kafka_servers_list }}
 
