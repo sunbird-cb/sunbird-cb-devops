@@ -62,8 +62,8 @@ workorder.index.type=_doc
 
 ## ehrms service variables
 
-ehrms.detail.url=https://e-hrms.gov.in/api/employee/detail
-ehrms.auth.url=https://e-hrms.gov.in/api/Auth/login
+ehrms.detail.url={{ ehrms_detail_url }}
+ehrms.auth.url={{ ehrms_auth_url }}
 ehrms.auth.username={{ ehrms_username }}
 ehrms.auth.password={{ ehrms_password }}
 redis.ehrms.token.timeout=1500
