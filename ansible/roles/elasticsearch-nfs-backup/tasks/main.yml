@@ -1,0 +1,56 @@
+---
+
+- set_fact: base_path_date="{{ lookup('pipe','date +%Y-%m') }}"
+
+- set_fact: snapshot_number="snapshot_{{ lookup('pipe','date +%s') }}"
+
+- name: Create snapshot directory
+  file:
+    path: "{{ snapshot_base_path }}/{{ snapshot_base_path }}/{{ snapshot_number }}"
+    state: directory
+    recurse: yes
+
+- name: Create snapshot repository
+  uri:
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}/{{ snapshot_number }}"
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+    body:
+      type: "fs"
+      settings:
+        location: "{{ snapshot_base_path }}/{{ base_path_date }}/{{ snapshot_number }}"
+        compress: true
+
+- name: Take new snapshot
+  uri:
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}/{{ snapshot_number }}"
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+
+- name: Print all snapshots
+  uri:
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot"
+    method: GET
+    headers:
+      Content-Type: "application/json"
+
+- name: Print status of current snapshot
+  uri:
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}/{{ snapshot_number }}"
+    method: GET
+    headers:
+      Content-Type: "application/json"
+
+- name: "Wait for backup to be completed"
+  uri:
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}/{{ snapshot_number }}/_all"
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: result
+  until: result.json.snapshots[0].state == 'SUCCESS'
+  retries: 120
+  delay: 10
