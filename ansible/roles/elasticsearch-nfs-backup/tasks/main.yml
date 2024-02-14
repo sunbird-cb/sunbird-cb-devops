@@ -6,7 +6,9 @@
 - name: Create snapshot directory
   file:
     path: "{{ nfs_db_backup_path }}/{{ snapshot_base_path }}/{{ base_path_date }}/"
-    permissions: '0777'
+    mode: 0755
+    owner: admin
+    group: users
     state: directory
     recurse: yes
 
