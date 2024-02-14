@@ -7,6 +7,7 @@
   file:
     path: "{{ nfs_db_backup_path }}/{{ snapshot_base_path }}/{{ base_path_date }}/"
     state: directory
+    owner: "admin:users"
     recurse: yes
 
 - name: Create snapshot repository
