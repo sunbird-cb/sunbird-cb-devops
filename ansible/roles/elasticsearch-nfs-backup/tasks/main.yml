@@ -1,26 +1,21 @@
 ---
-
 - set_fact: base_path_date="{{ lookup('pipe','date +%Y-%m') }}"
 
 - set_fact: snapshot_number="snapshot_{{ lookup('pipe','date +%s') }}"
 
 - name: Create snapshot directory
   file:
-    path: "{{ snapshot_base_path }}/{{ snapshot_base_path }}/{{ snapshot_number }}"
+    path: "{{ nfs_db_backup_path }}/{{ snapshot_base_path }}/{{ base_path_date }}/{{ snapshot_number }}"
     state: directory
     recurse: yes
 
 - name: Create snapshot repository
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}/{{ snapshot_number }}"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}"
     method: PUT
     headers:
       Content-Type: "application/json"
-    body:
-      type: "fs"
-      settings:
-        location: "{{ snapshot_base_path }}/{{ base_path_date }}/{{ snapshot_number }}"
-        compress: true
+    body: "{{ snapshot_create_request_body | to_json }}"
 
 - name: Take new snapshot
   uri:
@@ -31,7 +26,7 @@
 
 - name: Print all snapshots
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_base_path }}/_all"
     method: GET
     headers:
       Content-Type: "application/json"
