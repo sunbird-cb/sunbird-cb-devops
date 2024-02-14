@@ -7,3 +7,4 @@
     - snapshot_base_path: "{{app_snapshot_base_path}}"
   roles:
     - role: elasticsearch-nfs-backup
+      tags: elasticsearch-nfs-backup
