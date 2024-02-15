@@ -1,6 +1,7 @@
+snapshot_name: Backup_index
 snapshot_create_request_body: {
     type: fs,
     settings: {
-      location: "{{ nfs_db_backup_path }}/{{ snapshot_base_path }}/{{ base_path_date }}"
+      location: "{{ snapshot_base_path }}"
     }
 }
