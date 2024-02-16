@@ -1,0 +1,36 @@
+
+
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Ansible Cassandra Backup') {
+            steps {
+                script {
+                    // Adjust the paths based on your project structure
+                    ansiblePlaybook(
+                        playbook: 'ansible\roles\cassandra_backup',
+                        inventory: 'inventory/your_inventory.ini'
+                    )
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
+
