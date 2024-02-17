@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    environment {
+        BACKUP_DIRECTORY = '/db_backup/postgresql-backup/192.168.3.95'
+        POSTGRES_BIN_PATH = '/usr/lib/postgresql/10/bin'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run PostgreSQL Backup') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'ansible/roles/postgresql_backup/default/main.yml',
+                        inventory: '$ANSIBLE_INVENTORY',
+                        extraVars: [
+                            backup_directory: "${env.BACKUP_DIRECTORY}",
+                            postgres_bin_path: "${env.POSTGRES_BIN_PATH}"
+                        ]
+                    )
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+
+    triggers {
+        cron('2 0 * * *')  // Schedule the job to run daily at midnight
+    }
+}
+
