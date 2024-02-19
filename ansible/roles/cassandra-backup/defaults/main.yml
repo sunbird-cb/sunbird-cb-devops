@@ -1,11 +1,8 @@
 
-
-
-
-
-
 ---
-backup_directory: "/var/lib/cassandra/data/*/*/snapshots"
-days_to_keep: 15
-nfs_mount_path: "/db_backup/cassandra-backup"
+#backup_directory: "/var/lib/cassandra/data/*/*/snapshots"
+backup_directory: "/var/lib/cassandra/data/sunbird_groups/group_member-eb52a21025f111ec80d2db6e8b8402e3/snapshots"
+days_to_keep: 1
+#nfs_mount_path: "/db_backup/cassandra-backup"
+nfs_mount_path: "/test_backup"
 
