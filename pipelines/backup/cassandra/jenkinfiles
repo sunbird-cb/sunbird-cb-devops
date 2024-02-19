@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                folder = new File("$WORKSPACE/.git")
+                #folder = new File("$WORKSPACE/.git")
+                folder = new File("$WORKSPACE")
                 if (folder.exists()) {
                     echo "Found .git folder. Clearing it.."
                     sh 'git clean -fxd'
