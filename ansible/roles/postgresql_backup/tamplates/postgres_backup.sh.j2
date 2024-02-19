@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Your backup script content goes here
+{{ postgres_bin_path }}/pg_dumpall > {{ backup_directory }}/dbbackup_$(date +%F).sql
+

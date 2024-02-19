@@ -1,0 +1,6 @@
+---
+backup_directory: /db_backup/postgresql-backup/192.168.3.95
+postgres_bin_path: /usr/lib/postgresql/10/bin
+backup_script_name: postgres_backup.sh
+
+

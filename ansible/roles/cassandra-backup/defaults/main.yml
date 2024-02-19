@@ -1,0 +1,11 @@
+
+
+
+
+
+
+---
+backup_directory: "/var/lib/cassandra/data/*/*/snapshots"
+days_to_keep: 15
+nfs_mount_path: "/db_backup/cassandra-backup"
+
