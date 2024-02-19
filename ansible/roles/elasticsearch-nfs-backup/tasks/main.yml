@@ -9,7 +9,6 @@
     state: directory
     owner: "elasticsearch"
     group: "elasticsearch"
-    mode: 0777
     recurse: yes
 
 - name: Create snapshot repository
