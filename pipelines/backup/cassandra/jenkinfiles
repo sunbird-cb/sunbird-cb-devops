@@ -4,40 +4,18 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                //folder = new File("$WORKSPACE/.git")
-                folder = new File("$WORKSPACE")
-                if (folder.exists()) {
-                    echo "Found .git folder. Clearing it.."
-                    sh 'git clean -fxd'
-                }
                 checkout scm
             }
         }
 
-        stage('Cassandra Backup') {
+        stage('Ansible Cassandra Backup') {
             steps {
                 script {
-                    values = [:]
-                    envDir = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-3].trim()
-                    module = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-2].trim()
-                    jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
-                    currentWs = sh(returnStdout: true, script: 'pwd').trim()
-                    ansiblePlaybook = "${currentWs}/ansible/roles/cassandra_backup.yml"
-                    ansibleExtraArgs = "--tags \"cassandra-backup\" --vault-password-file /var/lib/jenkins/secrets/vault-pass"
-                    
-                    values.put('currentWs', currentWs)
-                    values.put('env', envDir)
-                    values.put('module', module)
-                    values.put('jobName', jobName)
-                    values.put('ansiblePlaybook', ansiblePlaybook)
-                    values.put('ansibleExtraArgs', ansibleExtraArgs)
-
-                    echo values
-
-                    ansiblePlaybook(values)
-
-                    currentBuild.result = 'SUCCESS'
-                    currentBuild.description = "Private: ${params.private_branch}, Public: ${params.branch_or_tag}"
+                    // Adjust the paths based on your project structure
+                    ansiblePlaybook(
+                        playbook: 'ansible\roles\cassandra_backup',
+                        inventory: 'inventory/your_inventory.ini'
+                    )
                 }
             }
         }
@@ -45,11 +23,7 @@ pipeline {
 
     post {
         always {
-            slack_notify(currentBuild.result)
-            email_notify()
             cleanWs()
         }
     }
 }
-
-
