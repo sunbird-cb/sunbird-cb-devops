@@ -311,7 +311,7 @@ bulk.upload.tag.verification.regex=^[a-zA-Z\\\s,]+$
 
 report.download.container.name={{ sb_cb_ext_container }}
 report.download.folder.name=standalone-reports
-report.type.get.file.info=user-report,course-report,user-assessment-report-cbp,user-enrollment-report,cba-report,blended-program-report-mdo,blended-program-report-cbp,cbp-report-mdo-summary,cbp-report-mdo-enrolment
+report.type.get.file.info=user-report,course-report,user-assessment-report-cbp,user-enrollment-report,cba-report,blended-program-report-mdo,blended-program-report-cbp,cbp-report-mdo-summary,cbp-report-mdo-enrolment,kcm-report
 
 #Adding property for mail Template 
 user.registration.welcome.email.signinLink=https://{{ domain_name }}/protected/v8/resource
@@ -355,7 +355,7 @@ cb-plan.update.publish.authorized.roles=MDO_LEADER
 
 spv_admin_channel_name=Karmayogi Bharat
 spv.report.property.map={"mdo_content_completion":"AllMDOsContentCompletion.csv","user_recent_completions":"Top1LakhUsersContentCompletionLast15Days.csv","user_without_enrollment":"UsersOnboardedNotSignedUpAnyContent.csv","recent_user_without_enrollment":"UsersOnboardedLast15DaysNotSignedUpAnyContent.csv","all_prarambh_completed_users":"UsersFinishedEntirePrarambhModule.csv","prarambh_completed_users":"UsersCompleted6PrarambhCoursesPendingFullCompletion.csv","cbp_user_summary_exhaust":"CBPUserSummaryReport.csv","cbp_enrollment_exhaust":"CBPEnrollmentReport.csv"}
-report.property.map={"user-report":"UserReport.csv","user-enrollment-report":"ConsumptionReport.csv","course-report":"CBPReport.csv","cba-report":"UserAssessmentReport.csv","user-assessment-report-cbp":"StandaloneAssessmentReport.csv","blended-program-report-mdo":"BlendedProgramReport.csv","blended-program-report-cbp":"BlendedProgramReport.csv","cbp-report-mdo-summary":"CBPUserSummaryReport.csv","cbp-report-mdo-enrolment":"CBPEnrollmentReport.csv"}
+report.property.map={"user-report":"UserReport.csv","user-enrollment-report":"ConsumptionReport.csv","course-report":"CBPReport.csv","cba-report":"UserAssessmentReport.csv","user-assessment-report-cbp":"StandaloneAssessmentReport.csv","blended-program-report-mdo":"BlendedProgramReport.csv","blended-program-report-cbp":"BlendedProgramReport.csv","cbp-report-mdo-summary":"CBPUserSummaryReport.csv","cbp-report-mdo-enrolment":"CBPEnrollmentReport.csv","kcm-report":"ContentCompetencyMappingReport.csv"}
 spv.report.property.subFolder.map={"AllMDOsContentCompletion.csv":"comms-console","Top1LakhUsersContentCompletionLast15Days.csv":"comms-console","UsersOnboardedNotSignedUpAnyContent.csv":"comms-console","UsersOnboardedLast15DaysNotSignedUpAnyContent.csv":"comms-console","UsersFinishedEntirePrarambhModule.csv":"comms-console","UsersCompleted6PrarambhCoursesPendingFullCompletion.csv":"comms-console","CBPUserSummaryReport.csv":"cbp-report","CBPEnrollmentReport.csv":"cbp-report"}
 
 karma.points.limit={{ karma_points_limit | default('10') }}
@@ -366,3 +366,5 @@ kafka.topic.cbplan.content.request={{ env }}.cbplan.content.request
 kafka.topic.cbplan.content.request.group=cbplanContentRequestAsyncHandlerGroup
 cbplan.content.request.notification.template=cbplanContentRequestTemplate
 user.registration.welcome.email.profileUpdateLink=https://{{ domain_name }}/app/user-profile/details
+
+report.property.file.allMdo=ContentCompetencyMappingReport.csv
