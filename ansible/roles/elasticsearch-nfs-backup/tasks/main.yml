@@ -1,19 +1,17 @@
 ---
 - set_fact: base_path_date="{{ lookup('pipe','date +%Y-%m') }}"
 
-- set_fact: snapshot_number="snapshot_{{ lookup('pipe','date +%s') }}"
+- set_fact: snapshot_date="todaybackup_{{ lookup('pipe','date +%Y-%m-%d') }}"
 
 - name: Create snapshot directory
   file:
     path: "{{ snapshot_base_path }}"
     state: directory
-    owner: "elasticsearch"
-    group: "elasticsearch"
     recurse: yes
 
 - name: Create snapshot repository
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}?pretty"
     method: PUT
     headers:
       Content-Type: "application/json"
@@ -21,28 +19,29 @@
 
 - name: Take new snapshot
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_date }}?pretty"
     method: PUT
     headers:
       Content-Type: "application/json"
 
 - name: Print all snapshots
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/_all"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/_all?pretty"
     method: GET
     headers:
       Content-Type: "application/json"
 
 - name: Print status of current snapshot
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_date }}?pretty"
     method: GET
+    return_content: yes
     headers:
       Content-Type: "application/json"
 
 - name: "Wait for backup to be completed"
   uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}/_all"
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_date }}?pretty"
     method: GET
     return_content: yes
     status_code: 200
