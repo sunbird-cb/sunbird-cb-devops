@@ -1,50 +1,63 @@
-@Library('deploy-conf') _
-node() {
-    try {
-        String ANSI_GREEN = "\u001B[32m"
-        String ANSI_NORMAL = "\u001B[0m"
-        String ANSI_BOLD = "\u001B[1m"
-        String ANSI_RED = "\u001B[31m"
-        String ANSI_YELLOW = "\u001B[33m"
+pipeline {
+    agent any
 
-        stage('checkout public repo') {
-            folder = new File("$WORKSPACE/.git")
-            if (folder.exists())
-            {
-               println "Found .git folder. Clearing it.."
-               sh'git clean -fxd'
+    environment {
+        local_backup_dir = "/db_backup/elasticsearch"
+        nfs_mount_point = "/elasticsearch_backup"
+        retention_days = 15
+        source_data_dir = "/tmp"
+        // nfs_server = "nfs_server:/nfs/share"
+    }
+
+    stages {
+        stage('Backup and Transfer Data') {
+            steps {
+                script {
+                    // Create local backup directory
+                    sh "mkdir -p ${local_backup_dir}"
+
+                    // Find and copy old files to local backup directory
+                    def oldFiles = sh(script: "sudo find ${source_data_dir} -type f -mtime +${retention_days}", returnStdout: true).trim().split('\n')
+                    if (oldFiles) {
+                        sh "sudo rsync ${oldFiles.join(' ')} ${local_backup_dir}/"
+                    }
+                }
             }
-            checkout scm
         }
 
-        ansiColor('xterm') {
-            stage('deploy'){
-                values = [:]
-                envDir = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-3].trim()
-                module = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-2].trim()
-                jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
-                currentWs = sh(returnStdout: true, script: 'pwd').trim()
-                ansiblePlaybook = "${currentWs}/ansible/elasticsearch-nfs-backup.yml"
-                ansibleExtraArgs = "--tags \"elasticsearch-nfs-backup\" --vault-password-file /var/lib/jenkins/secrets/vault-pass"
-                values.put('currentWs', currentWs)
-                values.put('env', envDir)
-                values.put('module', module)
-                values.put('jobName', jobName)
-                values.put('ansiblePlaybook', ansiblePlaybook)
-                values.put('ansibleExtraArgs', ansibleExtraArgs)
-                println values
-                ansible_playbook_run(values)
-                currentBuild.result = 'SUCCESS'
-                currentBuild.description = "Private: ${params.private_branch}, Public: ${params.branch_or_tag}"
+        stage('Transfer to NFS') {
+            steps {
+                script {
+                    // List files in local backup directory
+                    def filesToCopy = sh(script: "ls -A ${local_backup_dir}", returnStdout: true).trim().split('\n')
+                    
+                    if (filesToCopy) {
+                        // Create NFS backup directory
+                        sh "sudo mkdir -p ${nfs_mount_point}/backup"
+
+                        // Copy files to NFS backup directory
+                        sh "sudo cp -r ${local_backup_dir}/* ${nfs_mount_point}/backup/"
+                    }
+                }
             }
         }
     }
-    catch (err) {
-        currentBuild.result = "FAILURE"
-        throw err
-    }
-    finally {
-        slack_notify(currentBuild.result)
-        email_notify()
+
+    post {
+        always {
+            echo 'Cleaning up...'
+
+            // Optionally, you can clean up local backup files
+            sh "sudo rm -rf ${local_backup_dir}"
+        }
+
+        success {
+            echo 'Elasticsearch backup and transfer were successful.'
+        }
+
+        failure {
+            echo 'Elasticsearch backup or transfer failed.'
+            // You can add additional steps to handle failure scenarios
+        }
     }
 }
