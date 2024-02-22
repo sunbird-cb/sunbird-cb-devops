@@ -45,7 +45,6 @@ pipeline {
         always {
             echo 'Cleaning up...'
 
-            // Optionally, you can clean up old backups based on the specified days_to_keep
             sh "find ${BACKUP_DIR} -type f -mtime +${DAYS_TO_KEEP} -exec rm {} \\;"
         }
 
