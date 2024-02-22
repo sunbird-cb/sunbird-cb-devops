@@ -1,29 +1,61 @@
 pipeline {
     agent any
 
+    environment {
+        CASSANDRA_DATA_DIR = '/var/lib/cassandra/data/sunbird_groups/group_member-eb52a21025f111ec80d2db6e8b8402e3'
+        BACKUP_DIR = "${CASSANDRA_DATA_DIR}/snapshots"
+        NFS_MOUNT_PATH = '/test_backup'
+        DAYS_TO_KEEP = 1
+    }
+
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                checkout scm
+                // Your SCM checkout steps here
             }
         }
 
-        stage('Ansible Cassandra Backup') {
+        stage('Cassandra Backup') {
             steps {
                 script {
-                    // Adjust the paths based on your project structure
-                    ansiblePlaybook(
-                        playbook: 'ansible\roles\cassandra_backup',
-                        inventory: 'inventory/your_inventory.ini'
-                    )
+                    echo 'Creating Cassandra backup...'
+
+                    // Create a backup directory
+                    sh "mkdir -p ${BACKUP_DIR}"
+
+                    // Take a snapshot using nodetool
+                    sh "nodetool snapshot -t backup-$(date '+%Y%m%d%H%M%S')"
+
+                    // Copy the snapshot to the backup directory
+                    sh "tar -czvf ${BACKUP_DIR}/cassandra_backup.tar.gz -C ${CASSANDRA_DATA_DIR} snapshots"
+
+                    echo 'Cassandra backup completed.'
                 }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Your deployment steps here
             }
         }
     }
 
     post {
         always {
-            cleanWs()
+            echo 'Cleaning up...'
+
+            // Optionally, you can clean up old backups based on the specified days_to_keep
+            sh "find ${BACKUP_DIR} -type f -mtime +${DAYS_TO_KEEP} -exec rm {} \\;"
+        }
+
+        success {
+            echo 'Cassandra backup and deployment were successful.'
+        }
+
+        failure {
+            echo 'Cassandra backup or deployment failed.'
+            // You can add additional steps to handle failure scenarios
         }
     }
 }
