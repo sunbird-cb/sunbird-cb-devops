@@ -1,62 +1,36 @@
 pipeline {
     agent any
-
     environment {
-        CASSANDRA_DATA_DIR = '/var/lib/cassandra/data/sunbird_groups/group_member-eb52a21025f111ec80d2db6e8b8402e3'
-        BACKUP_DIR = "${CASSANDRA_DATA_DIR}/snapshots"
-        NFS_MOUNT_PATH = '/test_backup'
-        DAYS_TO_KEEP = 1
+        local_backup_dir = "/tmp/testing_backup"
+        nfs_mount_point = "/test_backup"
+        retention_days = 1
+        source_data_dir = "/tmp"
+        // nfs_server = "nfs_server:/nfs/share"
     }
-
     stages {
-        stage('Checkout') {
-            steps {
-                // Your SCM checkout steps here
-            }
-        }
-
-        stage('Cassandra Backup') {
+        stage('Backup and Transfer Data') {
             steps {
                 script {
-                    echo 'Creating Cassandra backup...'
-
-                    // Create a backup directory
-                    sh "mkdir -p ${BACKUP_DIR}"
-
-                    // Take a snapshot using nodetool
-                    //sh "nodetool snapshot -t backup-$(date '+%Y%m%d%H%M%S')"
-                    sh "nodetool snapshot -t backup-\$(date '+%Y%m%d%H%M%S')"
-
-
-                    // Copy the snapshot to the backup directory
-                    sh "tar -czvf ${BACKUP_DIR}/cassandra_backup.tar.gz -C ${CASSANDRA_DATA_DIR} snapshots"
-
-                    echo 'Cassandra backup completed.'
+                    // sh "mkdir -p ${local_backup_dir}"
+                     def oldFiles = sh(script: "sudo find ${source_data_dir} -type f -mtime +${retention_days}", returnStdout: true).trim().split('\n')
+                     if (oldFiles) {
+                        sh "sudo rsync ${oldFiles.join(' ')} ${local_backup_dir}/"
+                  }
                 }
             }
         }
-
-        stage('Deploy') {
+        stage('Transfer to NFS') {
             steps {
-                // Your deployment steps here
+                script {
+                    def filesToCopy = sh(script: "ls -A ${local_backup_dir}", returnStdout: true).trim().split('\n')
+                    if (filesToCopy) {
+                        // mountNFS()
+                        sh "sudo mkdir -p ${nfs_mount_point}/backup"
+                        sh "sudo cp -r ${local_backup_dir}/* ${nfs_mount_point}/backup/"
+                        // unmountNFS()
+                    }
+                } 
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Cleaning up...'
-
-            sh "find ${BACKUP_DIR} -type f -mtime +${DAYS_TO_KEEP} -exec rm {} \\;"
-        }
-
-        success {
-            echo 'Cassandra backup and deployment were successful.'
-        }
-
-        failure {
-            echo 'Cassandra backup or deployment failed.'
-            // You can add additional steps to handle failure scenarios
         }
     }
 }
