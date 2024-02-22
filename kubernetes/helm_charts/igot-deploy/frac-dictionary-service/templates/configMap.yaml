@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frac-dict-node-env-js
+  namespace: {{ .Values.namespace }}
+data:
+ config.js: |
+{{ .Values.envnodejs | indent 4 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frac-dict-gatsby-env-js
+  namespace: {{ .Values.namespace }}
+data:
+  config.js: |
+{{ .Values.envgatsbyjs | indent 4 }}
+
+---

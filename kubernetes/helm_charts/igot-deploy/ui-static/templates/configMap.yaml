@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: karmayogi-host-config
+  namespace: {{ .Values.namespace }}
+data:
+  host.config.json: |
+{{ .Values.hostconfig | indent 4 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: karmayogi-site-config
+  namespace: {{ .Values.namespace }}
+data:
+  site.config.json: |
+{{ .Values.siteconfig | indent 4 }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: karmayogi-env-js
+  namespace: {{ .Values.namespace }}
+data:
+  env.js: |
+{{ .Values.envjs | indent 4 }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: karmayogi-apps-json
+  namespace: {{ .Values.namespace }}
+data:
+  apps.json: |
+{{ .Values.appsjson | indent 4 }}
+
+---
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apple-app-site-association
+  namespace: {{ .Values.namespace }}
+data:
+  apple-app-site-association: |
+{{ .Values.appleappsiteassociation | indent 4 }}
+
+---
+

@@ -1,0 +1,114 @@
+---
+- hosts: local
+  gather_facts: no
+  environment:
+    KUBECONFIG: "{{ kubeconfig_path }}"
+  vars_files:
+    - "{{inventory_dir}}/group_vars/all.yml"
+    - "{{inventory_dir}}/common.yml"
+  roles:
+
+    - role: deploy-ui-proxies-service
+      tags: [deploy-ui-proxies-service]
+    - role: deploy-ui-static
+      tags: [deploy-ui-static]
+    - role: deploy-content-validation-service
+      tags: [deploy-content-validation-service]
+    - role: deploy-sb-hub-graph-service
+      tags: [deploy-sb-hub-graph-service]
+    - role: deploy-profanity-filter-service
+      tags: [deploy-profanity-filter-service]
+    - role: deploy-ui-cbp-igot
+      tags: [deploy-ui-cbp-igot]
+    - role: deploy-scoring-engine-service
+      tags: [deploy-scoring-engine-service]
+    - role: deploy-workflow-handler-service
+      tags: [deploy-workflow-handler-service]
+    - role: deploy-sb-cb-ext-service
+      tags: [deploy-sb-cb-ext-service]
+    - role: deploy-ui-mdo-igot
+      tags: [deploy-ui-mdo-igot]
+    - role: deploy-ui-spv-igot
+      tags: [deploy-ui-spv-igot]
+    - role: deploy-frac-backend-service
+      tags: [deploy-frac-backend-service]
+    - role: deploy-frac-web-service
+      tags: [deploy-frac-web-service]
+    - role: deploy-frac-collab-service
+      tags: [deploy-frac-collab-service]
+    - role: deploy-frac-dictionary-service
+      tags: [deploy-frac-dictionary-service]    
+    - role: deploy-profanity-image-moderation-service
+      tags: [deploy-profanity-image-moderation-service]
+    - role: deploy-pm-web-service
+      tags: [deploy-pm-web-service]
+    - role: deploy-pm-analytics-service
+      tags: [deploy-pm-analytics-service]
+    - role: deploy-pm-zuul-service
+      tags: [deploy-pm-zuul-service]
+    - role: deploy-pm-user-service
+      tags: [deploy-pm-user-service]
+    - role: deploy-ui-cbc-igot
+      tags: [deploy-ui-cbc-igot]
+    - role: deploy-pm-microsurvey-service
+      tags: [deploy-pm-microsurvey-service]
+    - role: deploy-pm-microsurvey-web-service
+      tags: [deploy-pm-microsurvey-web-service]
+    - role: deploy-content-tagging-service
+      tags: [deploy-content-tagging-service]
+    - role: deploy-vega-compiler-service
+      tags: [deploy-vega-compiler-service]
+    - role: deploy-vega-rasa-action-igot-service
+      tags: [deploy-vega-rasa-action-igot-service]
+    - role: deploy-vega-rasa-action-sandbox-service
+      tags: [deploy-vega-rasa-action-sandbox-service]
+    - role: deploy-vega-rasa-nlp-igot-service
+      tags: [deploy-vega-rasa-nlp-igot-service]
+    - role: deploy-vega-rasa-nlp-sandbox-service
+      tags: [deploy-vega-rasa-nlp-sandbox-service]
+    - role: deploy-vega-router-service
+      tags: [deploy-vega-router-service]
+    - role: deploy-wat-sourcing-web-service
+      tags: [deploy-wat-sourcing-web-service]
+    - role: deploy-vega-console-service
+      tags: [deploy-vega-console-service]
+    - role: deploy-wat-sourcing-service
+      tags: [deploy-wat-sourcing-service]
+    - role: deploy-vega-web-service
+      tags: [deploy-vega-web-service]    
+    - role: deploy-developer-console-service
+      tags: [deploy-developer-console-service]
+    - role: deploy-developer-console-web-portal
+      tags: [deploy-developer-console-web-portal]
+    - role: deploy-profanity-moderator-admin-service
+      tags: [deploy-profanity-moderator-admin-service]
+    - role: deploy-form-service
+      tags: [deploy-form-service]
+    - role: static-web
+      tags: [static-web]
+
+    - role: deploy-portal
+      tags: [deploy-portal]
+
+    - role: deploy-vega-faq-rasa-action-igot-service
+      tags: [deploy-vega-faq-rasa-action-igot-service]
+    - role: deploy-vega-faq-rasa-nlp-igot-service
+      tags: [deploy-vega-faq-rasa-nlp-igot-service]
+    - role: deploy-vega-llm-pipeline-service
+      tags: [deploy-vega-llm-pipeline-service]
+    - role: deploy-vega-translation-service
+      tags: [deploy-vega-translation-service]
+    - role: deploy-vega-translation-with-kafka-service
+      tags: [deploy-vega-translation-with-kafka-service]
+      
+    - role: deploy-vega-feedback-service
+      tags: [deploy-vega-feedback-service]
+    - role: deploy-static-domain
+      tags: [deploy-static-domain]
+
+    - role: deploy-faq-assistant
+      tags: [deploy-faq-assistant]
+    - role: deploy-pdf-generator-service
+      tags: [deploy-pdf-generator-service]
+    - role: deploy-fracentity-service
+      tags: [deploy-fracentity-service]

@@ -1,0 +1,24 @@
+Started on Jul 28, 2021 12:31:00 PM
+Using strategy: Default
+[poll] Last Built Revision: Revision c8c9618066fe0f2a520b6eccba1cfb61d8f20d95 (origin/release-v1.0.0)
+using credential tarento-git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials tarento-git
+ > git ls-remote -h https://git.idc.tarento.com/igot/WAT/wat-sourcing-frontend.git # timeout=10
+Found 2 remote heads on https://git.idc.tarento.com/igot/WAT/wat-sourcing-frontend.git
+Using strategy: SpecificRevisionBuildChooser
+[poll] Last Built Revision: Revision 778da7ce7f97efd003eed98071921a837d209343 (shared-lib)
+No credentials specified
+ > git --version # timeout=10
+ > git ls-remote -h https://github.com/project-sunbird/sunbird-devops.git # timeout=10
+Found 14 remote heads on https://github.com/project-sunbird/sunbird-devops.git
+[poll] Latest remote head revision on refs/heads/shared-lib is: 778da7ce7f97efd003eed98071921a837d209343 - already built by 4
+Using strategy: Default
+[poll] Last Built Revision: Revision c8c9618066fe0f2a520b6eccba1cfb61d8f20d95 (origin/release-v1.0.0)
+using credential tarento-git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials tarento-git
+ > git ls-remote -h https://git.idc.tarento.com/igot/WAT/wat-sourcing-frontend.git # timeout=10
+Found 2 remote heads on https://git.idc.tarento.com/igot/WAT/wat-sourcing-frontend.git
+Done. Took 1.9 sec
+No changes

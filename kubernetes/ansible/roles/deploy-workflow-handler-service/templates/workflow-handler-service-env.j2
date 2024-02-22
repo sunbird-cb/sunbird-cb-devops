@@ -1,0 +1,113 @@
+server.port={{ application_port }}
+
+spring.data.cassandra.bodhi.contact-points={{ cassandra_host }}
+spring.data.cassandra.bodhi.port={{ cassandra_port }}
+spring.data.cassandra.bodhi.keyspace-name={{ keyspace_bodhi }}
+spring.data.cassandra.bodhi.username={{ cassandra_username }}
+spring.data.cassandra.bodhi.password={{ cassandra_password }}
+
+#spring data jpa for postgres
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url={{ spring_datasource_jdbc_url }}
+spring.datasource.username={{ postgresql_username_wingspan }}
+spring.datasource.password={{ postgresql_password_wingspan }}
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=false
+#spring.jpa.hibernate.ddl-auto=update
+
+
+#offset and limit configuration
+workflow.pagination.max.limit={{ workflow_pagination_max_limit | default('50') }}
+workflow.pagination.default.limit={{ workflow_pagination_default_limit | default('50') }}
+workflow.pagination.default.offset=0
+
+#profile service url
+#hub.service.host=http://{{ network_alias_sb_hub_service }}:{{ service_sb_hub_port }}/
+hub.service.host=http://{{ network_alias_sb_hub_graph_service }}:{{ service_sb_hub_graph_port }}/
+hub.profile.update=v1/user/update/workflow/profile?userId=userIdValue
+
+#pid service url
+pid.service.host=http://{{ network_alias_pid_service }}:{{ service_pid_service_port }}/
+pid.multiplesearch.endpoint=user/multi-fetch/wid
+
+#lex-core service url
+lexcore.service.host={{ infosys_lex_core_ip }}/
+userrole.search.endpoint=v2/users/{user_id}/roles
+
+#Kafka Topics
+kafka.topics.workflow.request=workflowContentTopic
+
+#Kafka Server
+spring.kafka.bootstrap.servers={{ kafka_servers_list }}
+notify.service.host=http://notification-service:9000/
+
+portal.departmentupdate.path=portal/updateuserroledept
+
+sunbird.learner.service.host=http://learner-service:9000/
+sunbird.user.search.endpoint=private/user/v1/search
+kafka.topics.workflow.notification=workflowNotificationTopic
+
+notify.service.path=v1/notification/send/sync
+
+sso.url=https://{{ domain_name }}/auth/
+sso.realm={{ keycloak_sso_realm }}
+accesstoken.publickey.basepath=/keys/
+
+lms.system.host=http://{{ learningservice_ip }}:8080/learning-service/
+lms.system.settings.wfOrgService.path=v1/system/settings/get/wfOrgServiceConfig 
+lms.system.settings.wfDomainService.path=v1/system/settings/get/wfDomainServiceConfig 
+lms.system.settings.wfPositionService.path=v1/system/settings/get/wfPositionServiceConfig 
+lms.system.settings.wfProfileService.path=v1/system/settings/get/wfProfileServiceConfig
+lms.system.settings.wfUserRegistrationService.path=v1/system/settings/get/wfUserRegService
+lms.system.settings.verified.profile.fields.path=v1/system/settings/get/verifiedProfileFields
+
+notification.sender.mail={{ igot_cb_ext_mailsender }}
+
+####Sunbird Cassandra details
+spring.data.cassandra.port={{ cassandra_port }}
+spring.data.cassandra.keyspace-name={{ keyspace_sunbird }}
+spring.data.cassandra.username={{ cassandra_username }}
+spring.data.cassandra.password={{ cassandra_password }}
+spring.data.cassandra.sb.startupTimeoutInSeconds=100000
+spring.data.cassandra.contact-points={{ sunbird_cassandra_db_host }}
+cassandra.config.host={{ sunbird_cassandra_db_host }}
+sunbird_cassandra_consistency_level=quorum
+
+###mdo notification
+mdo.search.fields=userId,profileDetails.personalDetails.primaryEmail
+domain.host=https://{{ mdo_portal_url }}
+mdo.email.template=mdoMailTemplate
+mdo.approval.base.url=/app/approvals/{id}/to-approve
+
+lms.service.host=http://learner-service:9000/
+
+course.service.host=http://lms-service:9000
+course.admin.enrol=/v1/course/admin/enroll
+
+content.read=/content/v4/read/
+content.service.host=http://content-service:9000
+ms.system.settings.multilevelBPEnroll.path=v1/system/settings/get/
+
+bp.batch.full.validation.exclude.states=REJECT,WITHDRAW,REJECTED,WITHDRAWN,REMOVED
+enrol.status.count.local.cache.size={{  enrol_status_count_local_cache_size | default('1000') }}
+
+#blended_mail_subject_body
+bp.mail.body.forwarded.to=Your enrollment request for #batch_name of the #course_name Program, starting on #batch_start_date has been forwarded to the #role for approval.
+bp.mail.body.rejected.or.remove=We regret to inform you that your enrollment request for #batch_name of the #course_name Program, starting on #batch_start_date has been #action.
+bp.mail.body.approve=We are pleased to inform you that your enrollment request for #batch_name of the #course_name Program, starting on #batch_start_date has been approved.
+ 
+notify.email.template=notificationEmailTemplate
+bp.approval.request.mail.body=You have received a request for enrollment for #username in #batch_name of the #blended_programme_name starting on #batch_start_date, which requires your approval.
+bp.request.forwarded.mail.body=The enrollment request for #username in #batch_name of the #blended_programme_name Program, starting on #batch_start_date , has been forwarded to the #role for approval.
+bp.nomination.request.mail.body=The enrollment request for #username in #batch_name of the #blended_programme_name Program, starting on #batch_start_date , has been #state.
+enrol.status.count.local.cache.timetolive={{  enrol_status_count_local_cache_timetolive | default('30') }}
+
+blended.program.enrol.conflict.reject.reason="Conflict, User already enrolled to different Blended Program of conflict time span"
+blended.program.enrol.batch.full.message=This batch is full
+wfstatus.allowed.action.for.modification.history.entry=REMOVE,REJECT,APPROVE
+blended.program.batch.in.progress.message=This batch is already in progress
+
+env.hierarchy.keystore.keyspace={{ env }}_hierarchy_store
+
+

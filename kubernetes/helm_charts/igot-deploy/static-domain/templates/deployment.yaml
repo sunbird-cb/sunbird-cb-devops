@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+     rollingUpdate:
+        maxSurge: {{ .Values.strategy.maxsurge }}
+        maxUnavailable: {{ .Values.strategy.maxunavailable }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+{{- if .Values.imagepullsecrets }}
+      imagePullSecrets:
+      - name: {{ .Values.imagepullsecrets }}
+{{- end }}
+      volumes:
+        - name: {{ .Chart.Name }}-configurations-json
+          configMap:
+            name: {{ .Chart.Name }}-configurations-json
+        - name: {{ .Chart.Name }}-content-list-data-json
+          configMap:
+            name: {{ .Chart.Name }}-content-list-data-json
+
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}
+        imagePullPolicy: Always
+        resources:
+        volumeMounts:
+        - name: {{ .Chart.Name }}-configurations-json
+          mountPath: /usr/local/apache2/htdocs/assets/jsonfiles/configurations.json
+          subPath: configurations.json
+        - name: {{ .Chart.Name }}-content-list-data-json
+          mountPath: /usr/local/apache2/htdocs/assets/jsonfiles/content-list-data.json
+          subPath: content-list-data.json
+        ports:
+        - containerPort: {{ .Values.network.port }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  ports:
+  - name: http-{{ .Chart.Name }}
+    protocol: TCP
+    port: {{ .Values.network.targetport }}
+  selector:
+    app: {{ .Chart.Name }}
+

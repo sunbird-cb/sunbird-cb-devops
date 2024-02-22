@@ -1,0 +1,368 @@
+server.connection-timeout=5000
+server.tomcat.max-threads=2048
+server.tomcat.min-spare-threads=20
+server.tomcat.max-connections=15000
+server.tomcat.accept-count=500
+server.port={{ application_port }}
+
+#spring data jpa for postgres
+#spring.datasource.jdbc-url={{ spring_datasource_jdbc_url }}  #### Not using WingspanDB
+#spring.datasource.username={{ postgresql_username_wingspan }} #### Not using WingspanDB
+#spring.datasource.password={{ postgresql_password_wingspan }} #### Not using WingspanDB
+
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+#spring.jpa.properties.hibernate.format_sql=true
+#spring.jpa.show-sql=false
+
+#Workflow - Service details
+wf.service.host={{ wf_service_host }}
+wf.service.updateUserProfilePath=v1/workflow/updateUserProfileWF
+wf.service.transitionPath=v1/workflow/transition
+
+#Configuration for Multi Department Mapping for User
+user.enable.multidept.mapping=false
+
+#learner.service.url=learner-service:9000
+sb.service.url=http://learner-service:9000/
+sb.org.search.path=v1/org/search
+sb.hub.graph.service.url=http://hub-graph-service:4013
+
+spring.data.cassandra.sb.startupTimeoutInSeconds=100000
+spring.data.cassandra.sb.contact-points={{ sunbird_cassandra_db_host }}
+spring.data.cassandra.sb.port=9042
+spring.data.cassandra.sb.keyspace-name={{ keyspace_sunbird }}
+spring.data.cassandra.sb.username=
+spring.data.cassandra.sb.password=
+
+#sunbird.course.service.host=https://staging.open-sunbird.org/api/course/
+sunbird.course.service.host={{ lms_service_host }}
+lms.system.settings.path=v1/system/settings/get/PatchConfig
+lms.user.read.path=private/user/v1/read/
+lms.user.update.path=/v1/user/update
+progress.api.endpoint=v1/content/state/read
+participants.api.endpoint=v1/batch/participants/list
+
+sb.api.key={{ bearer_token }}
+
+#ES
+es.host={{ elasticsearch_host }}
+es.port={{ elasticsearch_http_port }}
+es.username={{ elasticsearch_username }}
+es.password={{ elasticsearch_password }}
+es.profile.index=userprofile
+es.profile.index.type=_doc
+workallocation.index.name=workallocation
+workallocation.index.type=_doc
+es.profile.source.fields=photo,id,employmentDetails,personalDetails
+
+#Use alias names as Index names instead of actual index names
+workallocationv2.index.name=work_allocation
+workorder.index.name=work_order
+workorder.index.type=_doc
+
+## ehrms service variables
+
+ehrms.detail.url={{ ehrms_detail_url }}
+ehrms.auth.url={{ ehrms_auth_url }}
+ehrms.auth.username={{ ehrms_username }}
+ehrms.auth.password={{ ehrms_password }}
+redis.ehrms.token.timeout=1500
+
+#Kafka Server
+spring.kafka.bootstrap.servers={{ kafka_servers_list }}
+
+#kafka properties
+kakfa.offset.reset.value=latest
+kafka.max.poll.interval.ms=5000
+kafka.max.poll.records=100
+
+frac.host={{ frac_api_base }}/
+
+domain.host.name=https://{{ domain_name }}/apis/public/v8/workallocation/getWaPdf/
+
+#watTelemetryTopic
+kafka.topics.wat.telemetry.event=watTelemetryTopic
+
+kafka.topics.org.creation=orgCreation
+kafka.topics.userrole.audit=userRoleAuditTopic
+kafka.topics.parent.telemetry.event=dev.telemetry.raw
+kafka.topics.userutility.telemetry.event=userLastLoginTopic
+kafka.topics.wat.telemetry.event.topic.consumer=watTelemetryTopic-consumer
+kafka.topics.user.registration.auto.createUser.consumer.group=userAutoRegistrationTopic-consumer
+kafka.topics.user.registration.createUser.consumer.group=userRegistrationTopic-consumer
+kafka.topics.user.registration.register.event.consumer.group=userRegistrationRegisterEventTopic-consumer
+
+userutility.telemetry.event.pdata.id=dev.sunbird.cb.ext.service
+userutility.telemetry.event.pdata.pid=sunbird-cb-ext-service
+sunbird.cb.ext.version=4.0.1
+
+org.create.endpoint=v1/org/create
+
+
+
+#Cloud Storage Service properties
+
+#Value for the type name should be “azure” in Tarento environments. In case of NIC environment it has to “cephs3”
+cloud.storage.type.name={{ sb_cb_ext_cloud_storage_type }}
+
+#Storage secret for for Azure or Cephs3
+cloud.storage.secret={{ cloud_storage_secret }}
+
+#Cloud storage folder – This needs to be the newly created cloud storage folder name
+cloud.container.name={{ cloud_sb_cb_ext_container }}
+
+#Endpoint for the Cephs3 environment. This can be empty in case Azure
+cloud.storage.cephs3.endpoint={{ cloud_sb_cb_ext_endpoint }}
+
+#Storage key for the Azure or Cephs3 
+cloud.storage.key={{ cloud_storage_key }}
+
+learning_service_base_url=http://{{ learningservice_ip }}:8080/learning-service
+system.content.update.url=/system/v3/content/update/
+
+kafka.topics.parent.rating.event={{ rating_event_topic }}
+redis.host.name={{ kp_redis_ip }}
+redis.port=6379
+#redis timeout value is in seconds
+redis.timeout=84600
+redis.insights.index=12
+insights.label.certificates.across={0} Certificates acquired by learners in the last 24 hours.
+insights.label.certificates.your.department={0} Certificates acquired by learners in the last 24 hours in your department.
+insights.label.learning.hours.across=Learners have completed {0} hours of learning in the past 24 hours.
+insights.label.learning.hours.your.department=Learners have completed {0} hours of learning in the past 24 hours in your department.
+
+#Knowledge Base API Endpoints
+km.base.host=http://knowledge-mw-service:5000/
+km.base.framework.path=action/framework/v3/read/
+km.base.composite.search.path=v1/search
+
+#Taxonomy Framework and Category
+igot.taxonomy.framework.name=igot
+igot.taxonomy.category.name=Taxonomy
+
+#FRAC EndPoints
+frac.node.path=frac/addDataNodeBulk
+frac.activity.path=frac/addDataNode
+frac.search.path=frac/searchNodes
+frac.node.source=WAT
+frac.node.source.useDeptName=false
+
+#Hierarchy end point
+content-service-host=http://content-service:9000/
+content-hierarchy-endpoint=content/v3/hierarchy
+content-create-endpoint=content/v3/create
+content-upload-endpoint=content/v3/upload/{identifier}
+content-hierarchy-detail=v1/course/hierarchy/{courseId}?hierarchyType={hierarchyType}
+#QR Code Properties
+course.batch.create.endpoint=v1/course/batch/create
+user.course.list=v1/user/courses/list/{userUUID}?orgdetails=orgName,email&licenseDetails=name,description,url&fields=contentType,topic,name,channel,mimeType,appIcon,gradeLevel,resourceType,identifier,medium,pkgVersion,board,subject,trackable,posterImage,duration,creatorLogo,license&batchDetails=name,endDate,startDate,status,enrollmentType,createdBy,certificates
+user.course.enroll=v1/course/enroll
+
+html.store.path=/tmp/htmlFiles
+pdf.store.path=/tmp/pdfFiles
+pdf.draft.template.name=workallocationdraft
+pdf.published.template.name=workallocationpublished
+content.default.channelId=0131397178949058560
+content.default.orgId=igot-karmayogi
+sunbird.telemetry.base.url=http://telemetry-service:9001/
+sunbird.telemetry.endpoint=v1/telemetry
+wat.telemetry.env=dev.mdo.portal
+sunbird.user.search.endpoint=private/user/v1/search
+
+#Cache Expire time in Seconds. Idle value - 86400 (i.e. everyDay)
+cache.max.ttl=86400
+
+#Assessment Feature values
+assessment.host=http://assessment-service:9000/
+assessment.hierarchy.read.path=questionset/v4/hierarchy/{identifier}?mode=edit
+assessment.question.list.path=question/v4/list
+
+#assessment.host=https://{{ domain_name }}/api/
+#assessment.hierarchy.read.path=questionset/v1/hierarchy/{identifier}?hierarchy=detail
+#assessment.question.list.path=question/v1/list
+
+accesstoken.publickey.basepath=/keys/
+course.url=https://{{ domain_name }}/app/toc/
+overview.batch=/overview?batchId=0134907394218721281
+sender.mail={{ igot_cb_ext_mailsender }}
+notification.event.endpoint=/v1/notification/send/sync
+notification.service.host=http://notification-service:9000
+last.access.time.gap.millis=259200000
+
+cassandra.config.host={{ sunbird_cassandra_db_host }}
+user.registration.domain=yopmail.com
+user.registration.dept.exclude.list=
+user.registration.domain.name= {{user_reg_domain_name}}
+user.registration.preApproved.domain={{preapproved_domain}}
+user.registration.custodian.orgId={{reg_orgid}}
+
+sunbird_cassandra_consistency_level=quorum
+
+sb.es.host={{ sb_es_host }}
+sb.es.port={{ sb_es_port }}
+sb.es.username={{ sb_es_username }}
+sb.es.password={{ sb_es_password }}
+sb.es.user.profile.index=user_alias
+es.user.auto.complete.search.fields=profileDetails.personalDetails.primaryEmail,profileDetails.personalDetails.firstname
+es.user.auto.complete.include.fields=maskedPhone,rootOrgName,roles,channel,prevUsedPhone,updatedDate,stateValidated,isDeleted,organisations,managedBy,countryCode,flagsValue,id,recoveryEmail,identifier,updatedBy,phoneVerified,locationIds,recoveryPhone,rootOrgId,userId,userSubType,prevUsedEmail,emailVerified,firstName,profileLocation,createdDate,framework,tncAcceptedOn,allTncAccepted,profileDetails,createdBy,phone,profileUserType,dob,userType,tncAcceptedVersion,status
+
+content.search=v1/content/search
+new.courses.scheduler.time.gap=168
+new.courses.email.limit=10000
+recipient.new.course.email=juhi.agarwal@tarento.com,reshma.prasad@tarento.com
+search.fields=name,appIcon,instructions,description,purpose,mimeType,gradeLevel,identifier,medium,pkgVersion,board,subject,resourceType,primaryCategory,contentType,channel,organisation,trackable,license,posterImage,idealScreenSize,learningMode,creatorLogo,duration,version
+sso.url=https://{{ domain_name }}/auth/
+sso.realm={{ keycloak_sso_realm }}
+send.incomplete.courses.alert=false
+send.latest.courses.alert=true
+get.user.email.list.from.es=true
+#search.fields=name,appIcon,instructions,description,purpose,mimeType,gradeLevel,identifier,medium,pkgVersion,board,subject,resourceType,primaryCategory,contentType,channel,organisation,trackable,license,posterImage,idealScreenSize,learningMode,creatorLogo,duration,version
+email.search.fields=userId,profileDetails.personalDetails.primaryEmail
+incompleteCourseAlertEmailKey=courseReminder
+latestCourseAlertEmailKey=latestCourse
+
+
+user.bulk.upload.email.template=bulkUploadNotification
+
+# Need to specify the list of user emails which require to be notified for bulk upload.
+# For iGOT Stage check with iGOT QA team.
+# For NIC - need to provide NOC team email address.
+user.bulk.upload.email.notification.list={{ bulk_upload_email_notification_list }}
+
+user.bulk.upload.email.notification.subject=Request for bulk upload User!
+
+
+#Course Alert Notifications
+incomplete.course.alert.message.key=courseReminder
+latest.course.alert.message.key=latestCourse
+
+#Incomplete Course Alert Email
+#Set the following property to true to enable incomplete course alert email
+incomplete.courses.alert.enabled=false
+incomplete.courses.alert.last.access.time.mills=259200000
+
+#Latest Courses Alert Email Config
+latest.courses.alert.enabled=true
+
+#Provide a list of user emails which require to be sent the latest course email.
+latest.courses.alert.user.email.list=
+
+#Enable the following if you want to send the latest course email to all users.
+latest.courses.alert.send.to.all.user=false
+
+latest.courses.alert.content.limit=8
+latest.courses.alert.search.user.fields=userId,profileDetails.personalDetails.primaryEmail
+latest.courses.alert.search.content.fields=identifier,name,posterImage,duration,description
+
+latest.courses.alert.email.subject=Check out exciting new courses that launched this week!
+
+latest.courses.alert.scheduler.time.gap=100
+
+latest.courses.alert.content.min.limit=1
+
+sb.env.chiper.password={{cipher_password}}
+
+sb.es.user.notification.preference.index=notify_preference
+
+assessment.read.assessmentLevel.params=name,identifier,primaryCategory,versionKey,mimeType,code,version,objectType,status,expectedDuration,totalQuestions,maxQuestions,description,maxAssessmentRetakeAttempts,competencies_v3
+
+assessment.read.sectionLevel.params=parent,name,identifier,description,trackable,primaryCategory,versionKey,mimeType,code,version,objectType,status,index,maxQuestions,scoreCutoffType,minimumPassPercentage,additionalInstructions
+
+assessment.read.questionLevel.params=parent,name,identifier,primaryCategory,body,versionKey,mimeType,code,objectType,status,qType,index,showSolutions,allowAnonymousAccess,visibility,version,showFeedback,license
+
+assessment.read.min.question.params=parent,name,identifier,primaryCategory,versionKey,mimeType,objectType,qType
+
+user.assessment.submission.duration=120
+kafka.topics.user.assessment.submit={{env}}.assessment.submit
+sb.es.host.list={{sb_es_host_list}}
+es.host.list={{es_host_list}}
+
+kafka.topics.user.bulk.upload={{env}}.user.bulk.upload
+kafka.topics.user.bulk.upload.group=userBulkUploadGroup
+
+user.bulk.upload.status.fields=rootOrgId,identifier,fileName,filePath,dateCreatedOn,status,comment,dateUpdatedOn,totalRecords,successfulRecordsCount,failedRecordsCount
+
+metaData.contextTypes=graduations,postGraduations,designations,gradePay,cadre,ministries,service,industries
+
+
+spring.datasource.jdbc-url=jdbc:postgresql://{{ postgresql_host }}:{{ postgresql_port }}/sunbird
+spring.datasource.username={{postgresql_username_sunbird }}
+spring.datasource.password={{ postgresql_password_sunbird }}
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=false
+
+###Verified Karmayogi Badge
+lms.system.settings.verified.profile.fields.path=v1/system/settings/get/verifiedProfileFields
+
+es.user.report.include.fields=userId,firstName,email,phone,rootOrgId,channel,roles
+user.bulk.upload.group.value=Group A,Group B,Group C,Group D,Contractual Staff,Others
+
+assessment.hierarchy.namespace={{ env }}_hierarchy_store
+kafka.topics.user.assessment.async.submit.handler={{env}}.assessment.async.submit.handler
+assessment.ratake.count.verification.enabled=false
+
+##### content Progress#####
+kafka.topic.update.content.progress={{ env }}.update.content.progress
+kafka.topic.update.content.progress.group=updateContentProgressAsyncHandlerGroup
+progress.api.update.endpoint=/v1/content/state/admin/update
+
+bulk.upload.tag.verification.regex=^[a-zA-Z\\\s,]+$
+
+report.download.container.name={{ sb_cb_ext_container }}
+report.download.folder.name=standalone-reports
+report.type.get.file.info=user-report,course-report,user-assessment-report-cbp,user-enrollment-report,cba-report,blended-program-report-mdo,blended-program-report-cbp,cbp-report-mdo-summary,cbp-report-mdo-enrolment
+
+#Adding property for mail Template 
+user.registration.welcome.email.signinLink=https://{{ domain_name }}/protected/v8/resource
+
+user.registration.welcome.email.discoverLink=https://{{ domain_name }}/page/learn
+user.registration.welcome.email.meetingLink={{ nine_to_five_meeting_link }}
+
+#update the property 
+user.registration.welcome.email.template=iGotWelcome_v4
+
+redis.questions.read.timeout={{ redis_questions_read_timeout | default('3600') }} 
+read.assess.questions.from.redis={{ read_assess_questions_from_redistrue | default('true') }}
+
+mdo.admin.update.users=email,phone,tag,designation
+ 
+lms.service.host=http://learner-service:9000/
+lms.user.search=private/user/v1/search
+hub.notification.rootOrg=igot
+notify.service.host=http://notification-service:9000/
+notify.service.path=v1/notification/send/sync
+ 
+notify.email.template=notificationEmailTemplate
+notification.support.mail=support@igot-dev.in
+ 
+notification.mail.body.for.attendance=Your attendance for the #session_name in the #blended_program_name Program, held on #session_date, from #session_start_time to #session_end_time has been marked #attendance by the Program Coordinator.
+
+content-read-endpoint=content/v4/admin/read
+lms.user.update.private.path=/private/user/v1/update
+batch.enrolment.return.size=250
+
+cloud.profile.image.container.name={{ cephs3_storage_container }}
+kafka.topics.user.registration.auto.createUser=user.register.createUser.event
+
+redis.data.host.name={{ redis_host }}
+redis.data.port={{ redis_port }}
+
+hierarchy.store.keyspace.name={{ env }}_hierarchy_store
+
+default.content.properties=name,identifier,competencies_v5,avgRating,primaryCategory,contentType,channel,organisation,createdFor,duration,creatorLogo,appIcon,posterImage,additionalTags,description,status,secureSettings
+cb-plan.update.publish.authorized.roles=MDO_LEADER
+
+spv_admin_channel_name=Karmayogi Bharat
+spv.report.property.map={"mdo_content_completion":"AllMDOsContentCompletion.csv","user_recent_completions":"Top1LakhUsersContentCompletionLast15Days.csv","user_without_enrollment":"UsersOnboardedNotSignedUpAnyContent.csv","recent_user_without_enrollment":"UsersOnboardedLast15DaysNotSignedUpAnyContent.csv","all_prarambh_completed_users":"UsersFinishedEntirePrarambhModule.csv","prarambh_completed_users":"UsersCompleted6PrarambhCoursesPendingFullCompletion.csv","cbp_user_summary_exhaust":"CBPUserSummaryReport.csv","cbp_enrollment_exhaust":"CBPEnrollmentReport.csv"}
+report.property.map={"user-report":"UserReport.csv","user-enrollment-report":"ConsumptionReport.csv","course-report":"CBPReport.csv","cba-report":"UserAssessmentReport.csv","user-assessment-report-cbp":"StandaloneAssessmentReport.csv","blended-program-report-mdo":"BlendedProgramReport.csv","blended-program-report-cbp":"BlendedProgramReport.csv","cbp-report-mdo-summary":"CBPUserSummaryReport.csv","cbp-report-mdo-enrolment":"CBPEnrollmentReport.csv"}
+spv.report.property.subFolder.map={"AllMDOsContentCompletion.csv":"comms-console","Top1LakhUsersContentCompletionLast15Days.csv":"comms-console","UsersOnboardedNotSignedUpAnyContent.csv":"comms-console","UsersOnboardedLast15DaysNotSignedUpAnyContent.csv":"comms-console","UsersFinishedEntirePrarambhModule.csv":"comms-console","UsersCompleted6PrarambhCoursesPendingFullCompletion.csv":"comms-console","CBPUserSummaryReport.csv":"cbp-report","CBPEnrollmentReport.csv":"cbp-report"}
+
+karma.points.limit={{ karma_points_limit | default('10') }}
+kafka.topics.claim.acbp.karma.points={{ env }}.user.claim.acbp.karma.points
+
+notify.service.path.async=/v2/notification/send
+kafka.topic.cbplan.content.request={{ env }}.cbplan.content.request
+kafka.topic.cbplan.content.request.group=cbplanContentRequestAsyncHandlerGroup
+cbplan.content.request.notification.template=cbplanContentRequestTemplate
+user.registration.welcome.email.profileUpdateLink=https://{{ domain_name }}/app/user-profile/details

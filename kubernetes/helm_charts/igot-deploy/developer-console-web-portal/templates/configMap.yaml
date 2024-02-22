@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: developer-consloe-web-portal-env-js
+  namespace: {{ .Values.namespace }}
+data:
+  config.js: |
+{{ .Values.envjs | indent 4 }}
+
+---
+

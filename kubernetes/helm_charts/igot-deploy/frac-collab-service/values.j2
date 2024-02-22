@@ -1,0 +1,43 @@
+### Default variable file for lms-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{lms_java_mem_limit|default('-Xmx600m')}}
+
+replicaCount: {{lms_replicacount|default(1)}}
+repository: {{ image_frac_collab_service }}
+image_tag: {{image_tag}}
+resources:
+  requests:
+    cpu: {{lms_cpu_req|default('100m')}}
+    memory: {{lms_mem_req|default('100Mi')}}
+  limits:
+    cpu: {{lms_cpu_limit|default('1')}}
+    memory: {{lms_mem_limit|default('1024Mi')}}
+network:
+  port: {{ service_frac_collab_service_port }}
+  targetport: {{ service_frac_collab_service_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ lms_maxsurge|default('25%') }}
+  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+
+ui_proxies_bulk_upload: {{ host_bulk_upload }}
+
+envjs: |-
+ global.env = {
+    APP_COLLAB_ENV: '{{ app_collab_env }}',
+    APP_COLLAB_NAME: '{{app_collab_name }}',
+    APP_COLLAB_PORT: '{{app_collab_port}}',
+    APP_COLLAB_MONGO_DB: '{{app_collab_mongo_db}}',
+    APP_COLLAB_MONGO_HOST: '{{app_collab_mongo_host}}',
+    APP_COLLAB_MONGO_PORT: '{{app_collab_mongo_port}}',
+    APP_COLLAB_MONGO_USER: '{{app_collab_mongo_user}}',
+    APP_COLLAB_MONGO_PWD: '{{app_collab_mongo_pwd}}',
+    APP_COLLAB_MONGO_CONNECTION_STRING: "",
+    APP_COLLAB_KEYCLOAK_URL: '{{app_collab_keycloak_url}}'
+ }
