@@ -1,0 +1,5 @@
+cassandra_root_dir: '/etc/cassandra'
+data_dir: '/var/lib/cassandra/data'
+cassandra_backup_dir: '/data/cassandra/backup'
+cassandra_nfs_backup: /db_backup/cassandra/
+cassandra_backup_retention: 30
