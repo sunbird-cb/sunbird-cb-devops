@@ -27,18 +27,12 @@
   async: 14400
   poll: 30
 
-- name: Check doc_root path
-  shell: ls -all {{ cassandra_backup_dir }}/
-  register: doc_data
-
-- name: Print doc_root to console
-  debug:
-    var: doc_data
-
-- name: Copy file to NFS Mount
-  copy:
-    src: "{{ cassandra_backup_dir }}/{{ cassandra_backup_folder_name }}.tar.gz"
-    dest: "{{ cassandra_nfs_backup }}/{{ cassandra_backup_folder_name }}.tar.gz"
+- name: Create tar file and store it in NFS
+  become: true
+  shell: |
+    tar -czf "{{ cassandra_nfs_backup }}/{{ cassandra_backup_folder_name }}.tar.gz" "{{ cassandra_backup_folder_name }}"
+  args:
+    chdir: "{{ cassandra_backup_dir }}"
 
 - name: Cleanup older Backups from NFS
   shell: find "{{ cassandra_nfs_backup }}/" -iname "*.tar.gz" -mtime +{{ cassandra_backup_retention }} -exec rm -rf {} \;
