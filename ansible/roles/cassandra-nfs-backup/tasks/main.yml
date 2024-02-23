@@ -1,0 +1,47 @@
+- name: Make sure backup dir is empty
+  file: path="{{ cassandra_backup_dir }}" state=absent
+  ignore_errors: true
+
+- name: Create the directory
+  become: true
+  file: path={{ cassandra_backup_dir }} state=directory recurse=yes
+
+- name: Copy the backup script
+  become: true
+  template:
+    src: cassandra_backup.py
+    dest: "{{ cassandra_backup_dir }}/cassandra_backup.py"
+    mode: 0755
+
+- set_fact:
+    cassandra_backup_folder_name: "cassandra-backup-{{ lookup('pipe', 'date +%Y%m%d') }}"
+
+- name: Run the backup script
+  become: true
+  shell: |
+    python3 cassandra_backup.py \
+      --snapshotname "{{ cassandra_backup_folder_name }}" \
+      --snapshotdirectory "{{ cassandra_backup_folder_name }}" "{{additional_arguments|d('')}}"
+  args:
+    chdir: "{{ cassandra_backup_dir }}"
+  async: 14400
+  poll: 30
+
+- name: Check doc_root path
+  shell: ls -all {{ cassandra_backup_dir }}/
+  register: doc_data
+
+- name: Print doc_root to console
+  debug:
+    var: doc_data
+
+- name: Copy file to NFS Mount
+  copy:
+    src: "{{ cassandra_backup_dir }}/{{ cassandra_backup_folder_name }}.tar.gz"
+    dest: "{{ cassandra_nfs_backup }}/{{ cassandra_backup_folder_name }}.tar.gz"
+
+- name: Cleanup older Backups from NFS
+  shell: find "{{ cassandra_nfs_backup }}/" -iname "*.tar.gz" -mtime +{{ cassandra_backup_retention }} -exec rm -rf {} \;
+
+- name: Clean up backup dir after upload
+  file: path="{{ cassandra_backup_dir }}" state=absent
