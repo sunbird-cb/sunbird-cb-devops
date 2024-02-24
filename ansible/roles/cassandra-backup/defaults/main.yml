@@ -1,23 +1,10 @@
 ---
-- name: Create Cassandra Snapshot Directory
-  file:
-    path: "{{ cassandra_backup }}"
-    state: directory
-    mode: 0777
-    recurse: yes
+# defaults file for your cassandra_backup role
 
-- name: Take Cassandra Snapshot for All Keyspaces
-  command: "nodetool snapshot -t {{ cassandra_snapshot_name }}/{{ cassandra_snapshot_number }}"
-  args:
-    chdir: "{{ cassandra_backup }}"
-  ignore_errors: no
+cassandra_backup: "cassandra_backup"
+cassandra_snapshot_name: "cassandra_backup"
+cassandra_snapshot_number: "snapshot_{{ lookup('pipe', 'date +%s') }}"
+cassandra_nfs_mount_path: "/db_backup/cassandra"
 
-- name: Compress and Upload Cassandra Snapshots
-  shell: |
-    cd {{ cassandra_backup }}
-    find . -type d -name '{{ cassandra_snapshot_name }}*' -exec tar -czvf {}.tar.gz {} \;
-    find . -type d -name '{{ cassandra_snapshot_name }}*' -exec rm -rf {} \;
-    rsync -avz --remove-source-files {{ cassandra_backup }}/*.tar.gz {{ cassandra_nfs_mount_path }}
-  ignore_errors: no
 
 
