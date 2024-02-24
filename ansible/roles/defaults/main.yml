@@ -1,7 +1,0 @@
-snapshot_name: Backup_index
-snapshot_create_request_body: {
-    type: fs,
-    settings: {
-      location: "{{ snapshot_base_path }}"
-    }
-}
