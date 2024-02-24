@@ -1,8 +1,25 @@
-
 ---
-#backup_directory: "/var/lib/cassandra/data/*/*/snapshots"
-backup_directory: "/var/lib/cassandra/data/sunbird_groups/group_member-eb52a21025f111ec80d2db6e8b8402e3/snapshots"
-days_to_keep: 1
-#nfs_mount_path: "/db_backup/cassandra-backup"
-nfs_mount_path: "/test_backup"
+- name: Create Cassandra Snapshot Directory
+  file:
+    path: "{{ cassandra_backup_directory }}"
+    state: directory
+    owner: "cassandra"  # Adjust as per your Cassandra user
+    group: "cassandra"  # Adjust as per your Cassandra group
+    mode: 0777
+    recurse: yes
+
+- name: Take Cassandra Snapshot for All Keyspaces
+  command: "nodetool snapshot -t {{ cassandra_snapshot_name }}/{{ cassandra_snapshot_number }}"
+  args:
+    chdir: "{{ cassandra_backup_directory }}"
+  ignore_errors: yes
+
+- name: Compress and Upload Cassandra Snapshots
+  shell: |
+    cd {{ cassandra_backup_directory }}
+    find . -type d -name '{{ cassandra_snapshot_name }}*' -exec tar -czvf {}.tar.gz {} \;
+    find . -type d -name '{{ cassandra_snapshot_name }}*' -exec rm -rf {} \;
+    rsync -avz --remove-source-files {{ cassandra_backup_directory }}/*.tar.gz {{ cassandra_nfs_mount_path }}
+  ignore_errors: yes
+
 
