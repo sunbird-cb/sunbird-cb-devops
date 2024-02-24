@@ -10,7 +10,7 @@
   command: "nodetool snapshot -t {{ cassandra_snapshot_name }}/{{ cassandra_snapshot_number }}"
   args:
     chdir: "{{ cassandra_backup }}"
-  ignore_errors: yes
+  ignore_errors: no
 
 - name: Compress and Upload Cassandra Snapshots
   shell: |
