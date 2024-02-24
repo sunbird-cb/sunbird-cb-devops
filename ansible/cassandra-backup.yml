@@ -4,8 +4,8 @@
   vars_files:
     - ['{{ inventory_dir }}/secrets.yml', 'secrets/{{ env }}.yml']
   vars:
-    - cassandra_backup_directory: "{{ nfs_db_backup_path }}"
-    - cassandra_nfs_mount_path: "{{ nfs_mount_path }}"
+    - cassandra_backup: "{{ nfs_db_backup_path }}"  //backup_directory
+    - cassandra_nfs_mount: "{{ nfs_mount_path }}"   //nfs_mount_directiry
   roles:
     - role: cassandra-backup
       tags: cassandra-backup
