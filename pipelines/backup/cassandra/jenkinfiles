@@ -4,8 +4,8 @@ pipeline {
         local_backup_dir = '/tmp/testing_backup'
         nfs_mount_point = '/test_backup'
         retention_days = 1
-        // source_data_dir = '/tmp'  // Unused variable, remove if not needed
-        // nfs_server = "nfs_server:/nfs/share"  // Uncomment and replace if needed
+           source_data_dir = '/tmp' 
+           nfs_server = "nfs_server:/nfs/share"  
     }
     stages {
         stage('Backup and Transfer Data') {
