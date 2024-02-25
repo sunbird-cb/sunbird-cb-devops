@@ -1,21 +1,20 @@
 pipeline {
     agent any
     environment {
-        local_backup_dir = "/tmp/testing_backup" //cassdra_qa_144
-        nfs_mount_point = "/test_backup" //cassandra_qa_local
+        local_backup_dir = '/tmp/testing_backup'
+        nfs_mount_point = '/test_backup'
         retention_days = 1
-        source_data_dir = "/tmp"
-        // nfs_server = "nfs_server:/nfs/share"
+        // source_data_dir = '/tmp'  // Unused variable, remove if not needed
+        // nfs_server = "nfs_server:/nfs/share"  // Uncomment and replace if needed
     }
     stages {
         stage('Backup and Transfer Data') {
             steps {
                 script {
-                    // sh "mkdir -p ${local_backup_dir}"
-                     def oldFiles = sh(script: "sudo find ${source_data_dir} -type f -mtime +${retention_days}", returnStdout: true).trim().split('\n')
-                     if (oldFiles) {
-                        sh "sudo rsync ${oldFiles.join(' ')} ${local_backup_dir}/"
-                  }
+                    values = [:]
+                    ansiblePlaybook = "${currentWs}/ansible/cassandra_backup.yml"
+                    values.put('ansiblePlaybook', ansiblePlaybook)
+                    ansible_playbook_run(values)
                 }
             }
         }
@@ -29,7 +28,7 @@ pipeline {
                         sh "sudo cp -r ${local_backup_dir}/* ${nfs_mount_point}/backup/"
                         // unmountNFS()
                     }
-                } 
+                }
             }
         }
     }
