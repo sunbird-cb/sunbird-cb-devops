@@ -1,8 +1,8 @@
 ---
 # defaults file for your cassandra_backup role
 
-cassandra_backup: "cassandra_backup"
-cassandra_snapshot_name: "cassandra_backup"
+cassandra_backup: "cassandra-backup"
+cassandra_snapshot_name: "cassandra-backup"
 cassandra_snapshot_number: "snapshot_{{ lookup('pipe', 'date +%s') }}"
 cassandra_nfs_mount_path: "/db_backup/cassandra"
 
