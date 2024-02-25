@@ -4,26 +4,24 @@ pipeline {
         local_backup_dir = '/tmp/testing_backup'
         nfs_mount_point = '/test_backup'
         retention_days = 1
-           source_data_dir = '/tmp' 
-           nfs_server = "nfs_server:/nfs/share"  
+        ansiblePlaybook = ''  // Add this line to define ansiblePlaybook
     }
     stages {
         stage('Backup and Transfer Data') {
             steps {
                 script {
-                     def currentWs
-                     currentWs = ansiblePlaybook
-                     values = [:]
-                     ansiblePlaybook = "${currentWs}/ansible/cassandra_backup.yml"
-                     values.put('currentWs', env.ansiblePlaybook)
-                     //values.put('currentWs', env.WORKSPACE)
-                     ansible_playbook_run(values)
+                    def currentWs = env.WORKSPACE
+                    ansiblePlaybook = "${currentWs}/ansible/cassandra_backup.yml"
+                    values = [:]
+                    values.put('ansiblePlaybook', ansiblePlaybook)
+                    ansible_playbook_run(values)
                 }
             }
         }
         stage('Transfer to NFS') {
             steps {
                 script {
+                    def currentWs = env.WORKSPACE
                     def filesToCopy = sh(script: "ls -A ${local_backup_dir}", returnStdout: true).trim().split('\n')
                     if (filesToCopy) {
                         sh "sudo mkdir -p ${nfs_mount_point}/backup"
