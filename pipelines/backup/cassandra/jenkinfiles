@@ -15,7 +15,7 @@ pipeline {
                      currentWs = ansiblePlaybook
                      values = [:]
                      ansiblePlaybook = "${currentWs}/ansible/cassandra_backup.yml"
-                     values.put('ansiblePlaybook', ansiblePlaybook)
+                     values.put('currentWs', env.ansiblePlaybook)
                      //values.put('currentWs', env.WORKSPACE)
                      ansible_playbook_run(values)
                 }
