@@ -1,67 +1,75 @@
-@Library('deploy-conf') _
+@Library('your-shared-library') _ // Replace 'your-shared-library' with the actual name of your shared library
 
-node() {
-    try {
-        // ANSI color codes for console output
-        String ANSI_GREEN = "\u001B[32m"
-        String ANSI_NORMAL = "\u001B[0m"
-        String ANSI_BOLD = "\u001B[1m"
-        String ANSI_RED = "\u001B[31m"
-        String ANSI_YELLOW = "\u001B[33m"
+pipeline {
+    agent any
 
-        stage('Checkout and Cassandra Backup') {
-            // Clear existing .git folder
-            folder = new File("$WORKSPACE/.git")
-            if (folder.exists()) {
-                println "Found .git folder. Clearing it.."
-                sh 'git clean -fxd'
+    environment {
+        ANSI_GREEN = "\u001B[32m"
+        ANSI_NORMAL = "\u001B[0m"
+        ANSI_BOLD = "\u001B[1m"
+        ANSI_RED = "\u001B[31m"
+        ANSI_YELLOW = "\u001B[33m"
+    }
+
+    stages {
+        stage('Checkout Public Repository') {
+            steps {
+                script {
+                    folder = new File("$WORKSPACE/.git")
+                    if (folder.exists()) {
+                        echo "Found .git folder. Clearing it.."
+                        sh 'git clean -fxd'
+                    }
+                    checkout scm
+                }
             }
-            checkout scm
-
-            // Set up environment variables
-            values = [:]
-            envDir = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-3].trim()
-            module = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-2].trim()
-            jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
-            currentWs = sh(returnStdout: true, script: 'pwd').trim()
-            ansiblePlaybook = "${currentWs}/ansible/cassandra-backup.yml"
-            ansibleExtraArgs = "--tags \"create_cassandra_backup\" --vault-password-file /var/lib/jenkins/secrets/vault-pass"
-
-            // Populate the values map
-            values.put('currentWs', currentWs)
-            values.put('env', envDir)
-            values.put('module', module)
-            values.put('jobName', jobName)
-            values.put('ansiblePlaybook', ansiblePlaybook)
-            values.put('ansibleExtraArgs', ansibleExtraArgs)
-
-            // Print values for debugging
-            println values
-
-            // Run Ansible playbook to create Cassandra backup
-            ansible_playbook_run(values)
         }
 
-        stage('Local Backup Cleanup') {
-            // Clean up local backups older than 15 days
-            sh "find ${currentWs}/cassandra-backups -type f -mtime +15 -exec rm -f {} \\;"
-        }
+        stage('Deploy Cassandra Backup') {
+            steps {
+                script {
+                    def values = [:]
+                    def envDir = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-3].trim()
+                    def module = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-2].trim()
+                    def jobName = sh(returnStdout: true, script: "echo $JOB_NAME").split('/')[-1].trim()
+                    def currentWs = sh(returnStdout: true, script: 'pwd').trim()
+                    def ansiblePlaybook = "${currentWs}/ansible/cassandra-backup.yml"
+                    def ansibleExtraArgs = "--tags \"cassandra-backup\" --vault-password-file /var/lib/jenkins/secrets/vault-pass"
 
-        stage('Transfer to NFS') {
-            // Transfer all data to NFS folder
-            sh "rsync -av ${currentWs}/cassandra-backups/ nfs-server:/path/to/nfs/folder/"
-        }
+                    values.put('currentWs', currentWs)
+                    values.put('env', envDir)
+                    values.put('module', module)
+                    values.put('jobName', jobName)
+                    values.put('ansiblePlaybook', ansiblePlaybook)
+                    values.put('ansibleExtraArgs', ansibleExtraArgs)
 
-        // Set build result and description
-        currentBuild.result = 'SUCCESS'
-        currentBuild.description = "Cassandra Backup and transfer successful"
-    } catch (err) {
-        // Catch any errors and mark the build as FAILURE
-        currentBuild.result = "FAILURE"
-        throw err
-    } finally {
-        // Notify on Slack and email regardless of build result
-        slack_notify(currentBuild.result)
-        email_notify()
+                    echo "Running Ansible playbook with the following values:"
+                    echo "Environment Directory: ${envDir}"
+                    echo "Module: ${module}"
+                    echo "Job Name: ${jobName}"
+                    echo "Current Workspace: ${currentWs}"
+                    echo "Ansible Playbook Path: ${ansiblePlaybook}"
+                    echo "Ansible Extra Args: ${ansibleExtraArgs}"
+
+                    ansible_playbook_run(values)
+
+                    // Adding the execution of the Cassandra backup shell script
+                    echo "Running Cassandra backup shell script"
+                    sh '/opt/scripts/backup.sh'
+
+                    currentBuild.result = 'SUCCESS'
+                    currentBuild.description = "Private: ${params.private_branch}, Public: ${params.branch_or_tag}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                slack_notify(currentBuild.result)
+                email_notify()
+            }
+        }
     }
 }
