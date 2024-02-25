@@ -11,10 +11,13 @@ pipeline {
         stage('Backup and Transfer Data') {
             steps {
                 script {
-                    values = [:]
-                    ansiblePlaybook = "${currentWs}/ansible/cassandra_backup.yml"
-                    values.put('ansiblePlaybook', ansiblePlaybook)
-                    ansible_playbook_run(values)
+                     def currentWs
+                     currentWs = ansiblePlaybook
+                     values = [:]
+                     ansiblePlaybook = "${currentWs}/ansible/cassandra_backup.yml"
+                     values.put('ansiblePlaybook', ansiblePlaybook)
+                     //values.put('currentWs', env.WORKSPACE)
+                     ansible_playbook_run(values)
                 }
             }
         }
@@ -23,10 +26,8 @@ pipeline {
                 script {
                     def filesToCopy = sh(script: "ls -A ${local_backup_dir}", returnStdout: true).trim().split('\n')
                     if (filesToCopy) {
-                        // mountNFS()
                         sh "sudo mkdir -p ${nfs_mount_point}/backup"
                         sh "sudo cp -r ${local_backup_dir}/* ${nfs_mount_point}/backup/"
-                        // unmountNFS()
                     }
                 }
             }
