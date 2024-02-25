@@ -1,4 +1,4 @@
-@Library('your-shared-library') _ // Replace 'your-shared-library' with the actual name of your shared library
+@Library('your-shared-library') _
 
 pipeline {
     agent any
