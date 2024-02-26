@@ -7,5 +7,5 @@
     - es_snapshot_host: "{{app_es_snapshot_host}}"
     - snapshot_base_path: "{{app_snapshot_base_path}}"
   roles:
-    - role: elasticsearch-nfs-backup
-      tags: elasticsearch-nfs-backup
+    - role: elasticsearch_backup
+      tags: elasticsearch_backup
