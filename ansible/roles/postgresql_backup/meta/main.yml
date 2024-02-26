@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - name: geerlingguy.postgresql
+  - name: postgresql
 
