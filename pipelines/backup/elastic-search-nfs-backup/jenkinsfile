@@ -4,7 +4,7 @@ pipeline {
     environment {
         local_backup_dir = "/db_backup/elasticsearch"
         nfs_mount_point = "/elasticsearch_backup"
-        retention_days = 15
+        retention_days = 3
         source_data_dir = "/tmp"
         // nfs_server = "nfs_server:/nfs/share"
     }
