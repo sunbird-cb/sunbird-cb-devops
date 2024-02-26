@@ -1,1 +1,6 @@
-
+---
+- name: Run PostgreSQL Backup Role
+  hosts: your_postgresql_server
+  become: yes
+  roles:
+    - postgresql_backup
