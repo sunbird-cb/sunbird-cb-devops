@@ -2,13 +2,17 @@
 # defaults file for your cassandra_backup role
 
 
-#cassandra_backup: "cassandra-backup"
+#cassandra_backup: "cassandra-backup"  #in prod /var/lib/cassandra/data/*/*/snapshots
 #cassandra_snapshot_name: "cassandra-backup"
-#cassandra_nfs_mount_path: "/db_backup/cassandra"
+#cassandra_nfs_mount_path: "/db_backup/cassandra" #in prod /tmp 
+#days_to_keep: 3
 
-cassandra_backup: "/test_backup"
-#cassandra_snapshot_name: "cassandra-backup"
-cassandra_nfs_mount_path: "/tmp/test_cassandra_backup"
+cassandra_backup_path: "/var/lib/cassandra/data"
+days_to_keep: 15
+nfs_mount_path: "/db_backup/cassandra-backup"
+snapshot_name: "snapshot"
+snapshot_number: ""
+
 
 
 
