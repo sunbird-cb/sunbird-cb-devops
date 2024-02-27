@@ -1,7 +1,9 @@
 ---
-- set_fact: base_path_date="{{ lookup('pipe','date +%Y-%m') }}"
+- set_fact: 
+    base_path_date: "{{ lookup('pipe','date +%Y-%m') }}"
 
-- set_fact: snapshot_number="snapshot_{{ lookup('pipe','date +%s') }}"
+- set_fact: 
+    snapshot_number: "snapshot_{{ lookup('pipe','date +%s') }}"
 
 - name: Create snapshot directory
   file:
@@ -34,14 +36,14 @@
     headers:
       Content-Type: "application/json"
 
-- name: Print status of current snapshot
+- name: Print status of the current snapshot
   uri:
     url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}"
     method: GET
     headers:
       Content-Type: "application/json"
 
-- name: "Wait for backup to be completed"
+- name: Wait for the backup to be completed
   uri:
     url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}/_all"
     method: GET
