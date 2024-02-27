@@ -15,10 +15,10 @@
 - name: Compress and Upload Snapshots
   shell: |
    cd {{ cassandra_backup_path }}
-   find . -type d -name '*{{ snapshot_name }}*' -exec tar -czvf {}.tar.gz {} \;
-   rsync -avz --remove-source-files {{ cassandra_backup_path }}/*{{ snapshot_name }}*.tar.gz {{ nfs_mount_path }}
-   find . -type d -name '*{{ snapshot_name }}*' -exec rm -rf {} \;
-  ignore_errors: no
+    find . -type d -name "*$snapshot_name*" -exec tar -czvf {}.tar.gz {} \;   
+    rsync -avz --remove-source-files "$cassandra_backup_path"/*"$snapshot_name"*.tar.gz "$nfs_mount_path"   
+    find "$cassandra_backup_path" -type f -name "*$snapshot_name*.tar.gz" -mtime +$days_to_keep -exec rm {} \;
+   ignore_errors: no
 
 - name: Cleanup Old Snapshots Locally
   find:
