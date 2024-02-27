@@ -29,6 +29,18 @@
     headers:
       Content-Type: "application/json"
 
+- name: Wait for the backup to be completed
+  uri:
+    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}/_all"
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: result
+  until: result.json.snapshots[0].state == 'SUCCESS'
+  retries: 120
+  delay: 10
+
 - name: Print all snapshots
   uri:
     url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/_all"
@@ -42,15 +54,3 @@
     method: GET
     headers:
       Content-Type: "application/json"
-
-- name: Wait for the backup to be completed
-  uri:
-    url: "http://{{ es_snapshot_host }}:9200/_snapshot/{{ snapshot_name }}/{{ snapshot_number }}/_all"
-    method: GET
-    return_content: yes
-    status_code: 200
-    body_format: json
-  register: result
-  until: result.json.snapshots[0].state == 'SUCCESS'
-  retries: 120
-  delay: 10
