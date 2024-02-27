@@ -1,22 +1,38 @@
 ---
 - name: Create Cassandra Snapshot Directory
   file:
-    path: "{{ cassandra_backup }}"
+    path: "{{ cassandra_backup_path }}"
     state: directory
     mode: 0777
     recurse: yes
 
 - name: Take Cassandra Snapshot All KeySpaces
-  command: "nodetool snapshot -t {{ cassandra_snapshot_name }}/{{ cassandra_snapshot_number }}"
-  args:
-    chdir: "{{ cassandra_backup }}"
-  ignore_errors: no
-
-- name: Compress and Upload Cassandra Snapshots
   shell: |
-    cd {{ cassandra_backup }}
-    find . -type d -name '{{ cassandra_snapshot_name }}*' -exec tar -czvf {}.tar.gz {} \;
-    find . -type d -name '{{ cassandra_snapshot_name }}*' -exec rm -rf {} \;
-    rsync -avz --remove-source-files {{ cassandra_backup }}/*.tar.gz {{ cassandra_nfs_mount_path }}
+    nodetool clearsnapshot
+    nodetool snapshot -t "cassandra-backup-{{ lookup('pipe', 'date +%Y%m%d') }}-{{ ansible_hostname }}-new"
+  ignore_errors: yes
+
+- name: Compress and Upload Snapshots
+  shell: |
+   cd {{ cassandra_backup_path }}
+   find . -type d -name '*{{ snapshot_name }}*' -exec tar -czvf {}.tar.gz {} \;
+   rsync -avz --remove-source-files {{ cassandra_backup_path }}/*{{ snapshot_name }}*.tar.gz {{ nfs_mount_path }}
+   find . -type d -name '*{{ snapshot_name }}*' -exec rm -rf {} \;
   ignore_errors: no
 
+- name: Cleanup Old Snapshots Locally
+  find:
+    paths: "{{ cassandra_backup_path }}"
+    patterns: "*.tar.gz"
+    age: "{{ local_backup_retention_days }}d"
+  register: old_snapshots
+
+- name: Debug Old Snapshots Locally
+  debug:
+    var: old_snapshots.files
+
+- name: Delete Old Snapshots Locally
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ old_snapshots.files | default([]) }}"
