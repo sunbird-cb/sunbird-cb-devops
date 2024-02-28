@@ -44,3 +44,8 @@ redis_key_dashboard_completed_count_by_user_org: "dashboard_completed_count_by_u
 
 redis_key_dashboard_enrolment_count_by_course_org: "dashboard_enrolment_count_by_course_org"
 redis_key_dashboard_completed_count_by_course_org: "dashboard_completed_count_by_course_org"
+
+redis_key_lp_monthly_active_users: "lp_monthly_active_users"
+redis_key_lp_completed_count: "lp_completed_count"
+redis_key_lp_completed_yesterday_count: "lp_completed_yesterday_count"
+
