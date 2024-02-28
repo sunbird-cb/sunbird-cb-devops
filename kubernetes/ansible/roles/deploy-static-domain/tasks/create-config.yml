@@ -200,6 +200,30 @@
     - debug:
         msg: "{{ user_count }}, {{ organization_count }}, {{ aggregated_course_duration }}, {{ live_course_count }}"
 
+    - name: Redis Get Monthly Active User Count
+      command: "redis-cli -h {{ redis_host }} -p {{ redis_port }} -n {{ redis_db }} GET {{ redis_key_lp_monthly_active_users }}"
+      register: redis_monthly_active_users_out
+
+    - name: Monthly Active User Count
+      set_fact:
+        monthly_active_user_count: "{{ redis_monthly_active_users_out.stdout }}"
+
+    - name: Redis Get Course Program Completion
+      command: "redis-cli -h {{ redis_host }} -p {{ redis_port }} -n {{ redis_db }} GET {{ redis_key_lp_completed_count }}"
+      register: redis_course_program_completed_out
+
+    - name: Course Program Completion Count
+      set_fact:
+        course_program_completion_count: "{{ redis_course_program_completed_out.stdout }}"
+
+    - name: Redis Get Course Program Completion In Last 24 Hrs Count
+      command: "redis-cli -h {{ redis_host }} -p {{ redis_port }} -n {{ redis_db }} GET {{ redis_key_lp_completed_yesterday_count }}"
+      register: redis_course_program_completed_yesterday_out
+
+    - name: Course Program Completion In Last 24 Hrs Count
+      set_fact:
+        course_program_completion_in_last_24_hrs_count: "{{ redis_course_program_completed_yesterday_out.stdout }}"
+
     - name: Get IST Date
       command: "date '+%Y-%m-%d %H:%M:%S'"
       register: date_ist
@@ -238,30 +262,6 @@
         src: "{{ helm_env_file_name }}"
         dest: "/var/lib/jenkins/dashbord_history/configurations.json_{{ ansible_date_time.date }}"
         backup: yes
-
-    - name: Redis Get Monthly Active User Count
-      command: "redis-cli -h {{ redis_host }} -p {{ redis_port }} -n {{ redis_db }} GET {{ redis_key_lp_monthly_active_users }}"
-      register: redis_monthly_active_users_out
-
-    - name: Monthly Active User Count
-      set_fact:
-        monthly_active_user_count: "{{ redis_monthly_active_users_out.stdout }}"
-
-    - name: Redis Get Course Program Completion
-      command: "redis-cli -h {{ redis_host }} -p {{ redis_port }} -n {{ redis_db }} GET {{ redis_key_lp_completed_count }}"
-      register: redis_course_program_completed_out
-
-    - name: Course Program Completion Count
-      set_fact:
-        course_program_completion_count: "{{ redis_course_program_completed_out.stdout }}"
-
-    - name: Redis Get Course Program Completion In Last 24 Hrs Count
-      command: "redis-cli -h {{ redis_host }} -p {{ redis_port }} -n {{ redis_db }} GET {{ redis_key_lp_completed_yesterday_count }}"
-      register: redis_course_program_completed_yesterday_out
-
-    - name: Course Program Completion In Last 24 Hrs Count
-      set_fact:
-        course_program_completion_in_last_24_hrs_count: "{{ redis_course_program_completed_yesterday_out.stdout }}"
 
     - name: create config configmap
       shell: find "{{ helm_env_file_location }}" -iname "configurations.json" -exec /bin/bash -c "ls {}; kubectl create configmap static-domain-configurations-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;
