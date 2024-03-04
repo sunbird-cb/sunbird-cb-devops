@@ -8,7 +8,7 @@
 #days_to_keep: 3
 
 cassandra_backup_path: "/var/lib/cassandra/data"
-days_to_keep: 15
+days_to_keep: 5
 nfs_mount_path: "/cass_backup"
 #snapshot_name: "snapshot"
 #snapshot_number: ""
