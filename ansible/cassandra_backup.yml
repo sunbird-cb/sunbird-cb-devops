@@ -2,8 +2,8 @@
 - name: Cassandra Backup
   hosts: cassandra_nodes
   vars_files:
-    - vars/common.yml
-    - vars/{{ inventory_hostname }}.yml
+    - roles/common.yml
+    - roles/{{ inventory_hostname }}.yml
 
   tasks:
     - name: Create Cassandra Snapshot Directory
