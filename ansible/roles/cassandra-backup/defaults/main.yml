@@ -1,13 +1,14 @@
 ---
 - name: Cassandra Backup
-  hosts: cassandra_nodes
+  hosts: 
+    - 192.168.3.144  
   vars:
     nfs_server_ip: "192.168.3.180"
     cassandra_backup_path: "/var/lib/cassandra/data"
     days_to_keep: 3
     nfs_mount_path: "/cass_backup"
     snapshot_name: "snapshot"
-   
+
 
 
 
