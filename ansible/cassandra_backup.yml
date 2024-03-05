@@ -1,6 +1,7 @@
 ---
 - name: Cassandra Backup
-  hosts: cassandra_nodes
+  hosts: 
+      192.168.3.144
   vars_files:
     - roles/common.yml
     - roles/{{ inventory_hostname }}.yml
