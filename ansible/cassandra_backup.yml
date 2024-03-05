@@ -1,25 +1,29 @@
 ---
-- hosts: localhost 
-  gather_facts: false  
+- name: Cassandra Backup
+  hosts: cassandra_nodes
+  vars_files:
+    - vars/common.yml
+    - vars/{{ inventory_hostname }}.yml
 
   tasks:
     - name: Create Cassandra Snapshot Directory
       file:
-        path: "{{ cassandra_backup }}"
+        path: "{{ cassandra_backup_path }}"
         state: directory
         mode: 0777
         recurse: yes
 
     - name: Take Cassandra Snapshot All KeySpaces
-      command: "nodetool snapshot -t {{ cassandra_snapshot_name }}/{{ cassandra_snapshot_number }}"
-      args:
-        chdir: "{{ cassandra_backup }}"
-      ignore_errors: no
-
-    - name: Compress and Upload Cassandra Snapshots
       shell: |
-        cd {{ cassandra_backup }}
+        nodetool clearsnapshot
+        nodetool snapshot -t "cassandra-backup-{{ lookup('pipe', 'date +%Y%m%d') }}-{{ ansible_hostname }}-new"
+      ignore_errors: yes
+
+    - name: Compress and Upload Snapshots
+      shell: |
+        cd {{ cassandra_backup_path }}
         find . -type d -name "*$snapshot_name*" -exec tar -czvf {}.tar.gz {} \;   
-        rsync -avz --remove-source-files "$cassandra_backup_path"/*"$snapshot_name"*.tar.gz "$nfs_mount_path"   
+        rsync -avz --remove-source-files "$cassandra_backup_path"/*"$snapshot_name"*.tar.gz "{{ nfs_server_ip }}":"{{ nfs_mount_path }}"
         find "$cassandra_backup_path" -type f -name "*$snapshot_name*.tar.gz" -mtime +$days_to_keep -exec rm {} \;
       ignore_errors: no
+
