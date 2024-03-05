@@ -1,17 +1,13 @@
 ---
-# defaults file for your cassandra_backup role
-
-
-#cassandra_backup: "cassandra-backup"  #in prod /var/lib/cassandra/data/*/*/snapshots
-#cassandra_snapshot_name: "cassandra-backup"
-#cassandra_nfs_mount_path: "/db_backup/cassandra" #in prod /tmp 
-#days_to_keep: 3
-
-cassandra_backup_path: "/var/lib/cassandra/data"
-days_to_keep: 5
-nfs_mount_path: "/cass_backup"
-#snapshot_name: "snapshot"
-#snapshot_number: ""
+- name: Cassandra Backup
+  hosts: cassandra_nodes
+  vars:
+    nfs_server_ip: "192.168.3.180"
+    cassandra_backup_path: "/var/lib/cassandra/data"
+    days_to_keep: 3
+    nfs_mount_path: "/cass_backup"
+    snapshot_name: "snapshot"
+   
 
 
 
