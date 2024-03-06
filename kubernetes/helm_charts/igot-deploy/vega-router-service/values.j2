@@ -1,0 +1,44 @@
+### Default variable file for lms-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{lms_java_mem_limit|default('-Xmx600m')}}
+
+replicaCount: {{lms_replicacount|default(1)}}
+repository: {{ image_vega_router_service }}
+image_tag: {{ image_tag }}
+resources:
+  requests:
+    cpu: {{lms_cpu_req|default('100m')}}
+    memory: {{lms_mem_req|default('100Mi')}}
+  limits:
+    cpu: {{lms_cpu_limit|default('1')}}
+    memory: {{lms_mem_limit|default('1024Mi')}}
+network:
+  port: 80
+  targetport: {{ service_vega_router_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ lms_maxsurge|default('25%') }}
+  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+
+ui_proxies_bulk_upload: {{ host_bulk_upload }}
+
+envjs: |-
+ global.env = {
+    APP_VEGA_ROUTER_ES_HOST: '{{ app_vega_router_es_host }}',
+    APP_VEGA_ROUTER_ES_USERNAME: '{{ app_vega_router_es_user }}',
+    APP_VEGA_ROUTER_ES_PASSWORD: '{{ app_vega_router_es_pwd }}',
+    APP_VEGA_ROUTER_REDIS_HOST: '{{ app_vega_router_redis_host }}',
+    APP_VEGA_ROUTER_REDIS_PORT: '{{ app_vega_router_redis_port }}',
+    APP_VEGA_ROUTER_ES_PORT: '{{ app_vega_router_es_port }}',
+    APP_VEGA_NLP_NAME:'{{ app_vega_nlp_name }}',
+    APP_VEGA_SANDBOX_NLP_NAME:'{{ app_vega_sandbox_nlp_name }}',
+   
+ }
+
+

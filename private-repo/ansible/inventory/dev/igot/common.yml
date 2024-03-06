@@ -1,0 +1,125 @@
+mysql_host:                  ###igotdb server IP#####
+mysql_username:              ###mysql username####
+mysql_password:              ####Mysql password#####
+frac_service_cloud_storage_type:  ####cloud storage type example azure#####
+
+learningservice_ip:       # Load balancer IP for learning server
+cbp_portal_url: cbc.{{static_domain_name}}   
+
+
+ui_proxy_cors_environment:   #Name of the environment, e.g. dev, staging or production.
+##################################
+
+KEYCLOAK_HELPER_SERVICE_CLIENT_ID:      
+KEYCLOAK_HELPER_SERVICE_CLIENT_SECRET: 
+X_CHANNEL_ID: 
+
+kc_new_user_default_pwd:  
+iap_client_secret: 
+
+react_app_api_url: https://frac.{{static_domain_name}}/api  #####backend api url
+
+
+
+#WAT Variables
+wat_database:             ###db name for wat sevice example wat_sourcing
+wat_ip_address:  0.0.0.0 
+wat_mysql_host:           ###igotdb server IP#####
+wat_mysql_username:       ###mysql username####
+wat_mysql_password:       ####Mysql password#####
+
+#VEGA Service
+vega_api_url:  https://vega-console.{{static_domain_name}}/vegaapis
+vega_sandbox_url: http://vega-rasa-nlp-sandbox-service/webhooks/rest/webhook
+vega_router_url: https://vega-console.{{static_domain_name}}/router
+vega_compiler_url: http://vega-compiler-service
+vega_git_access_token:    ###need a access token from git######
+vega_model_home: /app/Deployment/vega-console-server
+vega_git_branch: storage
+vega_git_username:  ###git username######
+vega_git_password:   ##git password#######
+
+#UI-STATIC Variables
+
+igot_portal_name: https://portal.{{static_domain_name}}
+igot_portal_env:  #Name of the environment, e.g. dev, staging or production.
+
+igot_organisation:  
+igot_framework: 
+igot_channelid: 
+igot_azurehost: 
+igot_karmayoggiazurebucket: 
+igot_azurebucket: 
+igot_azureoldhost: 
+igot_azureoldbuket: 
+karmayogi_portal_url: portal.{{static_domain_name}}
+mdo_portal_url: mdo.{{static_domain_name}}
+spv_portal_url: spv.{{static_domain_name}}
+cbp_domain_name: cbp.{{static_domain_name}}
+igot_karmayoggirules: PUBLIC
+igot_cbprules: ['CBP_ADMIN','CONTENT_CREATOR','CONTENT_REVIEWER','CONTENT_PUBLISHER']
+igot_cbcrules: CBC_ADMIN,CBC_MEMBER
+igot_mdorules: MDO_ADMIN,WAT_MEMBER,MDO_LEADER
+igot_spvrules: SPV_ADMIN,STATE_ADMIN
+
+
+###########single-image-backen-URL-conf-for stage##################
+react_app_wat_api_url: officer-survey.{{static_domain_name}}/watapis
+react_app_pmdash_api_url: pm.{{static_domain_name}}/pmapis/
+react_app_vega_api_url: vega-console.{{static_domain_name}}/vegaapis
+react_app_vega_sandbox_url: vega-rasa-nlp-sandbox-service/webhooks/rest/webhook
+react_app_vega_router_url: vega-console.{{static_domain_name}}/router
+react_app_vega_compiler_url: vega-compiler-service
+react_app_git_access_token:              ###need a access token from git######
+################################
+
+
+
+react_app_frac_api_url: frac.{{static_domain_name}}/fracapis
+react_app_frac_keycloak_url: portal.{{static_domain_name}}/auth
+react_app_frac_proxy_url: portal.{{static_domain_name}}
+react_app_frac_socket_url: frac.{{static_domain_name}}
+react_app_frac_collab_node_url: frac.{{static_domain_name}}/fraccollab
+react_app_frac_user_api_key:    ###Api key############
+
+
+
+frac_role_verification: http://learner-service:9000/v1/user/read/
+frac_notification_url: https://portal.{{static_domain_name}}/api/notification/v1/notification/send/sync
+frac_auth_api_key: 				###Api key############
+ui_proxy_cors_environment: dev
+
+
+#########################sb-cb-ext-variables######
+pyeval_server_ip: 
+pyeval_server_port: 
+
+iap_server_ip: 
+iap_server_port: 
+log_access_key: 
+#########################################
+
+#######vega-console#######
+bot_server_ip: 
+bezkoder_app_jwtsecret: 
+################
+######pm-analytics####
+
+esindexer_secondary_service_host_name: 
+esindexer_ternary_host: 
+esindexer_secondary_host_port: 
+##############################
+java_api_base_ip: 
+java_api_base_port: 
+mysql_wat_be_port:   #######mysql port in igot db####
+
+neo4j_url:   ##neo4jip##
+kafka_ip:  ###kafka ip###
+
+##############
+send_notification_token: false
+
+frac_url: http://frac-backend-service:{{service_frac_backend_port}}/
+cloud_provider:   ######cloud provider name eg azure##
+
+react_app_pmdash_prototype_url:  pm.{{static_domain_name}}/prototype/

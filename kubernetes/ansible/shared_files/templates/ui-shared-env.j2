@@ -1,0 +1,234 @@
+# Node settings
+NODE_TLS_REJECT_UNAUTHORIZED=0
+NODE_ENV=production
+
+# HOST config for keycloak protection
+HTTPS_HOST={{ https_host }}
+
+# App configurations
+APP_LOGS={{ app_logs_directory }}
+APP_CONFIGURATIONS={{ app_config_directory }}
+KEYCLOAK_REALM={{ keycloak_realm_name }}
+TIMEOUT={{ connection_timeout_ms }}
+
+# Content service
+CONTENT_API_BASE={{ content_api_base }}
+CONTENT_HIERARCHY={{ content_hierarchy_base }}
+
+# Sb-ext service
+SBEXT_API_BASE={{ sb_ext_api_base }}
+
+# frac-api service
+FRAC_API_BASE={{ frac_api_base }}
+
+#profanity_service_host
+PROFANITY_SERVICE_API_BASE={{ profanity_service_host }}
+
+# network_hub Service
+NETWORK_HUB_SERVICE_BACKEND={{ network_hub_service }}
+
+# Telemetry service
+TELEMETRY_API_BASE={{ telemetry_api_base }}
+
+CONTENT_VALIDATION_API_BASE={{ content_validation_api_base }}
+
+# dbms api service
+VIEWER_PLUGIN_RDBMS_API_BASE={{ dbms_api_base }}
+
+# Web host service
+WEB_HOST_PROXY={{ web_hosted_api_base }}
+NAVIGATOR_JSON_HOST={{ navigator_json_api_host }}
+STATIC_ILP_PROXY={{ static_ilp_api_base }}
+
+# Social forum service
+NODE_API_BASE={{ social_forum_api_base }}
+
+# Core services endpoint
+SBEXT_API_BASE_2={{ sb_ext_api_base }}
+client_id={{ lms_core_client_id }}
+client_secret={{ lms_core_client_secret }}
+
+SBEXT_API_BASE_4={{ lms_core_cassandra_api_base }}
+
+# Khub services
+KHUB_SEARCH_BASE={{ khub_service_api_base }}
+
+# Bulk upload API service
+NODE_API_BASE_2={{ keycloak_helper_service_api_base }}
+NODE_API_BASE_2_CLIENT_ID={{ keycloak_helper_service_client_id }}
+NODE_API_BASE_2_CLIENT_SECRET={{ keycloak_helper_service_client_secret }}
+
+# More like this service
+NODE_API_BASE_3={{ more_like_this_api_base }}
+
+## External services ##
+# IAP service
+IAP_PROFILE_API_BASE={{ iap_profile_api_base }}
+IAP_CODE_API_BASE={{ iap_code_api_base }}
+IAP_CLIENT_SECRET={{ iap_client_secret }}
+
+# Learning analytics service
+LA_HOST_PROXY={{ var_ui_shared_la_host }}
+
+# ILP FP service
+ILP_FP_PROXY={{ var_ui_shared_ilp_fp_host }}
+
+#Java service for notification : the port is not sure as 5825, will same as whichever port will be used to host the notification service.
+JAVA_API_BASE=http://{{ java_api_base_ip }}:{{ java_api_base_port }}
+USER_PROFILE_API_BASE=http://up_eagle-user-profile:3008
+
+KEYCLOAK_ADMIN_PASSWORD={{ keycloak_password }}
+KEYCLOAK_ADMIN_USERNAME={{ keycloak_username }}
+KC_NEW_USER_DEFAULT_PWD={{ kc_new_user_default_pwd }}
+
+DISCUSSION_HUB_API_BASE={{ discussion_hub_api_base }}
+DISCUSSION_HUB_DEFAULT_PASSWORD={{ discussion_hub_default_password }}
+DISCUSSION_HUB_WRITE_API_KEY={{ discussion_hub_write_api_key }}
+DISCUSSION_HUB_WRITE_API_UID={{ discussion_hub_write_api_uid }}
+DISCUSSION_CATEGORY_LIST={{ discussion_category_list }}
+#DISCUSSION_CATEGORY_LIST=cid[]='5&cid[]=6&cid[]=8&cid[]=9&cid[]=10&cid[]=11&cid[]=12&cid[]=13'
+
+DEFAULT_ORG={{ default_org }}
+DEFAULT_ROOT_ORG={{ default_root_org }}
+
+## Database configurations ##
+# Elasticsearch configuration
+ES_BASE=http://{{ elasticsearch_host }}:{{ elasticsearch_http_port }}
+ES_USERNAME={{ elasticsearch_username }}
+ES_PASSWORD={{ elasticsearch_password }}
+
+# Authentication for Cassandra
+CASSANDRA_IP={{ cassandra_contact_points }}
+CASSANDRA_USERNAME={{ cassandra_username }}
+CASSANDRA_PASSWORD={{ cassandra_password }}
+CASSANDRA_AUTH_ENABLED={{ enable_password_for_cassandra }}
+TELEMETRY_SB_BASE={{ telemetry_sb_api_base }}
+
+SUNBIRD_BACKEND={{ authoring_tool_backend_base }}
+
+ROOT_ORG={{ var_common_root_org }}
+ORG={{ var_common_org }}
+PID_API_BASE={{ pid_api_base }}
+NOTIFICATIONS_API_BASE={{ notification_api_base }}
+
+# Lex Core split
+PREFERENCE_API_BASE={{ lms_core_cassandra_api_base }}
+HIERARCHY_API_BASE={{ lms_core_high_api_base }}
+CONTENT_SOURCE_API_BASE={{ lms_core_cassandra_api_base }}
+GOALS_API_BASE={{ lms_core_api_base }}
+USER_DETAILS_API_BASE={{ lms_core_cassandra_api_base }}
+BADGE_API_BASE={{ lms_core_api_base }}
+CONTINUE_LEARNING_API_BASE={{ lms_core_high_api_base }}
+PROGRESS_API_BASE={{ lms_core_critical_api_base }}
+FEEDBACK_API_BASE={{ lms_core_api_base }}
+TIMESPENT_API_BASE={{ lms_core_cassandra_api_base }}
+TNC_API_BASE={{ lms_core_cassandra_api_base }}
+ROLES_API_BASE={{ lms_core_cassandra_api_base }}
+INTEREST_API_BASE={{ lms_core_high_api_base }}
+PLAYLIST_API_BASE={{ lms_core_api_base }}
+LIKE_API_BASE={{ lms_core_cassandra_api_base }}
+RATING_API_BASE={{ lms_core_cassandra_api_base }}
+COHORTS_API_BASE={{ sb_ext_api_base }}
+LEARNING_HISTORY_API_BASE={{ lms_core_high_api_base }}
+SUBMISSION_API_BASE={{ lms_core_high_api_base }}
+LEADERBOARD_API_BASE={{ lms_core_cassandra_api_base }}
+LEARNING_HUB_API_BASE={{ lms_core_lhub_api_base }}
+MULTI_TENANT_KEYCLOAK={{ vault_rootorg_to_authdomain_and_realm_mapping }}
+
+SCORING_SERVICE_API_BASE={{ scoring_service_api_base }}
+
+SB_EXT_API_BASE_2={{ sb_ext_api_base }}
+
+WORKFLOW_HANDLER_SERVICE_API_BASE={{ workflow_handler_service_api_base }}
+
+#DISCUSSION_HUB_MIDDLEWARE
+
+KEYCLOAK_SESSION_TTL={{ keycloak_session_ttl }}
+KNOWLEDGE_MW_API_BASE=http://knowledge-mw-service:5000
+KONG_API_BASE=http://kong:8000
+SUNBIRD_PROXY_API_BASE=https://{{ portal_domain_name }}/api
+DISCUSSION_HUB_MIDDLEWARE=http://discussionsmw-service:3002
+
+SB_API_KEY={{ bearer_token }}
+
+#Frac Variables
+REACT_APP_KEYCLOAK_URL=https://{{ portal_domain_name }}/auth
+REACT_APP_PROXY_URL={{ portal_domain_name }}
+REACT_APP_API_URL={{ react_app_api_url }}
+
+SUNBIRD_PROXY_URL=https://{{ portal_domain_name }}/apis/proxies/v8/action
+
+X_CHANNEL_ID={{ x_channel_id }}
+
+CONTENT_SERVICE_API_BASE={{ content_service_api_base }}
+VM_LEARNING_SERVICE_URL=http://{{learningservice_ip}}:8080/learning-service
+
+
+#NXT WAT-SOURCING-BACKEND
+APP_WAT_BE_ENV=production
+APP_WAT_BE_NAME={{ service_wat_sourcing_service }}
+APP_WAT_BE_DEBUG=true
+APP_WAT_BE_PORT={{ service_wat_sourcing_port }}
+IP_WAT_BE_ADDRESS={{ wat_ip_address }}
+APP_WAT_BE_JWT_SECRET_KEY=WATIGOT
+
+MYSQL_WAT_BE_HOST={{ wat_mysql_host }}
+MYSQL_WAT_BE_USER_NAME={{ wat_mysql_username }}
+MYSQL_WAT_BE_USER_PASSWORD={{ wat_mysql_password }}
+MYSQL_WAT_BE_DATABASE={{ wat_database }}
+MYSQL_WAT_BE_PORT={{ mysql_wat_be_port }}
+
+
+#NXT WAT FRONTEND
+REACT_APP_WAT_API_URL=http://{{ service_wat_sourcing_service }}:{{ service_wat_sourcing_port }}
+
+#VEGA VARIABLES
+REACT_APP_VEGA_API_URL={{ vega_api_url }}
+REACT_APP_SANDBOX_URL={{ vega_sandbox_url }}
+REACT_APP_VEGA_ROUTER_URL={{ vega_router_url }}
+REACT_APP_VEGA_COMPILER_URL={{ vega_compiler_url }}
+REACT_APP_GIT_ACCESS_TOKEN={{ vega_git_access_token }}
+
+#UI_PROXY
+CORS_ENVIRONMENT={{ ui_proxy_cors_environment }}
+PORTAL_API_WHITELIST_CHECK=true
+REACT_APP_PMDASH_PROTOTYPE_URL=https://{{react_app_pmdash_prototype_url}}
+DASHBOARD_API_BASE={{ igot_dashboard_api_url }}
+PM_DASHBOARD_API_BASE={{ igot_pm_dashboard_api_url }}
+
+KARMAYOGI_PORTAL_HOST={{ portal_domain_name }}
+
+KEYCLOAK_GOOGLE_CLIENT_ID={{ google_client_id }}
+KEYCLOAK_GOOGLE_CLIENT_SECRET={{ google_client_secret }}
+
+PARICHAY_CLIENT_ID={{ parichay_client_id }}
+#Parichay domain client secret given by NIC team
+PARICHAY_CLIENT_SECRET={{ parichay_client_secret }}
+ 
+#Keycloak’s “auth” URL should be used here. Example - #domain/auth
+PORTAL_AUTH_SERVER_URL=https://{{ portal_domain_name }}/auth
+ 
+#Code challenge value given by iGot developers
+PARICHAY_CODE_CHALLENGE={{ parichay_code_challenge }}
+ 
+#Code value given by iGot developers
+PARICHAY_CODE_VERIFIER={{ parichay_code_verifier }}
+ 
+#Parichay domain Auth url given by NIC team.
+#Example - https://parichay.staging.nic.in/pnv1/oauth2/authorize
+PARICHAY_AUTH_URL={{ parichay_auth_url }}
+ 
+#Parichay Domain token url given by NIC team
+PARICHAY_TOKEN_URL={{ parichay_token_url }}
+ 
+#Parichay Domain revoke url given by NIC team
+PARICHAY_REVOKE_URL={{ parichay_revoke_url }}
+ 
+#Parichay domain user details url given by NIC team
+PARICHAY_USER_DETAILS_URL={{ parichay_user_details_url }}
+ 
+#IGOT Domain Callback URL
+PARICHAY_AUTH_CALLBACK_URL={{ parichay_auth_callback_url }}
+
+PORTAL_CREATE_NODEBB_USER={{  portal_create_nodebb_user | default('false') }}
+NINE_TO_FIVE_MEETING_LINK={{ nine_to_five_meeting_link }}

@@ -1,0 +1,60 @@
+#Server 
+server.port={{ service_pm_user_port }}
+
+#mysql config
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://{{ mysql_host }}:3306/thor?useSSL=false
+spring.datasource.username={{ mysql_username }}
+spring.datasource.password={{ mysql_password }}
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+# Local Elasticsearch config
+elasticsearch.host={{ elasticsearch_host }}
+elasticsearch.port={{ elasticsearch_http_port }}
+elasticsearch.user={{ elasticsearch_username }}
+elasticsearch.pass={{ elasticsearch_password }}
+elasticsearch.cluster.name=elasticsearch
+
+#bot training data path
+bot.baseDir.path={{ vega_model_home }}/TrainingModels/Dataset1
+bot.git.clone.path={{ vega_model_home }}/
+bot.training.bots={{ vega_model_home }}/TrainingModels/TrainingModels/
+bot.data.nlu.file=/bot/data/nlu.md
+bot.data.story.file=/bot/data/stories.md
+bot.domain.file=/bot/domain.yml
+bot.config.file=/bot/config.yml
+bot.models=/bot/models/
+bot.results=/bot/results/
+bot.reports=/bot/reports/
+bot.histogram={{ vega_model_home }}/Results/histogram.txt
+bot.backup.path={{ vega_model_home }}/TrainingModels/thor_Backup/
+bot.server.ip={{bot_server_ip}}
+
+# git configurations
+git.branch.name=storage
+git.username= 
+git.password= 
+
+
+#ip address for production and statging environments
+bot.production.env=localhost
+bot.staging.env=localhost
+
+
+
+
+##security
+bezkoder.app.jwtSecret={{bezkoder_app_jwtsecret}}
+bezkoder.app.jwtExpirationMs=84600000
+jwt.refreshExpirationDateInMs=9000000
+
+# kubernetes service names
+vega.rasa.nlp.sandbox.service=vega-rasa-nlp-sandbox-service
+vega.rasa.action.sandbox.service=vega-rasa-action-sandbox-service
+vega.rasa.nlp.igot.service=vega-rasa-nlp-igot-service
+vega.rasa.action.igot.service=vega-rasa-action-igot-service
+vega.router.service=vega-router-service
+vega.compiler.service=vega-compiler-service
+
+

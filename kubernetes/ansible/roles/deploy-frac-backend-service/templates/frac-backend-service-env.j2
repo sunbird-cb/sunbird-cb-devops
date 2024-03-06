@@ -1,0 +1,76 @@
+# SET CONTEXT PATH
+server.connection-timeout=5000
+server.tomcat.max-threads=2048
+server.tomcat.min-spare-threads=20
+server.tomcat.max-connections=15000
+server.tomcat.accept-count=500
+server.port={{ application_port }}
+
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://{{ mysql_host }}:3306/frac_tool?autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+spring.datasource.username={{ mysql_username }}
+spring.datasource.password={{ mysql_password }}
+spring.http.multipart.max-file-size=10MB
+spring.http.multipart.max-request-size=10MB
+
+#----------------------------- ELASTIC SEARCH CONFIGURATIONS -----------------------------#
+services.esindexer.host={{ elasticsearch_host }}
+services.esindexer.host.name=http://{{ elasticsearch_host }}/
+services.esindexer.host.port={{ elasticsearch_http_port }}
+services.esindexer.host.nameport=http://{{ elasticsearch_host }}:{{ elasticsearch_http_port }}/
+services.esindexer.username={{ elasticsearch_username }}
+services.esindexer.password={{ elasticsearch_password }}
+elasticsearch.url={{ elasticsearch_host }}
+elasticsearch.configuration=frac-configuration
+elasticsearch.positions.index=frac-positions
+elasticsearch.roles.index=frac-roles
+elasticsearch.activities.index=frac-activities
+elasticsearch.competencies.index=frac-competencies
+elasticsearch.knowledgeresources.index=frac-knowledgeresources
+elasticsearch.competencieslevel.index=frac-competencieslevel
+elasticsearch.competencyarea.index=frac-competencyarea
+elasticsearch.nodemapping.index=frac-nodemapping
+elasticsearch.keys.index=frac-keys
+elasticsearch.commentrating.index=frac-commentrating
+elasticsearch.collectionlogs.index=frac-collection-logs
+elasticsearch.type=doc
+elasticsearch.logs.type=logs
+
+webhook.callback.url={{ frac_dict_backend_url }}/api/v1/site/update
+role-verification-url={{ frac_role_verification }}
+
+
+elk.data.up=true
+image.source.aws=true
+image.source.attachment.aws=true
+application.environment=stage
+
+-------------------------------------
+elasticsearch.storage.service=frac-storage-service
+cloud-provider={{ cloud_provider }}
+
+send-notification={{send_notification_token}}
+notification-url={{frac_notification_url}}
+auth-api-key={{frac_auth_api_key}}
+frac-url= {{frac_url}}
+
+
+spring.kafka.bootstrap.servers={{ kafka_servers_list }}
+spring.kafka.consumer.group-id=frac-group
+kafka.audit.topic={{ env }}.telemetry.raw
+
+audit.eid=CB_AUDIT
+audit.edata.props=FRAC
+audit.ver=3.0
+audit.type=events
+audit.pdata.id=dev.FRac.portal
+audit.pdata.pid=FRac
+audit.pdata.ver=1.0
+
+
+### Token Validation ###
+accesstoken.publickey.basepath=/keys/
+sunbird_sso_url=https://{{ domain_name }}/auth/
+sunbird_sso_realm={{ keycloak_sso_realm }}
+
+test=test

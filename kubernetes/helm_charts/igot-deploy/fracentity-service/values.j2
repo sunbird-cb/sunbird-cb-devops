@@ -1,0 +1,29 @@
+### Default variable file for lms-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{fracentity_java_mem_limit|default('-Xmx4096m')}}
+
+replicaCount: {{fracentity_replicacount|default(1)}}
+repository: {{ image_fracentity_service }}
+image_tag: {{ image_tag }}
+resources:
+  requests:
+    cpu: {{fracentity_cpu_req|default('100m')}}
+    memory: {{fracentity_mem_req|default('200Mi')}}
+  limits:
+    cpu: {{ fracentity_cpu_limit|default('2')}}
+    memory: {{fracentity_mem_limit|default('6144Mi')}}
+network:
+  port: {{ service_fracentity_port }}
+  targetport: {{ service_fracentity_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ lms_maxsurge|default('25%') }}
+  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+
+frac_backend_basepath: {{ frac_backend_basepath | default('/keys/') }}

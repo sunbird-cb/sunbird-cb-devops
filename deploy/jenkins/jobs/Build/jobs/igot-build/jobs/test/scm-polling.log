@@ -1,0 +1,11 @@
+Started on Aug 13, 2021 4:28:00 PM
+Using strategy: Default
+[poll] Last Built Revision: Revision 69780eab7c26a94b62fbc558869145f734b88a1d (origin/master)
+using credential tarento-git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials tarento-git
+ > git ls-remote -h https://git.idc.tarento.com/nod/test.git # timeout=10
+Found 1 remote heads on https://git.idc.tarento.com/nod/test.git
+[poll] Latest remote head revision on refs/heads/master is: 69780eab7c26a94b62fbc558869145f734b88a1d - already built by 5
+Done. Took 0.61 sec
+No changes

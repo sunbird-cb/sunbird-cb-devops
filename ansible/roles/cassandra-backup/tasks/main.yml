@@ -1,0 +1,34 @@
+---
+- name: Create Cassandra Snapshot Directory
+  file:
+    path: "{{ cassandra_backup_path }}"
+    state: directory
+    mode: 0777
+    recurse: yes
+
+- name: Take Cassandra Snapshot All KeySpaces
+  shell: |
+    nodetool clearsnapshot
+    nodetool snapshot -t "cassandra-backup-{{ lookup('pipe', 'date +%Y%m%d') }}-{{ ansible_hostname }}-new"
+  ignore_errors: no
+
+- name: Compress and Upload Snapshots
+  shell: |
+    cd {{ cassandra_backup_path }}
+    find . -type d -name "*$snapshot_name*" -exec tar -czvf {}.tar.gz {} \;   
+    rsync -avz --remove-source-files "$cassandra_backup_path"/*"$snapshot_name"*.tar.gz "$nfs_mount_path"   
+    find "$cassandra_backup_path" -type f -name "*$snapshot_name*.tar.gz" -mtime +$days_to_keep -exec rm {} \;
+  ignore_errors: no
+
+- name: Cleanup Old Snapshots Locally
+  find:
+    paths: "{{ cassandra_backup_path }}"
+    patterns: "*.tar.gz"
+    age: "{{ local_backup_retention_days }}d"
+  register: old_snapshots
+
+- name: Delete Old Snapshots Locally
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ old_snapshots.files | default([]) }}"

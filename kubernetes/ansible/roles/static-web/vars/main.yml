@@ -1,0 +1,5 @@
+---
+# vars file for deploy-be-wat
+# For script
+release_name: "{{ network_alias_vega_web_service }}"
+static_cdn_container: $web

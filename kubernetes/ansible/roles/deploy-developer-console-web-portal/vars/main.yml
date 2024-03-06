@@ -1,0 +1,29 @@
+---
+# vars file for deploy-ui-static
+# For script
+release_name: "{{ network_alias_developer_console_web_portal }}"
+user_friendly_name: UI developer-console-Web service
+template_compose_file_name: ui-developer-console-wev.j2
+template_env_file_name: "../../shared_files/templates/ui-shared-env.j2"
+compose_file_name: "{{ service_developer_console_web_portal }}.yml"
+env_file_name: "{{ service_developer_console_web_portal }}.env"
+env_file_deployment_location: "{{ env_files_dir }}/{{ env_file_name }}"
+helm_env_file_location: "../helm_charts/igot-deploy/templates/"
+helm_env_file_name: "{{ helm_env_file_location }}/{{ service_developer_console_web_portal }}.env"
+#chart_path: "../kubernetes-deploy/developer-console-web-portal"
+compose_file_deployment_location: "{{ compose_files_dir }}/{{ compose_file_name }}"
+
+# For service
+application_port: "{{ service_developer_console_web_portal_port }}"
+image_name: "{{ image_developer_console_web_portal }}"
+tag: "{{ tags_developer_console_web_portal }}"
+host_port: "{{ application_port }}"
+docker_port: "{{ application_port }}"
+replicas: "{{ service_replicas_developer_console_web_portal }}"
+reserved_memory: "{{ service_mem_reserved_developer_console_web_portal }}"
+limited_memory: "{{ service_mem_limit_developer_console_web_portal }}"
+#health_check_endpoint: http://127.0.0.1:{{ docker_port }}/healthcheck
+network_alias_name: "{{ network_alias_developer_console_web_portal }}"
+docker_service_stack_name: ui
+docker_service_name: "{{ service_developer_console_web_portal }}"
+force_reload: "{{ force_reload_developer_console_web_portal }}"

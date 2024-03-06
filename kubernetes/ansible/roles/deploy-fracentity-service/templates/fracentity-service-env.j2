@@ -1,0 +1,34 @@
+server.port={{ application_port }}
+
+spring.datasource.url=jdbc:postgresql://{{ postgresql_host }}:{{ postgresql_port }}/sunbird
+spring.datasource.username={{postgresql_username_sunbird }}
+spring.datasource.password={{ postgresql_password_sunbird }}
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=false
+
+#Storage Service properties
+storage.key=na
+container.name=na
+identity.name=na
+type.name=aws
+
+#Elsticsearch index
+entity.audit.index=entity-audit
+
+send-notification=false
+notification-url=https://{{ domain_name }}/api/notification/v1/notification/send/sync
+auth-api-key={{ bearer_token }}
+
+accesstoken.publickey.basepath=/keys/
+sunbird_sso_url=https://{{ domain_name }}/auth/
+sunbird_sso_realm=sunbird
+
+user.read.endpoint=http://learner-service:9000/v1/user/read/
+
+#workflow service
+wf.service.url={{ wf_service_host }}
+wf.transition.endpoint=v1/workflow/transition
+wf.action.endpoint=v1/workflow/nextAction/entity/
+wf.rootorg=igot
+wf.org=dopt

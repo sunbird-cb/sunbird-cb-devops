@@ -1,0 +1,57 @@
+### Default variable file for lms-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{lms_java_mem_limit|default('-Xmx600m')}}
+
+replicaCount: {{lms_replicacount|default(1)}}
+repository: {{ image_frac_dictionary_service }}
+image_tag: {{image_tag}}
+resources:
+  requests:
+    cpu: {{lms_cpu_req|default('100m')}}
+    memory: {{lms_mem_req|default('100Mi')}}
+  limits:
+    cpu: {{lms_cpu_limit|default('1')}}
+    memory: {{lms_mem_limit|default('1024Mi')}}
+network:
+  port: {{ service_frac_dictionary_service_port }}
+  targetport: {{ service_frac_dictionary_service_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ lms_maxsurge|default('25%') }}
+  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+
+ui_proxies_bulk_upload: {{ host_bulk_upload }}
+
+envnodejs: |-
+ global.env = {
+  APP_GATSBY_NODE_PORT: '{{app_gatsby_node_port}}',
+  APP_GATSBY_NODE_ENVIRONMENT: '{{app_gatsby_node_environment}}',
+  // APP_GATSBY_ACCESS_ID: '{{app_gatsby_access_id}}',
+  // APP_GATSBY_ACCESS_KEY: '{{app_gatsby_access_key}}',
+  APP_GATSBY_GRAPHQL: '{{app_gatsby_graphql}}',
+  APP_GATSBY_BUCKET_PUSH: '{{app_gatsby_bucket_push}}',
+ };
+
+
+envgatsbyjs: |-
+ global.env = {
+  GATSBY_META_SITEURL: '{{ gatsby_meta_siteurl }}',
+  GATSBY_META_IMAGE: '{{gatsby_meta_image}}',
+  GATSBY_ELASTIC: '{{gatsby_elastic}}',
+  GATSBY_ELASTIC_INDEX: '{{gatsby_elastic_index}}',
+  // GATSBY_S3_BUCKET: '{{gatsby_s3_bucket}}',
+  // GATSBY_S3_HOSTNAME: '{{gatsby_s3_hostname}}',
+  GATSBY_SITE_MAP: '{{gatsby_site_map}}',
+  // GATSBY_ACCESS_ID: '{{gatsby_access_id}}',
+  // GATSBY_ACCESS_KEY: '{{gatsby_access_key}}',
+  GATSBY_DISTRIBUTION_ID: '{{gatsby_distribution_id}}',
+  GATSBY_APOLLO_CLIENT: '{{gatsby_apollo_client}}',
+  GATSBY_META_DOMAIN: '{{gatsby_meta_domain}}',
+  GATSBY_BUCKET_PUSH: '{{gatsby_bucket_push}}',
+ };

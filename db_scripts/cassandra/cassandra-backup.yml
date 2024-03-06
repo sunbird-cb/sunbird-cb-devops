@@ -1,0 +1,40 @@
+---
+- name: Cassandra Backup
+  hosts: cassandra
+  become: yes
+  serial: true
+  vars:
+    backup_directory: "/var/lib/cassandra/data/*/*/snapshots"
+    days_to_keep: 15
+    nfs_mount_path: "/db_backup/cassandra-backup"
+  
+  tasks:
+    - name: Taking Cassandra Snapshots
+      shell: |
+        nodetool clearsnapshot
+        nodetool snapshot -t "cassandra-backup-{{ lookup('pipe', 'date +%Y%m%d') }}-{{ ansible_hostname }}-new"
+      ignore_errors: yes
+
+    - name: Compressing and Uploading Snapshots
+      shell: |
+        cd {{ backup_directory }}
+        find . -type d -name '*cassandra-backup*' -exec tar -czvf {}.tar.gz {} \;
+        find . -type d -name '*cassandra-backup*' -exec rm -rf {} \;
+        rsync -avz --remove-source-files {{ backup_directory }}/*.tar.gz {{ nfs_mount_path }}
+      ignore_errors: yes
+
+- name: Cleanup Old Backups
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Delete old backups
+      find:
+        paths: "{{ nfs_mount_path }}"
+        patterns: "*.tar.gz"
+        age: "{{ days_to_keep }}d"
+        recurse: yes
+      register: old_backups
+
+    - name: Debug old backups
+      debug:
+        var: old_backups

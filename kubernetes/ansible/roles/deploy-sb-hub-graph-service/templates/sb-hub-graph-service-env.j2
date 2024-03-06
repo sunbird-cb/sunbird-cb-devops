@@ -1,0 +1,77 @@
+#
+# /*               "Copyright 2020 Infosys Ltd.
+#                Use of this source code is governed by GPL v3 license that can be found in the LICENSE file or at https://opensource.org/licenses/GPL-3.0
+#                This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3" */
+#
+#
+
+server.port={{ application_port }}
+
+neo4j.auth.enable={{ enable_password_for_neo4j }}
+neo4j.url={{ neo4j_url }}
+neo4j.username={{ neo4j_username }}
+neo4j.password={{ neo4j_password }}
+neo.timeout=30
+
+spring.data.cassandra.bodhi.contact-points={{ cassandra_host }}
+spring.data.cassandra.bodhi.port={{ cassandra_port }}
+spring.data.cassandra.bodhi.keyspace-name={{ keyspace_bodhi }}
+spring.data.cassandra.bodhi.username={{ cassandra_username }}
+spring.data.cassandra.bodhi.password={{ cassandra_password }}
+
+spring.data.cassandra.sunbird.contact-points={{ cassandra_host }}
+spring.data.cassandra.sunbird.port={{ cassandra_port }}
+spring.data.cassandra.sunbird.keyspace-name={{ keyspace_sunbird }}
+spring.data.cassandra.sunbird.username={{ cassandra_username }}
+spring.data.cassandra.sunbird.password={{ cassandra_password }}
+
+cassandra.config.host={{ sunbird_cassandra_db_host }}
+sunbird_cassandra_consistency_level=quorum
+
+es.auth.enabled=false
+es.host={{ elasticsearch_host }}
+es.port={{ elasticsearch_http_port }}
+es.username={{ elasticsearch_username }}
+es.password={{ elasticsearch_password }}
+es.profile.index=userprofile
+es.profile.index.type=_doc
+es.profile.source.fields=photo,id,employmentDetails,personalDetails,profileDetails
+
+
+user.registry.ip=http://{{ network_alias_opensaber }}:{{ service_opensaber_port }}
+user.registry.search.endpoint=/search
+
+#notification.ip=http://{{ service_notification_service }}:{{ service_notification_service_port }}/
+notification.service.host=http://notification-service:9000
+notification.event.endpoint=/v1/notification/send/sync
+notification.template.targetUrl.value=https://{{ domain_name }}/app/network-v2/home
+notification.template.reciepient=author
+notification.template.sender=#from-connect-UUID
+notification.template.targetUrl=#targetUrl
+notification.template.status=#status
+
+notification.template.request=Received Connection request!
+notification.template.response=Received Connection response!
+notification.enabled=true
+
+kafka.bootstrapAddress={{ kafka_ip }}
+add.topic.group.id=
+update.topic.group.id=
+
+taskExecutor.connection.threadPoolName=
+taskExecutor.connection.corePoolSize=2
+taskExecutor.connection.maxPoolSize=2
+taskExecutor.connection.queueCapacity=3
+
+max.node.size=50
+
+redis.host.name={{ kp_redis_ip }}
+redis.port=6379
+#redis timeout value is in seconds
+redis.timeout={{ redis_hub_timeout | default('84600') }}
+redis.userList.read.timeout={{ redis_hub_userlist_read_timeout | default('84600') }}
+read.assess.questions.from.redis={{ hub_read_assess_questions_from_redis | default('true') }}
+network.request.default.limit={{ hub_network_request_default_limit | default('50') }}
+network.request.max.limit={{ hub_network_request_max_limit | default('100') }}
+
+

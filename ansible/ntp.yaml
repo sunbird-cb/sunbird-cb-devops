@@ -1,0 +1,5 @@
+- name: Configure NTP on all hosts
+  hosts: "{{ hosts| default('all') }}"
+  become: yes
+  roles:
+    - ntp

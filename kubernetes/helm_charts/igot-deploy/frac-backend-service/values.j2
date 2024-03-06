@@ -1,0 +1,29 @@
+### Default variable file for lms-service ###
+
+namespace: {{ namespace }}
+imagepullsecrets: {{ imagepullsecrets }}
+dockerhub: {{ docker_hub_url }}
+
+
+env:
+  javaoptions: {{frac_backend_java_mem_limit|default('-Xmx1500m')}}
+
+replicaCount: {{frac_backend_replicacount|default(1)}}
+repository: {{ image_frac_backend_service }}
+image_tag: {{ image_tag }}
+resources:
+  requests:
+    cpu: {{frac_backend_cpu_req|default('100m')}}
+    memory: {{frac_backend_mem_req|default('100Mi')}}
+  limits:
+    cpu: {{frac_backend_cpu_limit|default('2')}}
+    memory: {{frac_backend_mem_limit|default('2048Mi')}}
+network:
+  port: {{ service_frac_backend_port }}
+  targetport: {{ service_frac_backend_port }}
+strategy:
+  type: RollingUpdate
+  maxsurge: {{ lms_maxsurge|default('25%') }}
+  maxunavailable: {{ lms_maxunavailable|default('25%') }}
+
+frac_backend_basepath: {{ frac_backend_basepath | default('/keys/') }}

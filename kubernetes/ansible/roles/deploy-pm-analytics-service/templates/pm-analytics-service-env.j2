@@ -1,0 +1,41 @@
+server.port={{ service_pm_analytics_port }}
+
+spring.datasource.url=jdbc:mysql://{{ mysql_host }}:3306/database
+spring.datasource.username={{ mysql_username }}
+spring.datasource.password={{ mysql_password }}
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+#----------------------------- ELASTIC SEARCH CONFIGURATIONS ------------------------------#
+services.esindexer.primary.host=http://{{ elasticsearch_host }}:{{ elasticsearch_http_port }}/
+services.esindexer.primary.host.name={{ elasticsearch_host }}
+services.esindexer.primary.host.port={{ elasticsearch_http_port }}
+services.esindexer.secondary.host=http://{{ esindexer_secondary_service_host_name }}:{{ esindexer_secondary_host_port }}/
+services.esindexer.secondary.host.name={{ esindexer_secondary_service_host_name }}:{{ esindexer_secondary_host_port }}
+services.esindexer.secondary.host.port={{ esindexer_secondary_host_port }}
+services.esindexer.ternary.host=http://{{ esindexer_ternary_host }}/
+services.esindexer.ternary.host.name={{ esindexer_ternary_host }}
+services.esindexer.ternary.host.port={{ elasticsearch_http_port }}
+services.esindexer.username={{ elasticsearch_username }}
+services.esindexer.password={{ elasticsearch_password }}
+es.index.name=_transaction
+es.document.type=transaction
+es.target.index.name=store_target
+es.target.document.type=storeTarget
+config.schema.paths=classpath*:schema/*.json
+
+redis.service.fullpath=http://{{ redis_host }}:{{ redis_port }}
+redis.service.port={{ redis_port }}
+redis.service.databaseNumber=12
+redis.service.host={{ redis_host }}
+
+
+#----------------------------- DRUID CONFIGURATION ----------------------------------#
+druid.service.fullpath=http://{{druid_host}}:{{druid_port}}/druid/v2/sql
+druid.service.default.startDate=2021-01-01T00:00:00.000
+druid.service.default.endDate=2023-01-01T00:00:00.000
+
+services.user.read.host=https://{{ domain_name }}/
+services.user.read.api=api/user/v2/read/
+services.user.read.api.key={{ bearer_token }}
+

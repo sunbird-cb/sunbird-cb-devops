@@ -1,0 +1,50 @@
+---
+    - name: Make API Request
+      uri:
+        url: "https://{{ static_domain_name }}/api/content/v1/search"
+        method: POST
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+          Authorization: "{{ bearer_token }}"
+        body:
+          request:
+            filters:
+              primaryCategory:
+                - "Course"
+                - "Blended Program"
+                - "Standalone Assessment"
+                - "Curated Program"
+            status:
+              - "Live"
+            query: ""
+            fields:
+              - "identifier"
+              - "primaryCategory"
+              - "name"
+              - "duration"
+              - "posterImage"
+              - "artifactUrl"
+              - "description"
+              - "appIcon"
+              - "source"
+            sort_by:
+              lastUpdatedOn: "desc"
+            limit: 10000
+      register: api_response
+
+    - name: API variable
+      set_fact:
+        content_list_data: "{{ api_response.json.result.content }}"
+
+        #    - name: Debug API Response
+        #debug:
+        #var: content_list_data
+
+    - name: Apply Page Template
+      template:
+        src: content_list_data.j2
+        dest: "{{ helm_env_file_name1 }}"
+
+    - name: create config configmap
+      shell: find "{{ helm_env_file_location }}" -iname "content-list-data.json" -exec /bin/bash -c "ls {}; kubectl replace configmap static-domain-content-list-data-json --from-file={} -n {{namespace}} --dry-run -o=yaml | kubectl apply -f - " \;

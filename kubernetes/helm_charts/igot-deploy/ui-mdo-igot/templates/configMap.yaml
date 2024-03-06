@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mdo-host-config
+  namespace: {{ .Values.namespace }}
+data:
+  host.config.json: |
+{{ .Values.hostconfig | indent 4 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mdo-site-config
+  namespace: {{ .Values.namespace }}
+data:
+  site.config.json: |
+{{ .Values.siteconfig | indent 4 }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mdo-env-js
+  namespace: {{ .Values.namespace }}
+data:
+  env.js: |
+{{ .Values.envjs | indent 4 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mdo-apps-json
+  namespace: {{ .Values.namespace }}
+data:
+  apps.json: |
+{{ .Values.appsjson | indent 4 }}
+
+---

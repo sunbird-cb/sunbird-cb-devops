@@ -1,0 +1,30 @@
+---
+# vars file for deploy-portal
+# For script
+release_name: "{{ network_alias_portal_service }}"
+user_friendly_name: UI Static service
+template_compose_file_name: portal.j2
+template_env_file_name: "../../shared_files/templates/ui-shared-env.j2"
+compose_file_name: "{{ service_portal_service }}.yml"
+env_file_name: "{{ service_portal_service }}.env"
+env_file_deployment_location: "{{ env_files_dir }}/{{ env_file_name }}"
+helm_env_file_location: "../helm_charts/igot-deploy/templates/"
+helm_env_file_name: "{{ helm_env_file_location }}/{{ service_portal_service }}.env"
+#chart_path: "../kubernetes-deploy/portal"
+compose_file_deployment_location: "{{ compose_files_dir }}/{{ compose_file_name }}"
+
+# For service
+application_port: "{{ service_portal_port }}"
+image_name: "{{ image_portal }}"
+tag: "{{ tags_portal }}"
+host_port: "{{ application_port }}"
+docker_port: "{{ application_port }}"
+replicas: "{{ service_replicas_portal_service }}"
+reserved_memory: "{{ service_mem_reserved_portal_service }}"
+limited_memory: "{{ service_mem_limit_portal_service }}"
+health_check_endpoint: http://127.0.0.1:{{ docker_port }}/healthcheck
+network_alias_name: "{{ network_alias_portal_service }}"
+docker_service_stack_name: ui
+docker_service_name: "{{ service_portal_service }}"
+force_reload: "{{ force_reload_portal_service }}"
+
