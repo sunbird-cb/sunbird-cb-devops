@@ -1,7 +1,6 @@
 ---
 - name: Cassandra Backup
   become: yes
-  gather_fact: yes
   hosts: 
       Igot-es-1
   vars_files:
@@ -27,5 +26,5 @@
         find . -type d -name "*$snapshot_name*" -exec tar -czvf {}.tar.gz {} \;   
         rsync -avz --remove-source-files "$cassandra_backup_path"/*"$snapshot_name"*.tar.gz "{{ nfs_server_ip }}":"{{ nfs_mount_path }}"
         find "$cassandra_backup_path" -type f -name "*$snapshot_name*.tar.gz" -mtime +$days_to_keep -exec rm {} \;
-      ignore_errors: no
+      ignore_errors: yes
 
