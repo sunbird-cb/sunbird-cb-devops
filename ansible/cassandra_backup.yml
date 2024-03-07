@@ -1,5 +1,6 @@
 ---
 - name: Cassandra Backup
+  become: yes
   hosts: 
       192.168.3.144
   vars_files:
