@@ -1,8 +1,7 @@
 ---
 - name: Cassandra Backup
   become: yes
-  hosts: 
-      Igot-es-1
+  hosts: cassandra
   vars_files:
     - roles/common.yml
     - roles/hosts.ini
