@@ -1,8 +1,9 @@
 ---
 - name: Cassandra Backup
   become: yes
+  gather_fact: yes
   hosts: 
-      192.168.3.144
+      Igot-es-1
   vars_files:
     - roles/common.yml
     - roles/hosts.ini
