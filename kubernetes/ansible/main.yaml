@@ -112,3 +112,5 @@
       tags: [deploy-pdf-generator-service]
     - role: deploy-fracentity-service
       tags: [deploy-fracentity-service]
+    - role: deploy-ml-kb-portal-service
+      tags: [deploy-ml-kb-portal-service]
