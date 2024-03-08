@@ -1,0 +1,32 @@
+---
+# vars file for deploy-lex-core-service
+
+# For script
+release_name: "{{ network_alias_ml_kb_portal_service }}"
+template_compose_file_name: ml-kb-portal-service.j2
+template_env_file_name: ml-kb-portal-service-env.j2
+compose_file_name: "{{ service_ml_kb_portal_service }}.yml"
+env_file_name: "{{ service_ml_kb_portal_service }}.env"
+helm_env_file_location: "../helm_charts/igot-deploy/templates/"
+helm_env_file_name: "{{ helm_env_file_location }}/{{ service_ml_kb_portal_service }}.env"
+#chart_path: "../kubernetes-deploy/pdf-generator-service" 
+env_file_deployment_location: "{{ env_files_dir }}/{{ env_file_name }}"
+compose_file_deployment_location: "{{ compose_files_dir }}/{{ compose_file_name }}"
+user_friendly_name: ml-kb-portal service
+
+# For service
+application_port: "{{ service_ml_kb_portal_port }}"
+image_name: "{{ image_ml_kb_portal_service }}"
+tag: "{{ tags_ml_kb_portal_service }}"
+host_port: "{{ application_port }}"
+docker_port: "{{ application_port }}"
+replicas: "{{ service_replicas_ml_kb_portal_service }}"
+reserved_memory: "{{ service_mem_reserved_ml_kb_portal_service }}"
+limited_memory: "{{ service_mem_limit_ml_kb_portal_service }}"
+#limited_memory: 2048M
+health_check_endpoint: http://127.0.0.1:{{ docker_port }}/actuator/health
+network_alias_name: "{{ network_alias_ml_kb_portal_service }}"
+docker_service_stack_name: lms
+docker_service_name: "{{ service_ml_kb_portal_service }}"
+force_reload: "{{ force_reload_ml_kb_portal_service }}"
+

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: environment-ts
+  namespace: {{ .Values.namespace }}
+data:
+  environment.ts |
+{{ .Values.environmentts | indent 4 }}
+
+---
