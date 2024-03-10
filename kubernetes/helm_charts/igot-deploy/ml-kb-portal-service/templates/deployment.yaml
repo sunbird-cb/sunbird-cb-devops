@@ -38,11 +38,11 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Chart.Name }}-config
-        resources:
         volumeMounts:
         - name: environmentts
           mountPath: /app/src/environments/environment.ts
           subPath: environment.ts
+        resources:          
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: {{ .Values.network.port }}
