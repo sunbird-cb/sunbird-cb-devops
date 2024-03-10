@@ -4,7 +4,7 @@ metadata:
   name: environment-ts
   namespace: {{ .Values.namespace }}
 data:
-  environment.ts |
+  environment.ts: |
 {{ .Values.environmentts | indent 4 }}
 
 ---
