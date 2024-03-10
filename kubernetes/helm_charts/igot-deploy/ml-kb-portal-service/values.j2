@@ -27,7 +27,7 @@ strategy:
   maxunavailable: {{ lms_maxunavailable|default('25%') }}
 
 environmentts: |-
-export const environment = {
-    production: {{ kp_portal_prod || default('true') }},
-    baseURL:'https://{{ domain_name }}'
-};
+  export const environment = {
+      production: {{ kp_portal_prod | default('true') }},
+      baseURL:'https://{{ domain_name }}'
+  };
