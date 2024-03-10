@@ -6,21 +6,21 @@ dockerhub: {{ docker_hub_url }}
 
 
 env:
-  javaoptions: {{pdf_generator_java_mem_limit|default('-Xmx4096m')}}
+  javaoptions: {{ml_kb_portal_java_mem_limit|default('-Xmx4096m')}}
 
-replicaCount: {{pdf_generator_replicacount|default(1)}}
-repository: {{ image_pdf_generator_service }}
+replicaCount: {{ml_kb_portal_replicacount|default(1)}}
+repository: {{ image_ml_kb_portal_service }}
 image_tag: {{ image_tag }}
 resources:
   requests:
-    cpu: {{pdf_generator_cpu_req|default('100m')}}
-    memory: {{pdf_generator_mem_req|default('200Mi')}}
+    cpu: {{ml_kb_portal_cpu_req|default('100m')}}
+    memory: {{ml_kb_portal_mem_req|default('200Mi')}}
   limits:
-    cpu: {{ pdf_generator_cpu_limit|default('2')}}
-    memory: {{pdf_generator_mem_limit|default('6144Mi')}}
+    cpu: {{ ml_kb_portal_cpu_limit|default('2')}}
+    memory: {{ml_kb_portal_mem_limit|default('6144Mi')}}
 network:
-  port: {{ service_pdf_generator_port }}
-  targetport: {{ service_pdf_generator_port }}
+  port: {{ service_ml_kb_portal_port }}
+  targetport: {{ service_ml_kb_portal_port }}
 strategy:
   type: RollingUpdate
   maxsurge: {{ lms_maxsurge|default('25%') }}
