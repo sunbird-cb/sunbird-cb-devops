@@ -25,9 +25,9 @@ spec:
       - name: {{ .Values.imagepullsecrets }}
 {{- end }}
       volumes:
-        - name: environmentts
+        - name: ml-kb-portal-environmentts
           configMap:
-            name: environment-ts
+            name: ml-kb-portal-environmentts
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}"
@@ -39,7 +39,7 @@ spec:
         - configMapRef:
             name: {{ .Chart.Name }}-config
         volumeMounts:
-        - name: environmentts
+        - name: ml-kb-portal-environmentts
           mountPath: /app/src/environments/environment.ts
           subPath: environment.ts
         resources:          
