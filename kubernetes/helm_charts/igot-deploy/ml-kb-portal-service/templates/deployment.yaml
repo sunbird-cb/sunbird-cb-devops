@@ -35,9 +35,6 @@ spec:
         env:
         - name: JAVA_OPTIONS
           value: {{ .Values.env.javaoptions | quote }}
-        envFrom:
-        - configMapRef:
-            name: {{ .Chart.Name }}-config
         volumeMounts:
         - name: ml-kb-portal-environmentts
           mountPath: /app/src/environments/environment.ts
