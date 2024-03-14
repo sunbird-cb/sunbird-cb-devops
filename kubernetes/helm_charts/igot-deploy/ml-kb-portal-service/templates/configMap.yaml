@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: environment-ts
+  name: ml-kb-portal-environmentts
   namespace: {{ .Values.namespace }}
 data:
-  environment.ts |
+  environment.ts: |
 {{ .Values.environmentts | indent 4 }}
 
 ---
