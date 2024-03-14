@@ -30,5 +30,5 @@ environmentts: |-
   export const environment = {
       production: {{ kp_portal_prod | default('true') }},
       baseURL:'https://{{ domain_name }}'
-      storageURL: '{{ upstream_url }}'
+      storageURL: 'https://{{ upstream_url }}'
   };
