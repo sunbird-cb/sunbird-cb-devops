@@ -26,7 +26,7 @@ strategy:
   maxsurge: {{ lms_maxsurge|default('25%') }}
   maxunavailable: {{ lms_maxunavailable|default('25%') }}
 
-environmentts: |-
+environmentjs: |-
   export const environment = {
       production: {{ kp_portal_prod | default('true') }},
       baseURL: 'https://{{ domain_name }}'
