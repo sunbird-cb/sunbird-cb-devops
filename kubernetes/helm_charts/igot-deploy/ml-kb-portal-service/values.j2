@@ -28,7 +28,6 @@ strategy:
 
 environmentjs: |-
   window["env"] = {
-      #production: {{ kp_portal_prod | default('true') }},
       baseURL: 'https://{{ domain_name }}',
       storageURL: 'https://{{ upstream_url }}',
   };
