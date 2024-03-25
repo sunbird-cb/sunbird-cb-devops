@@ -25,9 +25,9 @@ spec:
       - name: {{ .Values.imagepullsecrets }}
 {{- end }}
       volumes:
-        - name: ml-kb-portal-environmentts
+        - name: ml-kb-portal-environmentjs
           configMap:
-            name: ml-kb-portal-environmentts
+            name: ml-kb-portal-environmentjs
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}"
@@ -36,9 +36,9 @@ spec:
         - name: JAVA_OPTIONS
           value: {{ .Values.env.javaoptions | quote }}
         volumeMounts:
-        - name: ml-kb-portal-environmentts
-          mountPath: /app/src/environments/environment.ts
-          subPath: environment.ts
+        - name: ml-kb-portal-environmentjs
+          mountPath: /usr/src/app/dist/assets/env.js
+          subPath: env.js
         resources:          
 {{ toYaml .Values.resources | indent 10 }}
         ports:
